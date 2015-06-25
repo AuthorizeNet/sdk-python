@@ -1,5 +1,5 @@
 # sdk-python
 Python SDK for the Authorize.Net API
 
-#Initial commit
-Python sdk created May 2015.
+Python - demo version commit
+06/25/2015
