@@ -102,17 +102,4 @@ class demoTest():
     '''4. Get subscription status
             - execute getSubscriptionStatus request from previously created request object
     '''
-    ARBGetSubscriptionStatusController.execute(statusRequest, ARBGetSubscriptionStatusController.getResponseClass())
-    
-    
-    
-'''helper function to be added to ARBOperationBase for demoTest
-    def getSubscriptionIdFromResponse(self,):
-        order = binding.CreateFromDocument(response)
-        return order.subscriptionId
-'''
-
-    
-    
-    
-    
+    ARBGetSubscriptionStatusController.execute(statusRequest, ARBGetSubscriptionStatusController.getResponseClass())   
