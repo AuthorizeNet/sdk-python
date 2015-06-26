@@ -19,3 +19,8 @@ class ARBCreateSubscriptionController(ARBOperationBase.ARBOperationBase):
     def getResponseClass(self):
         return binding.ARBCreateSubscriptionResponse()
 
+'''uncomment helper function for demoTest
+    def getSubscriptionIdFromResponse(self,):
+        order = binding.CreateFromDocument(response)
+        return order.subscriptionId
+'''
