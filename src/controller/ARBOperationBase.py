@@ -3,17 +3,26 @@ Created on Jun 1, 2015
 
 @author: egodolja
 '''
-from contract import binding
+import abc
+from ARBOperationBaseInterface import ARBOperationBaseInterface
 
+from contract import binding
 from pip._vendor import requests
 from constants import *
 
 import logging
 import xml.dom.minidom
+import os
+from _pyio import __metaclass__
+from ConfigParser import SafeConfigParser
 
 
-class ARBOperationBase(object):
-    logging.basicConfig(filename='logFile.log', level=logging.DEBUG, format='%(asctime)s %(message)s')
+class ARBOperationBase(ARBOperationBaseInterface):
+    parser = SafeConfigParser()
+    parser.read(os.path.dirname(__file__) + "/../properties.ini")
+    logFile = parser.get("properties", "logfilename")
+    
+    logging.basicConfig(filename=logFile, level=logging.DEBUG, format='%(asctime)s %(message)s')
 
     
     def buildRequest(self, requestType, requestObject):
@@ -31,28 +40,45 @@ class ARBOperationBase(object):
     
     def execute(self, request, responseClass):
         logging.debug('fetching response...')
+        global responseObject
         global response
+        
+        request = self.beforeExecute(request)
+        
         response = requests.post(constants.SANDBOX_TESTMODE, data=request, headers=constants.headers, proxies=constants.proxyDictionary)
-        
-        #encoding of response should be changed to retrieve text of response
-        response.encoding = constants.response_encoding
+
         if response:
-            
-            response = response.text[3:]
-            if constants.StatusStart in response:
-                response = response.replace(constants.note, '')
-                response = self.afterExecuteStatus(response)
-        
-            order = binding.CreateFromDocument(response)
-            
-            if type(order) == type(responseClass):
+
+            #encoding of response should be changed to retrieve text of response
+            response.encoding = constants.response_encoding
+            response = response.text[3:] #strip BOM; check for amoutn of chars
+            response = self.afterExecute(response)
+            responseObject = binding.CreateFromDocument(response)
+
+            if type(responseObject) == type(responseClass):
                 xml_str = xml.dom.minidom.parseString(response)
                 logging.debug('Received the following response: %s' % xml_str.toprettyxml())
             else:
                 logging.debug('There was an error: %s' % request)
-
-    def afterExecuteStatus(self, response):
-        start = response.index(constants.StatusStart)
-        end = response.index(constants.StatusEnd)
-        response = response.replace(response[start:end+9], '')
+            #handle both errors: xsd validation, error codes
+        else:
+            print "Did not receive a response"
+    
+    def getResponseObject(self):
+        return responseObject
+    
+    def getResultCode(self):
+        if responseObject:
+            return responseObject.resultCode
+    
+    def getMessageType(self):
+        if responseObject:
+            return responseObject.message
+    
+    def afterExecute(self, response):
         return response
+    
+    def beforeExecute(self, request):
+        return request
+
+    

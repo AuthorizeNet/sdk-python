@@ -5,12 +5,14 @@ Created on Jun 9, 2015
 '''
 from controller import ARBOperationBase
 from contract import binding
+import logging
 
 class ARBCancelSubscriptionController(ARBOperationBase.ARBOperationBase):
     
     def ARBCancelSubscriptionController(self, requestObject):
         if not requestObject.subscriptionId:
-            return 'SubscriptionId Cannot be Null'
+            logging.error('SubscriptionId Cannot be Null.')
+            return 
         
         request = super(ARBCancelSubscriptionController, self).buildRequest('ARBCancelSubscriptionRequest', requestObject)
         

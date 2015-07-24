@@ -1,4 +1,4 @@
-# sdk-python
+# sdk-python    [![Build Status](https://magnum.travis-ci.com/egodolja/sdk-python.svg?token=9z5hnp59uHpbBpKa445s&branch=master)](https://magnum.travis-ci.com/egodolja/sdk-python)
 Python SDK for the Authorize.Net API
 
 Python - demo version commit

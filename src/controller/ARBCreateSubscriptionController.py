@@ -5,12 +5,14 @@ Created on Jun 9, 2015
 '''
 from controller import ARBOperationBase
 from contract import binding
+import logging
 
 class ARBCreateSubscriptionController(ARBOperationBase.ARBOperationBase):
     
     def ARBCreateSubscriptionController(self, requestObject):
         if not requestObject.subscription:
-            return 'Subscription Cannot be Null'
+            logging.debug('Subscription Cannot be Null.')
+            return
         
         request = super(ARBCreateSubscriptionController, self).buildRequest('ARBCreateSubscriptionRequest', requestObject)
         
@@ -19,8 +21,3 @@ class ARBCreateSubscriptionController(ARBOperationBase.ARBOperationBase):
     def getResponseClass(self):
         return binding.ARBCreateSubscriptionResponse()
 
-'''uncomment helper function for demoTest
-    def getSubscriptionIdFromResponse(self,):
-        order = binding.CreateFromDocument(response)
-        return order.subscriptionId
-'''
