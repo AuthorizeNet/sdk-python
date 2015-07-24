@@ -4,4 +4,5 @@ python:
 install:
  - pip install unittest2
  - pip install nose
+ - pip install pyxb
 script: nosetests
