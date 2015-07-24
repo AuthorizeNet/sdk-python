@@ -15,8 +15,6 @@ class constants(object):
     '''xml headers'''
     headers = {'Content-Type' : 'application/xml', 'version' : '1.0', 'encoding' : 'utf-8'}
     
-    '''proxy configuration'''
-    proxyDictionary = {'http' : 'internet.visa.com', 'https' : 'internet.visa.com', 'ftp' : 'internet.visa.com'}
     
     '''ARBGetSubscriptionStatus <Status> tag'''
     StatusStart = '<Status>'

@@ -18,10 +18,11 @@ from ConfigParser import SafeConfigParser
 
 
 class ARBOperationBase(ARBOperationBaseInterface):
-    parser = SafeConfigParser()
+    parser = SafeConfigParser({"http":"","https":"","ftp":""})
     parser.read(os.path.dirname(__file__) + "/../properties.ini")
     logFile = parser.get("properties", "logfilename")
     
+
     logging.basicConfig(filename=logFile, level=logging.DEBUG, format='%(asctime)s %(message)s')
 
     
@@ -44,8 +45,12 @@ class ARBOperationBase(ARBOperationBaseInterface):
         global response
         
         request = self.beforeExecute(request)
+
+        proxyDictionary = {'http' : self.parser.get("properties", "http"),
+                            'https' : self.parser.get("properties" , "https"),
+                            'ftp' : self.parser.get("properties", "ftp")}
         
-        response = requests.post(constants.SANDBOX_TESTMODE, data=request, headers=constants.headers, proxies=constants.proxyDictionary)
+        response = requests.post(constants.SANDBOX_TESTMODE, data=request, headers=constants.headers, proxies=proxyDictionary)
 
         if response:
 
