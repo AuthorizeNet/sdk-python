@@ -20,4 +20,3 @@ class ARBCreateSubscriptionController(ARBOperationBase.ARBOperationBase):
     
     def getResponseClass(self):
         return binding.ARBCreateSubscriptionResponse()
-

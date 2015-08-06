@@ -14,7 +14,7 @@ from controller.ARBCancelSubscriptionController import ARBCancelSubscriptionCont
 
 class test_arbUnitTest(ApiTestBase):
     def setup(self):
-        super(arbUnitTest, self).setUp()
+        super(test_arbUnitTest, self).setUp()
 
 
     def createSubscription(self):

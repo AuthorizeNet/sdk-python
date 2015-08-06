@@ -18,13 +18,13 @@ from ConfigParser import SafeConfigParser
 
 
 class ARBOperationBase(ARBOperationBaseInterface):
-    parser = SafeConfigParser({"http":"","https":"","ftp":""})
+    parser = SafeConfigParser()
     parser.read(os.path.dirname(__file__) + "/../properties.ini")
     logFile = parser.get("properties", "logfilename")
     
 
     logging.basicConfig(filename=logFile, level=logging.DEBUG, format='%(asctime)s %(message)s')
-
+    sandbox = parser.get("properties", "sandbox")
     
     def buildRequest(self, requestType, requestObject):
         logging.debug('building request..')
@@ -50,22 +50,23 @@ class ARBOperationBase(ARBOperationBaseInterface):
                             'https' : self.parser.get("properties" , "https"),
                             'ftp' : self.parser.get("properties", "ftp")}
         
-        response = requests.post(constants.SANDBOX_TESTMODE, data=request, headers=constants.headers, proxies=proxyDictionary)
+        response = requests.post(self.sandbox, data=request, headers=constants.headers, proxies=proxyDictionary)
 
         if response:
 
             #encoding of response should be changed to retrieve text of response
             response.encoding = constants.response_encoding
-            response = response.text[3:] #strip BOM; check for amoutn of chars
+            response = response.text[3:] #strip BOM
             response = self.afterExecute(response)
             responseObject = binding.CreateFromDocument(response)
 
             if type(responseObject) == type(responseClass):
+                if responseObject.messages.resultCode == "Error":
+                    print "Response error"
                 xml_str = xml.dom.minidom.parseString(response)
                 logging.debug('Received the following response: %s' % xml_str.toprettyxml())
             else:
                 logging.debug('There was an error: %s' % request)
-            #handle both errors: xsd validation, error codes
         else:
             print "Did not receive a response"
     

@@ -17,7 +17,6 @@ class paymentTransactionUnitTest(ApiTestBase):
         global transactionController 
         
         transactionRequestType = binding.transactionRequestType()
-        #enum
         transactionRequestType.transactionType = "authCaptureTransaction"
         transactionRequestType.amount = self.amount
         transactionRequestType.payment = self.payment
@@ -35,17 +34,17 @@ class paymentTransactionUnitTest(ApiTestBase):
         transactionController.execute(transactionRequest, transactionController.getResponseClass())
         
         response = transactionController.getResponseObject()
-        #assert response not none
+        
+        self.assertIsNotNone(response)
         self.assertIsNotNone(response.transactionResponse)
         self.assertIsNotNone(response.transactionResponse.transId)
-        #make sure transId > 0
+        self.assertIsNot("0", response.transactionResponse.transId)
     
     def testauthOnlyContinueTransaction(self):
         global transactionController
         
         transactionRequestType = binding.transactionRequestType()
-        #enum
-        transactionRequestType.transactionType = "authOnlyContinueTransaction"
+        transactionRequestType.transactionType = "authOnlyTransaction"
         transactionRequestType.amount = self.amount
         transactionRequestType.payment = self.payment
         transactionRequestType.order = self.order

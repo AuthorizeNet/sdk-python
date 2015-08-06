@@ -4,17 +4,8 @@ Created on Jun 8, 2015
 @author: egodolja
 '''
 class constants(object):
-    CONST_API_LOGIN_ID = '7uSHkqw7k88'
-    CONST_TRANSACTION_KEY = '4k2vP25FC59zA8WG'
-    CONST_REFID = 'Sample'
-    
-    '''Environments'''
-    SANDBOX_TESTMODE = 'https://apitest.authorize.net/xml/v1/request.api'
-    PRODUCTION = 'https://api.authorize.net/xml/v1/request.api'
-    
     '''xml headers'''
     headers = {'Content-Type' : 'application/xml', 'version' : '1.0', 'encoding' : 'utf-8'}
-    
     
     '''ARBGetSubscriptionStatus <Status> tag'''
     StatusStart = '<Status>'
