@@ -64,7 +64,7 @@ class recurringBillingSampleCode(ApiTestBase.ApiTestBase):
     
     subscription = binding.ARBSubscriptionType()
     subscription.paymentSchedule = paymentSchedule
-    subscription.amount = Decimal('13.55')
+    subscription.amount = Decimal('16.37')
     subscription.trialAmount = Decimal('0.03')
     subscription.payment = payment
     subscription.billTo = customerOne
@@ -83,17 +83,16 @@ class recurringBillingSampleCode(ApiTestBase.ApiTestBase):
     subscriptionId = createResponse.subscriptionId
     if createResponse:
         if createResponse.messages.resultCode == 'Ok':
-            #print createResponse.messages.message.text
             print 'Subscription successfully created.'
             print ('SubscriptionId: %s' % createResponse.subscriptionId)
             subscriptionId = createResponse.subscriptionId
         else:
-            print ('Failed %s' % createResponse.messages.message)
+            print ('Failed to create subscription')
     else:
-        print ('Failed request')
+        print ('Failed: no response')
     
     print '------------------------------------------'
-    
+
     '''2. Get subscription status
         - create a getSubscriptionStatus request object
             - use the subscriptionId from create subscription
@@ -103,7 +102,8 @@ class recurringBillingSampleCode(ApiTestBase.ApiTestBase):
     getSubscriptionStatusRequest = binding.ARBGetSubscriptionStatusRequest()
     getSubscriptionStatusRequest.merchantAuthentication = merchantAuthentication
     getSubscriptionStatusRequest.refId = ref_Id
-    getSubscriptionStatusRequest.subscriptionId = subscriptionId
+    if subscriptionId:
+        getSubscriptionStatusRequest.subscriptionId = subscriptionId
     
     ARBGetSubscriptionStatusController = ARBGetSubscriptionStatusController()
     statusRequest = ARBGetSubscriptionStatusController.ARBGetSubscriptionStatusController(getSubscriptionStatusRequest)
@@ -113,11 +113,10 @@ class recurringBillingSampleCode(ApiTestBase.ApiTestBase):
     
     if statusResponse:
         if statusResponse.messages.resultCode == 'Ok':
-            #print statusResponse.messages.message.Text
             print 'Successful.'
             print ("Status: %s" % statusResponse.status)
         else:
-            print ('Failed %s' % statusResponse.messages.resultCode)
+            print ('Failed to get status')
     else:
         print 'Failed request'
     
@@ -142,10 +141,9 @@ class recurringBillingSampleCode(ApiTestBase.ApiTestBase):
     
     if cancelResponse:
         if cancelResponse.messages.resultCode == 'Ok':
-            #print cancelResponse.messages.message.text
             print 'Subscription successfully cancelled.'
         else:
-            print ('Failed %s' % cancelResponse.messages.resultCode)
+            print ('Failed to cancel subscription')
     else:
         print 'Failed request'
         
@@ -159,11 +157,10 @@ class recurringBillingSampleCode(ApiTestBase.ApiTestBase):
     
     if statusResponse:
         if statusResponse.messages.resultCode == 'Ok':
-            #print statusResponse.messages.message.text
             print 'Successful.'
             print ("Status: %s" % statusResponse.status)
         else:
-            print ('Failed %s' % statusResponse.messages.resultCode)
+            print ('Failed to get status')
     else:
         print 'Failed request'
     

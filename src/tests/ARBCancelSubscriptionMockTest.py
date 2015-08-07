@@ -21,7 +21,6 @@ class ARBCancelSubscriptionControllerTest(ApiTestBase):
         ctrl = ARBCancelSubscriptionController()
 
         ctrl.execute = MagicMock(return_value=None)
-        #requests.post = MagicMock(return_value=None)
 
         cancelRequest = ctrl.ARBCancelSubscriptionController(cancelSubscriptionRequest)
         ctrl.execute(cancelRequest, binding.ARBCancelSubscriptionResponse)
