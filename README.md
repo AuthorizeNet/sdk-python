@@ -22,7 +22,6 @@ How to Use
 The following is a sample which shows how to create a transaction request 
 and execute it using the create transaction controller.
 
-''''
 from contract import binding
 from decimal import *
 from controller.CreateTransactionController import CreateTransactionController
@@ -94,5 +93,4 @@ class paymentTransaction(object):
 			print ('Failed transaction %s' % response.messages.resultCode)
 
 	print '---------------------------------------------'
-''''
 
