@@ -3,13 +3,13 @@ Created on Jun 9, 2015
 
 @author: egodolja
 '''
-from controller import ARBOperationBase
+from controller import APIOperationBase
 from contract import binding
 from constants import *
 import logging
 
 
-class ARBGetSubscriptionStatusController(ARBOperationBase.ARBOperationBase):
+class ARBGetSubscriptionStatusController(APIOperationBase.APIOperationBase):
     
     def ARBGetSubscriptionStatusController(self, requestObject):
         if not requestObject.subscriptionId:

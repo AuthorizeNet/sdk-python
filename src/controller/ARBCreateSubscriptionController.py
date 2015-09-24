@@ -3,11 +3,11 @@ Created on Jun 9, 2015
 
 @author: egodolja
 '''
-from controller import ARBOperationBase
+from controller import APIOperationBase
 from contract import binding
 import logging
 
-class ARBCreateSubscriptionController(ARBOperationBase.ARBOperationBase):
+class ARBCreateSubscriptionController(APIOperationBase.APIOperationBase):
     
     def ARBCreateSubscriptionController(self, requestObject):
         if not requestObject.subscription:

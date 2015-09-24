@@ -5,7 +5,7 @@ Created on Jul 6, 2015
 '''
 import abc
 
-class ARBOperationBaseInterface(object):
+class APIOperationBaseInterface(object):
     
     __metaclass__ = abc.ABCMeta
     

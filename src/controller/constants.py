@@ -4,6 +4,13 @@ Created on Jun 8, 2015
 @author: egodolja
 '''
 class constants(object):
+
+    CONST_REFID = 'Sample'
+    
+    '''Environments'''
+    SANDBOX_TESTMODE = 'https://apitest.authorize.net/xml/v1/request.api'
+    PRODUCTION = 'https://api.authorize.net/xml/v1/request.api'
+    
     '''xml headers'''
     headers = {'Content-Type' : 'application/xml', 'version' : '1.0', 'encoding' : 'utf-8'}
     
