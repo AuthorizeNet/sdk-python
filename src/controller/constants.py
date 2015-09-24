@@ -4,8 +4,8 @@ Created on Jun 8, 2015
 @author: egodolja
 '''
 class constants(object):
-    CONST_API_LOGIN_ID = '7uSHkqw7k88'
-    CONST_TRANSACTION_KEY = '4k2vP25FC59zA8WG'
+    CONST_API_LOGIN_ID = '6rF76h2U93AL'
+    CONST_TRANSACTION_KEY = '59j3B2Kq7r8Fyg76'
     CONST_REFID = 'Sample'
     
     '''Environments'''

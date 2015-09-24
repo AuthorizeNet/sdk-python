@@ -4,7 +4,7 @@ Created on Jun 1, 2015
 @author: egodolja
 '''
 import abc
-from ARBOperationBaseInterface import ARBOperationBaseInterface
+from controller.APIOperationBaseInterface import APIOperationBaseInterface
 
 from contract import binding
 from pip._vendor import requests
@@ -17,7 +17,7 @@ from _pyio import __metaclass__
 from ConfigParser import SafeConfigParser
 
 
-class ARBOperationBase(ARBOperationBaseInterface):
+class APIOperationBase(APIOperationBaseInterface):
     parser = SafeConfigParser({"http":"","https":"","ftp":""})
     parser.read(os.path.dirname(__file__) + "/../properties.ini")
     logFile = parser.get("properties", "logfilename")

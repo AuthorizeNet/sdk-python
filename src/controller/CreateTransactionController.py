@@ -3,12 +3,12 @@ Created on Jul 10, 2015
 
 @author: egodolja
 '''
-from controller import ARBOperationBase
+from controller import APIOperationBase
 from contract import binding
 import logging
 
 
-class CreateTransactionController(ARBOperationBase.ARBOperationBase):
+class CreateTransactionController(APIOperationBase.APIOperationBase):
     
     def CreateTransactionController(self, requestObject):
         #requestobject not none
