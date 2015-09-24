@@ -28,12 +28,12 @@ from controller.CreateTransactionController import CreateTransactionController
 
 class paymentTransaction(object):
 	
-	#set sandbox cradentials and refid
+	#set sandbox credentials and refid
 	api_login_id = "your api login id"
 	transaction_key = "your transaction key"
 	ref_id = "your ref id"
 	
-	#create merchant authentication using sandbox cradentials
+	#create merchant authentication using sandbox credentials
 	merchantAuthenticationOne = binding.merchantAuthenticationOne
 	merchantAuthenticationOne.name = api_login_id
 	merchantAuthenticationOne.transactionKey = transaction_key
