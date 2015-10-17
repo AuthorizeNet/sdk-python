@@ -3,7 +3,6 @@ Created on Jul 6, 2015
 
 @author: egodolja
 '''
-
 import abc
 import logging
 import os
@@ -11,9 +10,9 @@ import sys
 import xml.dom.minidom
 
 from pip._vendor import requests
-#from pip._vendor.pkg_resources import null_ns_handler
 from _pyio import __metaclass__
 from ConfigParser import SafeConfigParser
+
 from authorizenet.constants import constants
 from authorizenet import apicontractsv1
 
@@ -22,37 +21,42 @@ class APIOperationBaseInterface(object):
     __metaclass__ = abc.ABCMeta
     
     @abc.abstractmethod
-    def buildRequest(self):
-        ''' Creates a request xml '''
-        return
-    
-    @abc.abstractmethod
     def execute(self):
         '''
         Makes a http-post call. 
         Uses request xml and response class type to check that the response was of correct type
         '''
-        return
+        pass
+
+    @abc.abstractmethod
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        pass
     
     @abc.abstractmethod
     def getResponse(self):
         ''' Returns the de-serialized response'''
-        return
+        pass
     
     @abc.abstractmethod
     def getResultCode(self):
         ''' Returns the result code from the response '''
-        return
+        pass
     
     @abc.abstractmethod
     def getMessageType(self):
         ''' Returns the message type enum from the response '''
-        return
+        pass
 
     @abc.abstractmethod
     def afterExecute(self):
         '''TODO'''
-        return
+        pass
+
+    @abc.abstractmethod
+    def beforeExecute(self):
+        '''TODO'''
+        pass
 
 class APIOperationBase(APIOperationBaseInterface):
     __metaclass__ = abc.ABCMeta
@@ -69,10 +73,6 @@ class APIOperationBase(APIOperationBaseInterface):
         #TODO format and level in config file
         logging.basicConfig(filename=logFile, level=logging.DEBUG, format='%(asctime)s %(message)s')
         endpoint = parser.get("properties", "sandbox")
-    
-    @abc.abstractmethod
-    def getResponseType(self):
-        return 
     
     @abc.abstractmethod
     def validateRequest(self):
@@ -144,13 +144,14 @@ class APIOperationBase(APIOperationBaseInterface):
             except Exception as createfromdocumentexception:
                 logging.error( 'Create Document Exception: %s, %s', type(createfromdocumentexception), createfromdocumentexception.args )
             else:    
-                if self.getResponseType() == type(self._response):
+                if type(self.getResponseClass()) == type(self._response):
                     if self._response.messages.resultCode == "Error":
                         print "Response error"
             
-                    xmlResponse = xml.dom.minidom.parseString(self._httpResponse)
-                    logging.debug('Received response: %s' % xmlResponse.toprettyxml())
+                    domResponse = xml.dom.minidom.parseString(self._httpResponse)
+                    logging.debug('Received response: %s' % domResponse.toprettyxml())
                 else:
+                    #Need to handle ErrorResponse 
                     logging.debug('Error retrieving response for request: %s' % self._request)
         else:
             print "Did not receive http response"
@@ -172,14 +173,13 @@ class APIOperationBase(APIOperationBaseInterface):
     def beforeExecute(self):
         return 
        
-    def __init__(self, apiRequest, requestType, responseType):
+    def __init__(self, apiRequest, requestType):
         self._httpResponse = "null"
         self._request = "null"
         self._response = "null"
         self.__endpoint = "null"
         #TODO
         self._requestType = "null"
-        self._responseType = "null"
         
         if "null" == apiRequest:
             raise ValueError('Input request cannot be null')
@@ -187,7 +187,6 @@ class APIOperationBase(APIOperationBaseInterface):
         
         self._request = apiRequest
         self._requestType = requestType
-        self._responseType = responseType
         self.validate()
             
         return
