@@ -1,5 +1,5 @@
 '''
-Created on Sep 26, 2015
+Created on Oct16, 2015
 
 @author: krgupta
 '''
@@ -9,6 +9,7 @@ from authorizenet import apicontractsv1
 from authorizenet import apicontrollersbase
 
         
+c        
 class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest, requestType, responseType):
@@ -16,11 +17,699 @@ class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
         return 
     
     def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
         if (self._request.transId == "null"):
             raise ValueError('transId is required')           
         return
 
-    def getResponseType(self):
-        return self._responseType
-#TODO        return apicontractsv1.getTransactionDetailsResponse()
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
     
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+                
+class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest, requestType, responseType):
+        super(getTransactionDetailsController, self).__init__(apirequest, requestType, responseType)
+        return 
+    
+    def validateRequest(self):
+        logging.debug('performing custom validation..')
+        
+        if (self._request.transId == "null"):
+            raise ValueError('transId is required')           
+        return
+
+    def getResponseClass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getTransactionDetailsResponse()
+
+    
+        
