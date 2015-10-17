@@ -1,12 +1,4 @@
-'''
-Created on Oct16, 2015
-
-@author: krgupta
-'''
-import logging
-from authorizenet.constants import constants
-from authorizenet import apicontractsv1
-from authorizenet import apicontrollersbase               
+               
 class ARBCancelSubscriptionController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest, requestType):
@@ -158,7 +150,7 @@ class createCustomerProfileFromTransactionController(apicontrollersbase.APIOpera
 
     def getResponseClass(self):
         ''' Returns the response class '''
-        return apicontractsv1.createCustomerProfileResponse()    
+        return apicontractsv1.createCustomerProfileFromTransactionResponse()    
                        
 class createCustomerProfileTransactionController(apicontrollersbase.APIOperationBase):
     

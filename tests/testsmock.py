@@ -78,7 +78,7 @@ class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
         gettransactiondetailsrequest.merchantAuthentication = self.merchantAuthentication
         gettransactiondetailsrequest.transId = '2240608177'
         
-        gettransactiondetailscontroller = getTransactionDetailsController(gettransactiondetailsrequest, 'getTransactionDetailsRequest', 'getTransactionDetailsResponse')
+        gettransactiondetailscontroller = getTransactionDetailsController(gettransactiondetailsrequest, 'getTransactionDetailsRequest')
         
         gettransactiondetailscontroller.execute()
         response =  gettransactiondetailscontroller.getResponse()
