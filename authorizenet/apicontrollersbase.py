@@ -29,7 +29,7 @@ class APIOperationBaseInterface(object):
         pass
 
     @abc.abstractmethod
-    def getResponseClass(self):
+    def getresponseclass(self):
         ''' Returns the response class '''
         pass
     
@@ -75,7 +75,7 @@ class APIOperationBase(APIOperationBaseInterface):
         endpoint = parser.get("properties", "sandbox")
     
     @abc.abstractmethod
-    def validateRequest(self):
+    def validaterequest(self):
         return
     
     def validate(self):
@@ -91,7 +91,7 @@ class APIOperationBase(APIOperationBaseInterface):
         if ( null != impersonationAuthenticationType) 
         throw new IllegalArgumentException("ImpersonationAuthenticationType needs to be null");
         '''
-        self.validateRequest() 
+        self.validaterequest() 
         return     
     
     def _getRequest(self): #protected method
@@ -144,7 +144,7 @@ class APIOperationBase(APIOperationBaseInterface):
             except Exception as createfromdocumentexception:
                 logging.error( 'Create Document Exception: %s, %s', type(createfromdocumentexception), createfromdocumentexception.args )
             else:    
-                if type(self.getResponseClass()) == type(self._response):
+                if type(self.getresponseclass()) == type(self._response):
                     if self._response.messages.resultCode == "Error":
                         print "Response error"
             
