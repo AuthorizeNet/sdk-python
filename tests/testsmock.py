@@ -69,21 +69,4 @@ class ARBGetSubscriptionStatusTest(object):
         ctrl.execute.assert_any_call(statusRequest, apicontractsv1.ARBGetSubscriptionStatusResponse)     
 '''
     
-class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
-    
-    def testGetTransactionDetails(self):
-        #global GetTransactionDetailsController 
-        
-        gettransactiondetailsrequest = apicontractsv1.getTransactionDetailsRequest()
-        gettransactiondetailsrequest.merchantAuthentication = self.merchantAuthentication
-        gettransactiondetailsrequest.transId = '2240608177'
-        
-        gettransactiondetailscontroller = getTransactionDetailsController(gettransactiondetailsrequest, 'getTransactionDetailsRequest')
-        
-        gettransactiondetailscontroller.execute()
-        response =  gettransactiondetailscontroller.getResponse()
-        print "response code: %s" % response.messages.resultCode
-        self.assertEquals('Ok', response.messages.resultCode)   
-       
-if __name__ =='__main__':
-    unittest.main()    
+ 

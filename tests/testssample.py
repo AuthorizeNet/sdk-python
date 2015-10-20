@@ -13,8 +13,14 @@ import datetime
 from tests import apitestbase
 #from tests import *
 import os
+import unittest
+from authorizenet import apicontractsv1
+#from controller.ARBCancelSubscriptionController import ARBCancelSubscriptionController
+from tests import apitestbase
+from authorizenet.apicontrollers import *
+import test
 
-
+'''
 class test_arbUnitTest(apitestbase.ApiTestBase):
     def setup(self):
         super(test_arbUnitTest, self).setUp()
@@ -122,5 +128,20 @@ class paymentTransactionUnitTest(apitestbase.ApiTestBase):
         response = transactionController.getResponseObject()
         self.assertIsNotNone(response.transactionResponse)
         self.assertIsNotNone(response.transactionResponse.transId)
+'''
 
-
+class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
+    
+    def testGetTransactionDetails(self):
+        
+        gettransactiondetailsrequest = apicontractsv1.getTransactionDetailsRequest()
+        gettransactiondetailsrequest.merchantAuthentication = self.merchantAuthentication
+        gettransactiondetailsrequest.transId = '2240608177' #update valid transaction id
+        gettransactiondetailscontroller = getTransactionDetailsController(gettransactiondetailsrequest, 'getTransactionDetailsRequest')
+        gettransactiondetailscontroller.execute()
+        response =  gettransactiondetailscontroller.getResponse()
+        print "response code: %s" % response.messages.resultCode
+        self.assertEquals('Ok', response.messages.resultCode)   
+       
+if __name__ =='__main__':
+    unittest.main()  

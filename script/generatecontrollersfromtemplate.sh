@@ -70,7 +70,7 @@ done
 
 
 cat ${SRCDIR}/${CONTROLLERFOLDER}/*.py > ${SRCDIR}/${CONTROLLERFOLDER}/controllers.py
-cat ${SRCDIR}/${CONTROLLERFOLDER}/header.py ${SRCDIR}/${CONTROLLERFOLDER}/controllers.py  > ${SRCDIR}/authorizenet/apicontrollers.py
+cat ${SRCDIR}/${CONTROLLERFOLDER}/headertemplate.txt ${SRCDIR}/${CONTROLLERFOLDER}/controllers.py  > ${SRCDIR}/authorizenet/apicontrollers.py
 
 echo FINISHED ${dt}
 	 
