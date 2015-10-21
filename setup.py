@@ -9,20 +9,16 @@ from os import path
 
 here = path.abspath(path.dirname(__file__))
 
-# Get the long description from the relevant file
-with open(path.join(here, 'DESCRIPTION.rst'), encoding='utf-8') as f:
-    long_description = f.read()
 
 setup(
-    name='sdk-python',
+    name='authorizenet',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='1.0.0',
+    version='1.0.2',
 
-    description='Authorize.Net Python project',
-    long_description=long_description,
+    description='Authorize.Net Python SDK',
 
     # The project's main homepage.
     url='https://github.com/AuthorizeNet/sdk-python',
@@ -65,7 +61,7 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=['pyxb', 'nose', 'nosetests', 'mock'],
+    install_requires=['pyxb', 'nose', 'mock'],
 	#install_requires=['nose'],
 	#install_requires=['nosetests'],
 	#install_requires=['mock'],
