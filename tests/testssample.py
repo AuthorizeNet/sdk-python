@@ -1,7 +1,7 @@
 '''
 Created on Jul 13, 2015
 
-@author: egodolja
+@author: krgupta
 '''
 from authorizenet import apicontractsv1
 from decimal import *
@@ -20,128 +20,86 @@ from tests import apitestbase
 from authorizenet.apicontrollers import *
 import test
 
-'''
-class test_arbUnitTest(apitestbase.ApiTestBase):
-    def setup(self):
-        super(test_arbUnitTest, self).setUp()
-
-    def createSubscription(self):
-        global createSubscriptionController
-        createSubscriptionRequest = apicontractsv1.ARBCreateSubscriptionRequest()
-        createSubscriptionRequest.merchantAuthentication = self.merchantAuthentication
-        createSubscriptionRequest.refId = self.ref_id
-        createSubscriptionRequest.subscription = self.subscriptionOne
-        
-        createSubscriptionController = ARBCreateSubscriptionController()
-        createRequest = createSubscriptionController.ARBCreateSubscriptionController(createSubscriptionRequest)
-        createSubscriptionController.execute(createRequest, createSubscriptionController.getResponseClass())
-        
-        response = createSubscriptionController.getResponseObject()
-
-        self.assertIsNotNone(response.subscriptionId)
-        self.assertEquals('Ok', response.messages.resultCode)
-        return response.subscriptionId
-    
-    def testgetSubscriptionStatus(self):
-        global getSubscriptionStatusController
-        subscriptionId = self.createSubscription()
-        getSubscriptionStatusRequest = apicontractsv1.ARBGetSubscriptionStatusRequest()
-        getSubscriptionStatusRequest.merchantAuthentication = self.merchantAuthentication
-        getSubscriptionStatusRequest.refId = self.ref_id
-        getSubscriptionStatusRequest.subscriptionId = subscriptionId
-        
-        getSubscriptionStatusController = ARBGetSubscriptionStatusController()
-        statusRequest = getSubscriptionStatusController.ARBGetSubscriptionStatusController(getSubscriptionStatusRequest)
-        getSubscriptionStatusController.execute(statusRequest, getSubscriptionStatusController.getResponseClass())
-        
-        response = getSubscriptionStatusController.getResponseObject()
-        
-        self.assertEquals('active', response.status)
-    
-    def testcancelSubscription(self):
-        global cancelSubscriptionController
-        subscriptionId = self.createSubscription()
-        cancelSubscriptionRequest = apicontractsv1.ARBCancelSubscriptionRequest()
-        cancelSubscriptionRequest.merchantAuthentication = self.merchantAuthentication
-        cancelSubscriptionRequest.refId = self.ref_id
-        cancelSubscriptionRequest.subscriptionId = subscriptionId
-        
-        cancelSubscriptionController = ARBCancelSubscriptionController()
-        cancelRequest = cancelSubscriptionController.ARBCancelSubscriptionController(cancelSubscriptionRequest)
-        cancelSubscriptionController.execute(cancelRequest, cancelSubscriptionController.getResponseClass())
-        
-        response = cancelSubscriptionController.getResponseObject()
-        
-        self.assertEquals('Ok', response.messages.resultCode)
-        
-class paymentTransactionUnitTest(apitestbase.ApiTestBase):
-    def setup(self):
-        super(paymentTransactionUnitTest, self).setup()
-    
-    def testauthCaputureTransaction(self):
-        global transactionController 
-        
-        transactionRequestType = apicontractsv1.transactionRequestType()
-        transactionRequestType.transactionType = "authCaptureTransaction"
-        transactionRequestType.amount = self.amount
-        transactionRequestType.payment = self.payment
-        transactionRequestType.order = self.order
-        transactionRequestType.customer = self.customerData
-        transactionRequestType.billTo = self.billTo
-        
-        createTransactionRequest = apicontractsv1.createTransactionRequest()
-        createTransactionRequest.merchantAuthentication = self.merchantAuthentication
-        createTransactionRequest.refId = self.ref_id
-        createTransactionRequest.transactionRequest = transactionRequestType
-        
-        transactionController = createTransactionController()
-        transactionRequest = transactionController.CreateTransactionController(createTransactionRequest)
-        transactionController.execute(transactionRequest, transactionController.getResponseClass())
-        
-        response = transactionController.getResponseObject()
-        
-        self.assertIsNotNone(response)
-        self.assertIsNotNone(response.transactionResponse)
-        self.assertIsNotNone(response.transactionResponse.transId)
-        self.assertIsNot("0", response.transactionResponse.transId)
-    
-    def testauthOnlyContinueTransaction(self):
-        global transactionController
-        
-        transactionRequestType = apicontractsv1.transactionRequestType()
-        transactionRequestType.transactionType = "authOnlyTransaction"
-        transactionRequestType.amount = self.amount
-        transactionRequestType.payment = self.payment
-        transactionRequestType.order = self.order
-        transactionRequestType.customer = self.customerData
-        transactionRequestType.billTo = self.billTo
-        
-        createTransactionRequest = apicontractsv1.createTransactionRequest()
-        createTransactionRequest.merchantAuthentication = self.merchantAuthentication
-        createTransactionRequest.refId = self.ref_id
-        createTransactionRequest.transactionRequest = transactionRequestType
-        
-        transactionController = createTransactionController()
-        transactionRequest = transactionController.CreateTransactionController(createTransactionRequest)
-        transactionController.execute(transactionRequest, transactionController.getResponseClass())
-        
-        response = transactionController.getResponseObject()
-        self.assertIsNotNone(response.transactionResponse)
-        self.assertIsNotNone(response.transactionResponse.transId)
-'''
-
 class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
     
     def testGetTransactionDetails(self):
         
         gettransactiondetailsrequest = apicontractsv1.getTransactionDetailsRequest()
         gettransactiondetailsrequest.merchantAuthentication = self.merchantAuthentication
-        gettransactiondetailsrequest.transId = '1234567'#'2240608177' #update valid transaction id
+        gettransactiondetailsrequest.transId ='2240608177' #update valid transaction id
         gettransactiondetailscontroller = getTransactionDetailsController(gettransactiondetailsrequest, 'getTransactionDetailsRequest')
         gettransactiondetailscontroller.execute()
         response =  gettransactiondetailscontroller.getResponse()
-        #print "response code: %s" % response.messages.resultCode
-        #self.assertEquals('Ok', response.messages.resultCode)   
-       
+        self.assertEquals('Ok', response.messages.resultCode)   
+        
+class test_RecurringBillingTest(apitestbase.ApiTestBase):
+    
+    def testCreateSubscription(self):
+        
+        createsubscriptionrequest = apicontractsv1.ARBCreateSubscriptionRequest()
+        createsubscriptionrequest.merchantAuthentication = self.merchantAuthentication
+        createsubscriptionrequest.refId = 'Sample'
+        createsubscriptionrequest.subscription = self.subscriptionOne
+        arbcreatesubscriptioncontroller = ARBCreateSubscriptionController(createsubscriptionrequest, 'ARBCreateSubscriptionRequest')
+        arbcreatesubscriptioncontroller.execute()
+        response = arbcreatesubscriptioncontroller.getResponse()
+        self.assertIsNotNone(response.subscriptionId)
+        self.assertEquals('Ok', response.messages.resultCode) 
+
+    def testcancelSubscription(self):
+        
+        cancelsubscriptionrequest = apicontractsv1.ARBCancelSubscriptionRequest()
+        cancelsubscriptionrequest.merchantAuthentication = self.merchantAuthentication
+        cancelsubscriptionrequest.refId = 'Sample'
+        cancelsubscriptionrequest.subscriptionId = '2921797' #input valid subscriptionId
+        cancelsubscriptioncontroller = ARBCancelSubscriptionController (cancelsubscriptionrequest, 'ARBCancelSubscriptionRequest')
+        cancelsubscriptioncontroller.execute()  
+        response = cancelsubscriptioncontroller.getResponse()
+        self.assertEquals('Ok', response.messages.resultCode)  
+        
+class paymentTransactionUnitTest(apitestbase.ApiTestBase):
+    
+    def testauthCaputureTransaction(self):
+        
+        transactionrequesttype = apicontractsv1.transactionRequestType()
+        transactionrequesttype.transactionType = "authCaptureTransaction"
+        transactionrequesttype.amount = self.amount
+        transactionrequesttype.payment = self.payment
+        transactionrequesttype.order = self.order
+        transactionrequesttype.customer = self.customerData
+        transactionrequesttype.billTo = self.billTo
+        
+        createtransactionrequest = apicontractsv1.createTransactionRequest()
+        createtransactionrequest.merchantAuthentication = self.merchantAuthentication
+        createtransactionrequest.refId = self.ref_id
+        createtransactionrequest.transactionRequest = transactionrequesttype
+        createtransactioncontroller = createTransactionController(createtransactionrequest, 'createTransactionRequest')
+        createtransactioncontroller.execute()
+        response = createtransactioncontroller.getResponse()
+        self.assertIsNotNone(response)
+        self.assertIsNotNone(response.transactionResponse)
+        self.assertIsNotNone(response.transactionResponse.transId)
+        self.assertIsNot("0", response.transactionResponse.transId)
+        
+    def testauthOnlyContinueTransaction(self):      
+        
+        transactionrequesttype = apicontractsv1.transactionRequestType()
+        transactionrequesttype.transactionType = "authCaptureTransaction"
+        transactionrequesttype.amount = self.amount
+        transactionrequesttype.payment = self.payment
+        transactionrequesttype.order = self.order
+        transactionrequesttype.customer = self.customerData
+        transactionrequesttype.billTo = self.billTo
+        
+        createtransactionrequest = apicontractsv1.createTransactionRequest()
+        createtransactionrequest.merchantAuthentication = self.merchantAuthentication
+        createtransactionrequest.refId = self.ref_id
+        createtransactionrequest.transactionRequest = transactionrequesttype
+        createtransactioncontroller = createTransactionController(createtransactionrequest, 'createTransactionRequest')
+        createtransactioncontroller.execute()
+        response = createtransactioncontroller.getResponse()
+        self.assertIsNotNone(response.transactionResponse)
+        self.assertIsNotNone(response.transactionResponse.transId)
+    
 if __name__ =='__main__':
     unittest.main()  
