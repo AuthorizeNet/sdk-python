@@ -19,7 +19,9 @@ class ApiTestBase(unittest.TestCase):
     def setUp(self):
         self.amount = str(round(random.random()*100, 2))
         parser = SafeConfigParser()
-        parser.read(os.path.dirname(__file__)+ "/../properties.ini")
+        home = os.path.expanduser("~")
+        propertiesfilename = os.path.join(home, "anet_python_sdk_properties.ini")
+        parser.read(propertiesfilename)
         
         self.api_login_id = parser.get("properties", "api.login.id")
         self.transaction_key = parser.get("properties", "transaction.key")
@@ -73,5 +75,6 @@ class ApiTestBase(unittest.TestCase):
         self.billTo.state = "WA"
         self.billTo.zip = "98122"
         self.billTo.country = "USA"
-        
+       
+    
         
