@@ -1,17 +1,20 @@
 '''
-Created on Jul 6, 2015
+Created on Nov 1, 2015
 
-@author: egodolja
+@author: krgupta
 '''
 import abc
 import logging
 import os
+from os.path import expanduser
+
 import sys
 import xml.dom.minidom
 
 from pip._vendor import requests
 from _pyio import __metaclass__
 from ConfigParser import SafeConfigParser
+import ConfigParser
 
 from authorizenet.constants import constants
 from authorizenet import apicontractsv1
@@ -34,27 +37,27 @@ class APIOperationBaseInterface(object):
         pass
     
     @abc.abstractmethod
-    def getResponse(self):
+    def getresponse(self):
         ''' Returns the de-serialized response'''
         pass
     
     @abc.abstractmethod
-    def getResultCode(self):
+    def getresultcode(self):
         ''' Returns the result code from the response '''
         pass
     
     @abc.abstractmethod
-    def getMessageType(self):
+    def getmessagetype(self):
         ''' Returns the message type enum from the response '''
         pass
 
     @abc.abstractmethod
-    def afterExecute(self):
-        '''TODO'''
+    def afterexecute(self):
+        '''Returns the message received from binding after processing request'''
         pass
 
     @abc.abstractmethod
-    def beforeExecute(self):
+    def beforeexecute(self):
         '''TODO'''
         pass
 
@@ -63,16 +66,28 @@ class APIOperationBase(APIOperationBaseInterface):
     
     parser = SafeConfigParser({"http":"","https":"","ftp":""})
 
+   
     try:
-        #if #TODO
-        parser.read(os.path.dirname(__file__) + "/../properties.ini")
+        #if #TODO      
+        home = os.path.expanduser("~")
+        homedirpropertiesfilename = os.path.join(home, "anet_python_sdk_properties.ini")
+        
+        currdir = os.getcwd()
+        currdirpropertiesfilename = os.path.join(currdir, "anet_python_sdk_properties.ini")
+        
+        if (os.path.exists(homedirpropertiesfilename)):
+            parser.read(homedirpropertiesfilename)
+        elif (os.path.exists(currdirpropertiesfilename)):
+            parser.read(currdirpropertiesfilename)
+        else :
+            print "you do not have anet_python_sdk_properties.ini file neither in home nor in current working directory"
     except IOError, error:
         sys.exit( error)
     else:
         logFile = parser.get("properties", "logfilename")
         #TODO format and level in config file
         logging.basicConfig(filename=logFile, level=logging.DEBUG, format='%(asctime)s %(message)s')
-        endpoint = parser.get("properties", "sandbox")
+        endpoint = constants.SANDBOX_TESTMODE 
     
     @abc.abstractmethod
     def validaterequest(self):
@@ -94,10 +109,10 @@ class APIOperationBase(APIOperationBaseInterface):
         self.validaterequest() 
         return     
     
-    def _getRequest(self): #protected method
+    def _getrequest(self): #protected method
         return self._request 
      
-    def buildRequest(self):
+    def buildrequest(self):
         logging.debug('building request..')
         #TODO requestType = type( self._request)
         requestType = self._requestType
@@ -109,8 +124,8 @@ class APIOperationBase(APIOperationBaseInterface):
         
         return xmlRequest
     
-    def getPrettyXmlRequest(self):
-        xmlRequest = self.buildRequest()
+    def getprettyxmlrequest(self):
+        xmlRequest = self.buildrequest()
         requestDom = xml.dom.minidom.parseString(xmlRequest)
         logging.debug('Request is: %s' % requestDom.toprettyxml())
 
@@ -119,7 +134,7 @@ class APIOperationBase(APIOperationBaseInterface):
     def execute(self):
         logging.debug('Executing http post to url: %s', self.endpoint)
         
-        self.beforeExecute()
+        self.beforeexecute()
 
         proxyDictionary = {'http' : self.parser.get("properties", "http"),
                             'https' : self.parser.get("properties" , "https"),
@@ -127,10 +142,10 @@ class APIOperationBase(APIOperationBaseInterface):
         
         #requests is http request
         try:
-            xmlRequest = self.buildRequest()
+            xmlRequest = self.buildrequest()
             self._httpResponse = requests.post(self.endpoint, data=xmlRequest, headers=constants.headers, proxies=proxyDictionary)
         except Exception as httpException:
-            logging.error( 'Error retrieving http response from: %s for request: %s', self.endpoint, self.getPrettyXmlRequest())
+            logging.error( 'Error retrieving http response from: %s for request: %s', self.endpoint, self.getprettyxmlrequest())
             logging.error( 'Exception: %s, %s', type(httpException), httpException.args )
 
 
@@ -138,7 +153,7 @@ class APIOperationBase(APIOperationBaseInterface):
             #encoding of response should be changed to retrieve text of response
             self._httpResponse.encoding = constants.response_encoding
             self._httpResponse = self._httpResponse.text[3:] #strip BOM
-            self.afterExecute()
+            self.afterexecute()
             try:
                 self._response = apicontractsv1.CreateFromDocument(self._httpResponse)
             except Exception as createfromdocumentexception:
@@ -156,21 +171,21 @@ class APIOperationBase(APIOperationBaseInterface):
         else:
             print "Did not receive http response"
     
-    def getResponse(self):
+    def getresponse(self):
         return self._response
     
-    def getResultCode(self):
+    def getresultcode(self):
         if self._response:
             return self._response.resultCode
     
-    def getMessageType(self):
+    def getmessagetype(self):
         if self._response:
             return self._response.message
     
-    def afterExecute(self ):
+    def afterexecute(self ):
         return 
     
-    def beforeExecute(self):
+    def beforeexecute(self):
         return 
        
     def __init__(self, apiRequest, requestType):
