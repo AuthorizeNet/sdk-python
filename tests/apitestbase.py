@@ -19,7 +19,18 @@ class ApiTestBase(unittest.TestCase):
     def setUp(self):
         self.amount = str(round(random.random()*100, 2))
         parser = SafeConfigParser()
-        parser.read(os.path.dirname(__file__)+ "/../properties.ini")
+        home = os.path.expanduser("~")
+        homedirpropertiesfilename = os.path.join(home, "anet_python_sdk_properties.ini")
+        
+        currdir = os.getcwd()
+        currdirpropertiesfilename = os.path.join(currdir, "anet_python_sdk_properties.ini")
+        
+        if (os.path.exists(homedirpropertiesfilename)):
+            parser.read(homedirpropertiesfilename)
+        elif (os.path.exists(currdirpropertiesfilename)):
+            parser.read(currdirpropertiesfilename)
+        else :
+            print "you do not have anet_python_sdk_properties.ini file neither in home nor in current working directory"
         
         self.api_login_id = parser.get("properties", "api.login.id")
         self.transaction_key = parser.get("properties", "transaction.key")
@@ -73,5 +84,6 @@ class ApiTestBase(unittest.TestCase):
         self.billTo.state = "WA"
         self.billTo.zip = "98122"
         self.billTo.country = "USA"
-        
+       
+    
         

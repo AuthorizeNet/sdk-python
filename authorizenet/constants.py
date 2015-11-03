@@ -4,6 +4,10 @@ Created on Jun 8, 2015
 @author: egodolja
 '''
 class constants(object):
+    """All the constants are defined here
+    Define all your constants instead of using magic numbers in the
+    code. 
+    """
     
     '''Environments'''
     SANDBOX_TESTMODE = 'https://apitest.authorize.net/xml/v1/request.api'
