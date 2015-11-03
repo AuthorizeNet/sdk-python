@@ -70,8 +70,17 @@ class APIOperationBase(APIOperationBaseInterface):
     try:
         #if #TODO      
         home = os.path.expanduser("~")
-        propertiesfilename = os.path.join(home, "anet_python_sdk_properties.ini")
-        parser.read(propertiesfilename)
+        homedirpropertiesfilename = os.path.join(home, "anet_python_sdk_properties.ini")
+        
+        currdir = os.getcwd()
+        currdirpropertiesfilename = os.path.join(currdir, "anet_python_sdk_properties.ini")
+        
+        if (os.path.exists(homedirpropertiesfilename)):
+            parser.read(homedirpropertiesfilename)
+        elif (os.path.exists(currdirpropertiesfilename)):
+            parser.read(currdirpropertiesfilename)
+        else :
+            print "you do not have anet_python_sdk_properties.ini file neither in home nor in current working directory"
     except IOError, error:
         sys.exit( error)
     else:
