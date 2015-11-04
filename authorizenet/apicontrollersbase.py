@@ -37,6 +37,11 @@ class APIOperationBaseInterface(object):
         pass
     
     @abc.abstractmethod
+    def getrequesttype(self):
+        ''' Returns the request class '''
+        pass
+    
+    @abc.abstractmethod
     def getresponse(self):
         ''' Returns the de-serialized response'''
         pass
@@ -67,8 +72,7 @@ class APIOperationBase(APIOperationBaseInterface):
     parser = SafeConfigParser({"http":"","https":"","ftp":""})
 
    
-    try:
-        #if #TODO      
+    try:     
         home = os.path.expanduser("~")
         homedirpropertiesfilename = os.path.join(home, "anet_python_sdk_properties.ini")
         
@@ -114,10 +118,8 @@ class APIOperationBase(APIOperationBaseInterface):
      
     def buildrequest(self):
         logging.debug('building request..')
-        #TODO requestType = type( self._request)
-        requestType = self._requestType
         
-        xmlRequest = self._request.toxml(encoding=constants.xml_encoding, element_name=requestType)
+        xmlRequest = self._request.toxml(encoding=constants.xml_encoding, element_name=self.getrequesttype())
         #remove namespaces that toxml() generates
         xmlRequest = xmlRequest.replace(constants.nsNamespace1, '')
         xmlRequest = xmlRequest.replace(constants.nsNamespace2, '')
@@ -188,20 +190,17 @@ class APIOperationBase(APIOperationBaseInterface):
     def beforeexecute(self):
         return 
        
-    def __init__(self, apiRequest, requestType):
+    def __init__(self, apiRequest):
         self._httpResponse = "null"
         self._request = "null"
         self._response = "null"
         self.__endpoint = "null"
-        #TODO
-        self._requestType = "null"
         
         if "null" == apiRequest:
             raise ValueError('Input request cannot be null')
         #TOdo null check for types
         
         self._request = apiRequest
-        self._requestType = requestType
         self.validate()
             
         return

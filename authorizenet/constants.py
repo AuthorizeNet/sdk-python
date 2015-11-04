@@ -19,12 +19,12 @@ class constants(object):
     '''xml headers'''
     headers = {'Content-Type' : 'application/xml', 'version' : '1.0', 'encoding' : xml_encoding}
     
-    '''
+    """
     Following constants are defined and used in the ARBSubscriptionStatusController
     Used to remove the "Status" element, that has been deprecated
     However, since the server response still contains it, we have to remove it
     before de-serialization
-    '''
+    """
     '''ARBGetSubscriptionStatus <Status> tag'''
     StatusStart = '<Status>'
     StatusEnd = '</Status>'

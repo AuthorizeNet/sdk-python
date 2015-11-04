@@ -1,16 +1,16 @@
 '''
-Created on Oct18, 2015
+Created on Nov 3, 2015
 
 @author: krgupta
 '''
 import logging
 from authorizenet.constants import constants
 from authorizenet import apicontractsv1
-from authorizenet import apicontrollersbase             
+from authorizenet import apicontrollersbase    		
 class ARBCancelSubscriptionController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(ARBCancelSubscriptionController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(ARBCancelSubscriptionController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -19,14 +19,18 @@ class ARBCancelSubscriptionController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'ARBCancelSubscriptionRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.ARBCancelSubscriptionResponse()                 
+        return apicontractsv1.ARBCancelSubscriptionResponse()  		
 class ARBCreateSubscriptionController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(ARBCreateSubscriptionController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(ARBCreateSubscriptionController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -35,14 +39,18 @@ class ARBCreateSubscriptionController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'ARBCreateSubscriptionRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.ARBCreateSubscriptionResponse()                 
+        return apicontractsv1.ARBCreateSubscriptionResponse()  		
 class ARBGetSubscriptionListController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(ARBGetSubscriptionListController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(ARBGetSubscriptionListController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -51,14 +59,18 @@ class ARBGetSubscriptionListController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'ARBGetSubscriptionListRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.ARBGetSubscriptionListResponse()                 
+        return apicontractsv1.ARBGetSubscriptionListResponse()  		
 class ARBGetSubscriptionStatusController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(ARBGetSubscriptionStatusController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(ARBGetSubscriptionStatusController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -67,14 +79,18 @@ class ARBGetSubscriptionStatusController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'ARBGetSubscriptionStatusRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.ARBGetSubscriptionStatusResponse()                 
+        return apicontractsv1.ARBGetSubscriptionStatusResponse()  		
 class ARBUpdateSubscriptionController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(ARBUpdateSubscriptionController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(ARBUpdateSubscriptionController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -83,14 +99,18 @@ class ARBUpdateSubscriptionController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'ARBUpdateSubscriptionRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.ARBUpdateSubscriptionResponse()                 
+        return apicontractsv1.ARBUpdateSubscriptionResponse()  		
 class authenticateTestController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(authenticateTestController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(authenticateTestController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -99,14 +119,18 @@ class authenticateTestController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'authenticateTestRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.authenticateTestResponse()                 
+        return apicontractsv1.authenticateTestResponse()  		
 class createCustomerPaymentProfileController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(createCustomerPaymentProfileController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(createCustomerPaymentProfileController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -115,14 +139,18 @@ class createCustomerPaymentProfileController(apicontrollersbase.APIOperationBase
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'createCustomerPaymentProfileRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.createCustomerPaymentProfileResponse()                 
+        return apicontractsv1.createCustomerPaymentProfileResponse()  		
 class createCustomerProfileController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(createCustomerProfileController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(createCustomerProfileController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -131,14 +159,18 @@ class createCustomerProfileController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'createCustomerProfileRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.createCustomerProfileResponse()                 
+        return apicontractsv1.createCustomerProfileResponse()  		
 class createCustomerProfileFromTransactionController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(createCustomerProfileFromTransactionController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(createCustomerProfileFromTransactionController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -147,14 +179,18 @@ class createCustomerProfileFromTransactionController(apicontrollersbase.APIOpera
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'createCustomerProfileFromTransactionRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.createCustomerProfileResponse()                 
+        return apicontractsv1.createCustomerProfileResponse()  		
 class createCustomerProfileTransactionController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(createCustomerProfileTransactionController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(createCustomerProfileTransactionController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -163,14 +199,18 @@ class createCustomerProfileTransactionController(apicontrollersbase.APIOperation
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'createCustomerProfileTransactionRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.createCustomerProfileTransactionResponse()                 
+        return apicontractsv1.createCustomerProfileTransactionResponse()  		
 class createCustomerShippingAddressController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(createCustomerShippingAddressController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(createCustomerShippingAddressController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -179,14 +219,18 @@ class createCustomerShippingAddressController(apicontrollersbase.APIOperationBas
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'createCustomerShippingAddressRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.createCustomerShippingAddressResponse()                 
+        return apicontractsv1.createCustomerShippingAddressResponse()  		
 class createTransactionController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(createTransactionController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(createTransactionController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -195,14 +239,18 @@ class createTransactionController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'createTransactionRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.createTransactionResponse()                 
+        return apicontractsv1.createTransactionResponse()  		
 class decryptPaymentDataController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(decryptPaymentDataController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(decryptPaymentDataController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -211,14 +259,18 @@ class decryptPaymentDataController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'decryptPaymentDataRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.decryptPaymentDataResponse()                 
+        return apicontractsv1.decryptPaymentDataResponse()  		
 class deleteCustomerPaymentProfileController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(deleteCustomerPaymentProfileController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(deleteCustomerPaymentProfileController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -227,14 +279,18 @@ class deleteCustomerPaymentProfileController(apicontrollersbase.APIOperationBase
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'deleteCustomerPaymentProfileRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.deleteCustomerPaymentProfileResponse()                 
+        return apicontractsv1.deleteCustomerPaymentProfileResponse()  		
 class deleteCustomerProfileController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(deleteCustomerProfileController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(deleteCustomerProfileController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -243,14 +299,18 @@ class deleteCustomerProfileController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'deleteCustomerProfileRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.deleteCustomerProfileResponse()                 
+        return apicontractsv1.deleteCustomerProfileResponse()  		
 class deleteCustomerShippingAddressController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(deleteCustomerShippingAddressController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(deleteCustomerShippingAddressController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -259,14 +319,18 @@ class deleteCustomerShippingAddressController(apicontrollersbase.APIOperationBas
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'deleteCustomerShippingAddressRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.deleteCustomerShippingAddressResponse()                 
+        return apicontractsv1.deleteCustomerShippingAddressResponse()  		
 class ErrorController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(ErrorController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(ErrorController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -275,14 +339,18 @@ class ErrorController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'ErrorRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.ErrorResponse()                 
+        return apicontractsv1.ErrorResponse()  		
 class getBatchStatisticsController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(getBatchStatisticsController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(getBatchStatisticsController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -291,14 +359,18 @@ class getBatchStatisticsController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'getBatchStatisticsRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.getBatchStatisticsResponse()                 
+        return apicontractsv1.getBatchStatisticsResponse()  		
 class getCustomerPaymentProfileController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(getCustomerPaymentProfileController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(getCustomerPaymentProfileController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -307,14 +379,18 @@ class getCustomerPaymentProfileController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'getCustomerPaymentProfileRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.getCustomerPaymentProfileResponse()                 
+        return apicontractsv1.getCustomerPaymentProfileResponse()  		
 class getCustomerProfileController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(getCustomerProfileController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(getCustomerProfileController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -323,14 +399,18 @@ class getCustomerProfileController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'getCustomerProfileRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.getCustomerProfileResponse()                 
+        return apicontractsv1.getCustomerProfileResponse()  		
 class getCustomerProfileIdsController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(getCustomerProfileIdsController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(getCustomerProfileIdsController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -339,14 +419,18 @@ class getCustomerProfileIdsController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'getCustomerProfileIdsRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.getCustomerProfileIdsResponse()                 
+        return apicontractsv1.getCustomerProfileIdsResponse()  		
 class getCustomerShippingAddressController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(getCustomerShippingAddressController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(getCustomerShippingAddressController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -355,14 +439,18 @@ class getCustomerShippingAddressController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'getCustomerShippingAddressRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.getCustomerShippingAddressResponse()                 
+        return apicontractsv1.getCustomerShippingAddressResponse()  		
 class getHostedProfilePageController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(getHostedProfilePageController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(getHostedProfilePageController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -371,14 +459,18 @@ class getHostedProfilePageController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'getHostedProfilePageRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.getHostedProfilePageResponse()                 
+        return apicontractsv1.getHostedProfilePageResponse()  		
 class getSettledBatchListController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(getSettledBatchListController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(getSettledBatchListController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -387,30 +479,38 @@ class getSettledBatchListController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'getSettledBatchListRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.getSettledBatchListResponse()                 
+        return apicontractsv1.getSettledBatchListResponse()  		
 class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(getTransactionDetailsController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(getTransactionDetailsController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
         logging.debug('performing custom validation..') 
         #validate required fields
-        if (self._request.transId == "null"):              
-            raise ValueError('transId is required')
+        #if (self._request.xyz == "null"):
+        #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'getTransactionDetailsRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.getTransactionDetailsResponse()                 
+        return apicontractsv1.getTransactionDetailsResponse()  		
 class getTransactionListController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(getTransactionListController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(getTransactionListController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -419,14 +519,18 @@ class getTransactionListController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'getTransactionListRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.getTransactionListResponse()                 
+        return apicontractsv1.getTransactionListResponse()  		
 class getUnsettledTransactionListController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(getUnsettledTransactionListController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(getUnsettledTransactionListController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -435,14 +539,18 @@ class getUnsettledTransactionListController(apicontrollersbase.APIOperationBase)
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'getUnsettledTransactionListRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.getUnsettledTransactionListResponse()                 
+        return apicontractsv1.getUnsettledTransactionListResponse()  		
 class isAliveController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(isAliveController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(isAliveController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -451,14 +559,18 @@ class isAliveController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'isAliveRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.isAliveResponse()                 
+        return apicontractsv1.isAliveResponse()  		
 class logoutController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(logoutController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(logoutController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -467,14 +579,18 @@ class logoutController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'logoutRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.logoutResponse()                 
+        return apicontractsv1.logoutResponse()  		
 class mobileDeviceLoginController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(mobileDeviceLoginController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(mobileDeviceLoginController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -483,14 +599,18 @@ class mobileDeviceLoginController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'mobileDeviceLoginRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.mobileDeviceLoginResponse()                 
+        return apicontractsv1.mobileDeviceLoginResponse()  		
 class mobileDeviceRegistrationController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(mobileDeviceRegistrationController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(mobileDeviceRegistrationController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -499,14 +619,18 @@ class mobileDeviceRegistrationController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'mobileDeviceRegistrationRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.mobileDeviceRegistrationResponse()                 
+        return apicontractsv1.mobileDeviceRegistrationResponse()  		
 class sendCustomerTransactionReceiptController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(sendCustomerTransactionReceiptController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(sendCustomerTransactionReceiptController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -515,14 +639,18 @@ class sendCustomerTransactionReceiptController(apicontrollersbase.APIOperationBa
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'sendCustomerTransactionReceiptRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.sendCustomerTransactionReceiptResponse()                 
+        return apicontractsv1.sendCustomerTransactionReceiptResponse()  		
 class updateCustomerPaymentProfileController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(updateCustomerPaymentProfileController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(updateCustomerPaymentProfileController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -531,14 +659,18 @@ class updateCustomerPaymentProfileController(apicontrollersbase.APIOperationBase
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'updateCustomerPaymentProfileRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.updateCustomerPaymentProfileResponse()                 
+        return apicontractsv1.updateCustomerPaymentProfileResponse()  		
 class updateCustomerProfileController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(updateCustomerProfileController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(updateCustomerProfileController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -547,14 +679,18 @@ class updateCustomerProfileController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'updateCustomerProfileRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.updateCustomerProfileResponse()                 
+        return apicontractsv1.updateCustomerProfileResponse()  		
 class updateCustomerShippingAddressController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(updateCustomerShippingAddressController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(updateCustomerShippingAddressController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -563,14 +699,18 @@ class updateCustomerShippingAddressController(apicontrollersbase.APIOperationBas
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'updateCustomerShippingAddressRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.updateCustomerShippingAddressResponse()                 
+        return apicontractsv1.updateCustomerShippingAddressResponse()  		
 class updateSplitTenderGroupController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(updateSplitTenderGroupController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(updateSplitTenderGroupController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -579,14 +719,18 @@ class updateSplitTenderGroupController(apicontrollersbase.APIOperationBase):
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'updateSplitTenderGroupRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.updateSplitTenderGroupResponse()                 
+        return apicontractsv1.updateSplitTenderGroupResponse()  		
 class validateCustomerPaymentProfileController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
-        super(validateCustomerPaymentProfileController, self).__init__(apirequest, requestType)
+    def __init__(self, apirequest):
+        super(validateCustomerPaymentProfileController, self).__init__(apirequest)
         return 
     
     def validaterequest(self):
@@ -595,7 +739,11 @@ class validateCustomerPaymentProfileController(apicontrollersbase.APIOperationBa
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
         return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'validateCustomerPaymentProfileRequest'
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.validateCustomerPaymentProfileResponse()    
+        return apicontractsv1.validateCustomerPaymentProfileResponse()  

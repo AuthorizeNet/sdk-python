@@ -21,8 +21,8 @@ Testing
 How to Use
 --------------------------------------
 You need to set your credentials.
-Refer to template given in anet_python_sdk_properties.ini
-Either copy it to your root directory or make a new one similar to this. If you create one name file anet_python_sdk_properties.ini
+Refer to template given in anet_python_sdk_properties_template.ini
+Either copy it to your root directory or make a new one similar to this. Whatever you opt, name file anet_python_sdk_properties.ini
 
 The following is a sample which shows how to create a transaction request 
 and execute it using the create transaction controller.
