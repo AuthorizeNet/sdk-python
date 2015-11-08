@@ -27,11 +27,11 @@ class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
         gettransactiondetailsrequest = apicontractsv1.getTransactionDetailsRequest()
         gettransactiondetailsrequest.merchantAuthentication = self.merchantAuthentication
         gettransactiondetailsrequest.transId ='2240608177' #update valid transaction id
-        gettransactiondetailscontroller = getTransactionDetailsController(gettransactiondetailsrequest, 'getTransactionDetailsRequest')
+        gettransactiondetailscontroller = getTransactionDetailsController(gettransactiondetailsrequest)
         gettransactiondetailscontroller.execute()
-        response =  gettransactiondetailscontroller.getResponse()
+        response =  gettransactiondetailscontroller.getresponse()
         self.assertEquals('Ok', response.messages.resultCode)   
-        
+       
 class test_RecurringBillingTest(apitestbase.ApiTestBase):
     
     def testCreateSubscription(self):
@@ -40,9 +40,9 @@ class test_RecurringBillingTest(apitestbase.ApiTestBase):
         createsubscriptionrequest.merchantAuthentication = self.merchantAuthentication
         createsubscriptionrequest.refId = 'Sample'
         createsubscriptionrequest.subscription = self.subscriptionOne
-        arbcreatesubscriptioncontroller = ARBCreateSubscriptionController(createsubscriptionrequest, 'ARBCreateSubscriptionRequest')
+        arbcreatesubscriptioncontroller = ARBCreateSubscriptionController(createsubscriptionrequest)
         arbcreatesubscriptioncontroller.execute()
-        response = arbcreatesubscriptioncontroller.getResponse()
+        response = arbcreatesubscriptioncontroller.getresponse()
         self.assertIsNotNone(response.subscriptionId)
         self.assertEquals('Ok', response.messages.resultCode) 
 
@@ -52,9 +52,9 @@ class test_RecurringBillingTest(apitestbase.ApiTestBase):
         cancelsubscriptionrequest.merchantAuthentication = self.merchantAuthentication
         cancelsubscriptionrequest.refId = 'Sample'
         cancelsubscriptionrequest.subscriptionId = '2921797' #input valid subscriptionId
-        cancelsubscriptioncontroller = ARBCancelSubscriptionController (cancelsubscriptionrequest, 'ARBCancelSubscriptionRequest')
+        cancelsubscriptioncontroller = ARBCancelSubscriptionController (cancelsubscriptionrequest)
         cancelsubscriptioncontroller.execute()  
-        response = cancelsubscriptioncontroller.getResponse()
+        response = cancelsubscriptioncontroller.getresponse()
         self.assertEquals('Ok', response.messages.resultCode)  
         
 class paymentTransactionUnitTest(apitestbase.ApiTestBase):
@@ -73,9 +73,9 @@ class paymentTransactionUnitTest(apitestbase.ApiTestBase):
         createtransactionrequest.merchantAuthentication = self.merchantAuthentication
         createtransactionrequest.refId = self.ref_id
         createtransactionrequest.transactionRequest = transactionrequesttype
-        createtransactioncontroller = createTransactionController(createtransactionrequest, 'createTransactionRequest')
+        createtransactioncontroller = createTransactionController(createtransactionrequest)
         createtransactioncontroller.execute()
-        response = createtransactioncontroller.getResponse()
+        response = createtransactioncontroller.getresponse()
         self.assertIsNotNone(response)
         self.assertIsNotNone(response.transactionResponse)
         self.assertIsNotNone(response.transactionResponse.transId)
@@ -95,11 +95,11 @@ class paymentTransactionUnitTest(apitestbase.ApiTestBase):
         createtransactionrequest.merchantAuthentication = self.merchantAuthentication
         createtransactionrequest.refId = self.ref_id
         createtransactionrequest.transactionRequest = transactionrequesttype
-        createtransactioncontroller = createTransactionController(createtransactionrequest, 'createTransactionRequest')
+        createtransactioncontroller = createTransactionController(createtransactionrequest)
         createtransactioncontroller.execute()
-        response = createtransactioncontroller.getResponse()
+        response = createtransactioncontroller.getresponse()
         self.assertIsNotNone(response.transactionResponse)
         self.assertIsNotNone(response.transactionResponse.transId)
-    
+   
 if __name__ =='__main__':
     unittest.main()  
