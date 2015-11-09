@@ -1,7 +1,7 @@
 # Authorize.Net Python SDK 
 
-[![Build Status](https://travis-ci.org/AuthorizeNet/sdk-pyhton.png?branch=master)]
-(https://travis-ci.org/AuthorizeNet/sdk-pyhton)
+[![Build Status](https://travis-ci.org/AuthorizeNet/sdk-python.png?branch=master)]
+(https://travis-ci.org/AuthorizeNet/sdk-python)
 
 `pip install AuthorizeNet`
 
