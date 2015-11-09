@@ -3,6 +3,8 @@ Created on Jun 8, 2015
 
 @author: egodolja
 '''
+import logging
+
 class constants(object):
     """All the constants are defined here
     Define all your constants instead of using magic numbers in the
@@ -40,3 +42,15 @@ class constants(object):
     
     '''ns namespace 2'''
     nsNamespace2 = ':ns1'
+    
+    '''default log file name'''
+    defaultLogFileName = "anetsdk.log"
+    
+    '''default logging level'''
+    #defaultLoggingLevel = logging.WARNING
+    defaultLoggingLevel = logging.DEBUG
+    
+    '''default log format'''
+    defaultlogformat = '%(asctime)s %(message)s'
+
+'''eof'''
