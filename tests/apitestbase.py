@@ -5,40 +5,28 @@ Created on Jul 15, 2015
 '''
 
 import unittest
-import os
-from ConfigParser import SafeConfigParser
-from authorizenet import apicontractsv1
-from authorizenet.apicontractsv1 import CTD_ANON
 import datetime
 from decimal import *
 import random
 import test
 
+from ConfigParser import SafeConfigParser
+from authorizenet import apicontractsv1, apicontrollersbase
+from authorizenet.utility import *
+from authorizenet.apicontractsv1 import CTD_ANON
+from authorizenet import utility
+
 class ApiTestBase(unittest.TestCase):
 
     def setUp(self):
+        utility.helper.setpropertyfile( 'anet_python_sdk_properties.ini')
+        
         self.amount = str(round(random.random()*100, 2))
-        parser = SafeConfigParser()
-        home = os.path.expanduser("~")
-        homedirpropertiesfilename = os.path.join(home, "anet_python_sdk_properties.ini")
-        
-        currdir = os.getcwd()
-        currdirpropertiesfilename = os.path.join(currdir, "anet_python_sdk_properties.ini")
-        
-        if (os.path.exists(homedirpropertiesfilename)):
-            parser.read(homedirpropertiesfilename)
-        elif (os.path.exists(currdirpropertiesfilename)):
-            parser.read(currdirpropertiesfilename)
-        else :
-            print "you do not have anet_python_sdk_properties.ini file neither in home nor in current working directory"
-        
-        self.api_login_id = parser.get("properties", "api.login.id")
-        self.transaction_key = parser.get("properties", "transaction.key")
+       
+        self.merchantAuthentication = apicontractsv1.merchantAuthenticationType()       
+        self.merchantAuthentication.name = helper.getproperty('api.login.id')
+        self.merchantAuthentication.transactionKey = helper.getproperty('transaction.key')
         self.ref_id = 'Sample'
-        
-        self.merchantAuthentication = apicontractsv1.merchantAuthenticationType()
-        self.merchantAuthentication.name = self.api_login_id
-        self.merchantAuthentication.transactionKey = self.transaction_key
         
         self.dateOne = datetime.date(2020, 8, 30)
         self.interval = CTD_ANON()

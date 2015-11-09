@@ -5,20 +5,20 @@ Created on Nov 1, 2015
 '''
 import abc
 import logging
-import os
-from os.path import expanduser
-
-import sys
 import xml.dom.minidom
-
+import ConfigParser
+from ConfigParser import SafeConfigParser
 from pip._vendor import requests
 from _pyio import __metaclass__
-from ConfigParser import SafeConfigParser
-import ConfigParser
 
 from authorizenet.constants import constants
 from authorizenet import apicontractsv1
-
+from authorizenet import utility
+'''
+from authorizenet.apicontractsv1 import merchantAuthenticationType
+from authorizenet.apicontractsv1 import ANetApiRequest
+from authorizenet.apicontractsv1 import ANetApiResponse
+'''
 class APIOperationBaseInterface(object):
     
     __metaclass__ = abc.ABCMeta
@@ -68,49 +68,38 @@ class APIOperationBaseInterface(object):
 
 class APIOperationBase(APIOperationBaseInterface):
     __metaclass__ = abc.ABCMeta
-    
-    parser = SafeConfigParser({"http":"","https":"","ftp":""})
+        
+    __initialized = "False"
+    __merchantauthentication = "null"
 
-   
-    try:     
-        home = os.path.expanduser("~")
-        homedirpropertiesfilename = os.path.join(home, "anet_python_sdk_properties.ini")
-        
-        currdir = os.getcwd()
-        currdirpropertiesfilename = os.path.join(currdir, "anet_python_sdk_properties.ini")
-        
-        if (os.path.exists(homedirpropertiesfilename)):
-            parser.read(homedirpropertiesfilename)
-        elif (os.path.exists(currdirpropertiesfilename)):
-            parser.read(currdirpropertiesfilename)
-        else :
-            print "you do not have anet_python_sdk_properties.ini file neither in home nor in current working directory"
-    except IOError, error:
-        sys.exit( error)
-    else:
-        logFile = parser.get("properties", "logfilename")
-        #TODO format and level in config file
-        logging.basicConfig(filename=logFile, level=logging.DEBUG, format='%(asctime)s %(message)s')
-        endpoint = constants.SANDBOX_TESTMODE 
+    @staticmethod
+    def __classinitialized():
+        return APIOperationBase.__initialized
     
     @abc.abstractmethod
     def validaterequest(self):
         return
     
     def validate(self):
-        #add validation on merchant authentication #TODO
-        #if ( "null" != authorizenet.apicontractsv1.merchantAuthenticationType.sessionToken)
-        #    raise ValueError("SessionToken needs to be null")
+        anetapirequest = self._getrequest()
+        
+        #self.validateandsetmerchantauthentication()
         '''
-        if ( "null" != apicontractsv1.merchantAuthenticationType.__password.value)
-            raise ValueError('Password needs to be null')
-        if ( null != merchantAuthenticationType.getMobileDeviceId()) 
-            throw new IllegalArgumentException("MobileDeviceId needs to be null");
-        ImpersonationAuthenticationType impersonationAuthenticationType = merchantAuthenticationType.getImpersonationAuthentication();
-        if ( null != impersonationAuthenticationType) 
-        throw new IllegalArgumentException("ImpersonationAuthenticationType needs to be null");
-        '''
-        self.validaterequest() 
+        # make sure proper authentication elements are present and no extra elements are present     
+        merchantauthenticationtype = anetapirequest.merchantauthentication()
+        if (merchantauthenticationtype.sessionToken != "null"):
+            raise ValueError('sessionToken needs to be null')
+        if (merchantauthenticationtype.password != "null"):
+            raise ValueError('Password needs to be null') 
+        if (merchantauthenticationtype.mobileDeviceId != "null"): 
+            raise ValueError('MobileDeviceId needs to be null')
+        
+        impersonationauthenticationtype = merchantauthenticationtype.impersonationAuthentication
+        if (impersonationauthenticationtype != "null"):
+            raise ValueError('ImpersonationAuthenticationType needs to be null')
+        '''        
+        self.validaterequest()
+        
         return     
     
     def _getrequest(self): #protected method
@@ -134,15 +123,17 @@ class APIOperationBase(APIOperationBaseInterface):
         return requestDom
     
     def execute(self):
+        self.endpoint = constants.SANDBOX_TESTMODE
         logging.debug('Executing http post to url: %s', self.endpoint)
         
         self.beforeexecute()
-
-        proxyDictionary = {'http' : self.parser.get("properties", "http"),
-                            'https' : self.parser.get("properties" , "https"),
-                            'ftp' : self.parser.get("properties", "ftp")}
         
+        proxyDictionary = {'http' : utility.helper.getproperty("http"),
+                           'https' : utility.helper.getproperty("https"),
+                           'ftp' : utility.helper.getproperty("ftp")}
+                           
         #requests is http request
+        
         try:
             xmlRequest = self.buildrequest()
             self._httpResponse = requests.post(self.endpoint, data=xmlRequest, headers=constants.headers, proxies=proxyDictionary)
@@ -172,24 +163,47 @@ class APIOperationBase(APIOperationBaseInterface):
                     logging.debug('Error retrieving response for request: %s' % self._request)
         else:
             print "Did not receive http response"
+        return
     
     def getresponse(self):
         return self._response
     
     def getresultcode(self):
+        resultcode = 'null'
         if self._response:
-            return self._response.resultCode
+            resultcode = self._response.resultCode
+        return resultcode
     
     def getmessagetype(self):
+        message = 'null'
         if self._response:
-            return self._response.message
+            message = self._response.message
+        return message
     
     def afterexecute(self ):
         return 
     
     def beforeexecute(self):
         return 
-       
+    
+    @staticmethod
+    def getmerchantauthentication(self):
+        return self.__merchantauthentication
+    
+    @staticmethod
+    def setmerchantauthentication(merchantauthentication):
+        APIOperationBase.__merchantauthentication = merchantauthentication
+        return
+    
+    def validateandsetmerchantauthentication(self):
+        anetapirequest = apicontractsv1.ANetApiRequest()
+        if (anetapirequest.getmerchantauthentication() == "null"):
+            if (self.getmerchantauthentication() != "null"):
+                anetapirequest.setmerchantauthentication(self.getmerchantauthentication())
+            else:
+                raise ValueError('Merchant Authentication can not be null')
+        return
+         
     def __init__(self, apiRequest):
         self._httpResponse = "null"
         self._request = "null"
@@ -198,9 +212,27 @@ class APIOperationBase(APIOperationBaseInterface):
         
         if "null" == apiRequest:
             raise ValueError('Input request cannot be null')
-        #TOdo null check for types
-        
+         
         self._request = apiRequest
+        __merchantauthentication = apicontractsv1.merchantAuthenticationType()
+        
+        APIOperationBase.setmerchantauthentication(__merchantauthentication)
+
+        if ( 'False' == APIOperationBase.__classinitialized()):
+            loggingfilename = utility.helper.getpropertyfile()
+            logginglevel = utility.helper.getproperty("executionlogginglevel")
+            
+            #print ("logging level %s" %logginglevel)
+            
+            
+            if ("null" == loggingfilename):
+                loggingfilename = constants.defaultLogFileName
+            if ("null" == logginglevel):
+                logginglevel = constants.defaultLoggingLevel
+                
+            logging.basicConfig(filename=loggingfilename, level=logginglevel, format=constants.defaultlogformat)
+            __initialized = "True"
+
         self.validate()
             
         return
