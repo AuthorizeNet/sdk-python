@@ -25,8 +25,8 @@ Set your API credentials:
 
 ````python
 	merchantAuth = apicontractsv1.merchantAuthenticationType()
-	merchantAuth.name = '5KP3u95bQpv'
-	merchantAuth.transactionKey = '4Ktq966gC55GAX7S'
+	merchantAuth.name = 'YOUR_API_LOGIN_ID'
+	merchantAuth.transactionKey = 'YOUR_TRANSACTION_KEY'
 ````
 
 For reporting tests, go to https://sandbox.authorize.net/ under Account tab->Transaction Details API and enable it.
