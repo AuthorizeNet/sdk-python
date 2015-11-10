@@ -45,7 +45,12 @@ class helper():
         
         stringvalue = "null"
         if ("null" != helper.getparser()):
-            stringvalue = helper.getparser().get("properties", propertyname)
+            try:
+                stringvalue = helper.getparser().get("properties", propertyname)
+            except NoSectionError as nse:
+                print (" properties section does not exist, will read from environment")
+                stringvalue = os.getenv[propertyname]   
+
         else :
             print (" property file does not exist, will read from environment")
             stringvalue = os.getenv[propertyname]                
