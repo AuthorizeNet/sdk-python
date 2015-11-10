@@ -5,6 +5,7 @@ Created on Nov 4, 2015
 '''
 
 from ConfigParser import SafeConfigParser
+from ConfigParser import NoSectionError
 '''import ConfigParser'''
 import os
 '''import logging'''
