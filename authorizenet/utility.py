@@ -49,8 +49,8 @@ class helper():
             try:
                 stringvalue = helper.getparser().get("properties", propertyname)
             except NoSectionError as nse:
-                print (" properties section does not exist, will read from environment")
-                stringvalue = os.getenv[propertyname]   
+                print (" properties section does not exist")
+                stringvalue = ""   
 
         else :
             print (" property file does not exist, will read from environment")
