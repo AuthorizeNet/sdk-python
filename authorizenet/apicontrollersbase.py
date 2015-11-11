@@ -6,8 +6,6 @@ Created on Nov 1, 2015
 import abc
 import logging
 import xml.dom.minidom
-import ConfigParser
-from ConfigParser import SafeConfigParser
 from pip._vendor import requests
 from _pyio import __metaclass__
 
@@ -69,7 +67,7 @@ class APIOperationBaseInterface(object):
 class APIOperationBase(APIOperationBaseInterface):
     __metaclass__ = abc.ABCMeta
         
-    __initialized = "False"
+    __initialized = False
     __merchantauthentication = "null"
 
     @staticmethod
@@ -83,7 +81,7 @@ class APIOperationBase(APIOperationBaseInterface):
     def validate(self):
         anetapirequest = self._getrequest()
         
-        #self.validateandsetmerchantauthentication()
+        self.validateandsetmerchantauthentication()
         '''
         # make sure proper authentication elements are present and no extra elements are present     
         merchantauthenticationtype = anetapirequest.merchantauthentication()
@@ -197,9 +195,9 @@ class APIOperationBase(APIOperationBaseInterface):
     
     def validateandsetmerchantauthentication(self):
         anetapirequest = apicontractsv1.ANetApiRequest()
-        if (anetapirequest.getmerchantauthentication() == "null"):
+        if (anetapirequest.merchantAuthentication == "null"):
             if (self.getmerchantauthentication() != "null"):
-                anetapirequest.setmerchantauthentication(self.getmerchantauthentication())
+                anetapirequest.merchantAuthentication = self.getmerchantauthentication()
             else:
                 raise ValueError('Merchant Authentication can not be null')
         return
@@ -218,12 +216,9 @@ class APIOperationBase(APIOperationBaseInterface):
         
         APIOperationBase.setmerchantauthentication(__merchantauthentication)
 
-        if ( 'False' == APIOperationBase.__classinitialized()):
-            loggingfilename = utility.helper.getpropertyfile()
-            logginglevel = utility.helper.getproperty("executionlogginglevel")
-            
-            #print ("logging level %s" %logginglevel)
-            
+        if ( False == APIOperationBase.__classinitialized()):
+            loggingfilename = utility.helper.getproperty(constants.propertiesloggingfilename)
+            logginglevel = utility.helper.getproperty(constants.propertiesexecutionlogginglevel)
             
             if ("null" == loggingfilename):
                 loggingfilename = constants.defaultLogFileName
@@ -231,7 +226,7 @@ class APIOperationBase(APIOperationBaseInterface):
                 logginglevel = constants.defaultLoggingLevel
                 
             logging.basicConfig(filename=loggingfilename, level=logginglevel, format=constants.defaultlogformat)
-            __initialized = "True"
+            __initialized = True
 
         self.validate()
             

@@ -52,5 +52,10 @@ class constants(object):
     
     '''default log format'''
     defaultlogformat = '%(asctime)s %(message)s'
+    
+    propertiesloggingfilename = "loggingfilename"
+    
+    propertiesexecutionlogginglevel = "executionlogginglevel"
 
+    
 '''eof'''

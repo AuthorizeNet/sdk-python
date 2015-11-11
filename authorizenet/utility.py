@@ -11,25 +11,25 @@ import os
 #from authorizenet.constants import constants
 
 class helper(): 
-    __parser = SafeConfigParser({"http":"","https":"","ftp":""})
+    __parser = "null"
     __propertyfilename = "null"
 
-    __initialized = 'False'
+    __initialized = False
+    
+    @staticmethod
+    def getparser():
+        return helper.__parser
     
     @staticmethod
     def getpropertyfile():
         return helper.__propertyfilename
 
     @staticmethod
-    def getparser():
-        return helper.__parser
-    
-    @staticmethod
     def setpropertyfile(propertyfilename):
-        if (propertyfilename == 'null' or os.path.isfile(propertyfilename) == 'False'):
-            raise ValueError('properties '%propertyfilename%' file not found') 
-        
-        helper.__propertyfilename = propertyfilename
+        if (propertyfilename == 'null' or os.path.isfile(propertyfilename) == False):
+            helper.__propertyfilename = 'null' 
+        else:     
+            helper.__propertyfilename = propertyfilename
         return
 
     @staticmethod
@@ -38,21 +38,28 @@ class helper():
     
     @staticmethod
     def getproperty(propertyname):
-        
-        if ( 'False' == helper.__classinitialized()):
-            helper.getparser().read(helper.__propertyfilename)
-            __initialized = 'True'
-        
         stringvalue = "null"
-        if ("null" != helper.getparser()):
-            stringvalue = helper.getparser().get("properties", propertyname)
-        else :
-            print (" property file does not exist, will read from environment")
-            stringvalue = os.getenv[propertyname]                
+        if ('null' != helper.getpropertyfile()):
+                helper.__parser = SafeConfigParser({"http":"","https":"","ftp":""})
+                if ('null' != helper.getparser()):
+                    try:
+                        if ( False == helper.__classinitialized()):
+                            helper.getparser().read(helper.__propertyfilename)
+                            __initialized = True
+                    except:
+                        print ("helper class not initialized")
+                if (__initialized == True):
+                    print (" Reading %s from property file %s" % (propertyname, helper.__propertyfilename))
+                    stringvalue = helper.getparser().get("properties", propertyname)
+                
+        if ( "null" == stringvalue):
+            print (" Reading %s from environment" %propertyname)
+            stringvalue = os.getenv('propertyname')                
 
         return stringvalue 
     
     @staticmethod
     def setproperty(propertyname):
-        helper.getparser().add_option("properties", propertyname)
+        if ('null' != helper.getparser()):
+            helper.getparser().add_option("properties", propertyname)
         return
