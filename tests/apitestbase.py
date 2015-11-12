@@ -24,8 +24,8 @@ class ApiTestBase(unittest.TestCase):
         self.amount = str(round(random.random()*100, 2))
        
         self.merchantAuthentication = apicontractsv1.merchantAuthenticationType()       
-        self.merchantAuthentication.name = helper.getproperty('api.login.id')
-        self.merchantAuthentication.transactionKey = helper.getproperty('transaction.key')
+        self.merchantAuthentication.name = helper.getproperty('api_login_id')
+        self.merchantAuthentication.transactionKey = helper.getproperty('transaction_key')
         self.ref_id = 'Sample'
         
         self.dateOne = datetime.date(2020, 8, 30)
