@@ -40,6 +40,7 @@ class helper():
     @staticmethod
     def getproperty(propertyname):
         stringvalue = "null"
+        temp = propertyname
         if ('null' != helper.getpropertyfile()):
                 helper.__parser = SafeConfigParser({"http":"","https":"","ftp":""})
                 if ('null' != helper.getparser()):
@@ -55,12 +56,6 @@ class helper():
                 
         if ( "null" == stringvalue):
             print (" Reading %s from environment" %propertyname)
-            stringvalue = os.getenv('propertyname')                
-
+            stringvalue = os.getenv(temp)               
+            print (" Read propertyvalue %s from environment" %stringvalue)
         return stringvalue 
-    
-    @staticmethod
-    def setproperty(propertyname):
-        if ('null' != helper.getparser()):
-            helper.getparser().add_option("properties", propertyname)
-        return
