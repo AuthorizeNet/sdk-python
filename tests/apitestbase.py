@@ -19,7 +19,7 @@ from authorizenet import utility
 class ApiTestBase(unittest.TestCase):
 
     def setUp(self):
-        utility.helper.setpropertyfile( 'anet_python_sdk_properties.ini')
+        utility.helper.setpropertyfile('anet_python_sdk_properties.ini')
         
         self.amount = str(round(random.random()*100, 2))
        
