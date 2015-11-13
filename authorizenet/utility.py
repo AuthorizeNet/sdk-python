@@ -55,7 +55,5 @@ class helper():
                     stringvalue = helper.getparser().get("properties", propertyname)
                 
         if ( "null" == stringvalue):
-            print (" Reading %s from environment" %propertyname)
             stringvalue = os.getenv(temp)               
-            print (" Read propertyvalue %s from environment" %stringvalue)
         return stringvalue 

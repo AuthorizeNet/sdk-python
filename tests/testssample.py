@@ -26,7 +26,7 @@ class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
         
         gettransactiondetailsrequest = apicontractsv1.getTransactionDetailsRequest()
         gettransactiondetailsrequest.merchantAuthentication = self.merchantAuthentication
-        gettransactiondetailsrequest.transId ='2240608177' #update valid transaction id
+        gettransactiondetailsrequest.transId ='2244574222' #update valid transaction id
         gettransactiondetailscontroller = getTransactionDetailsController(gettransactiondetailsrequest)
         gettransactiondetailscontroller.execute()
         response =  gettransactiondetailscontroller.getresponse()
@@ -51,7 +51,7 @@ class test_RecurringBillingTest(apitestbase.ApiTestBase):
         cancelsubscriptionrequest = apicontractsv1.ARBCancelSubscriptionRequest()
         cancelsubscriptionrequest.merchantAuthentication = self.merchantAuthentication
         cancelsubscriptionrequest.refId = 'Sample'
-        cancelsubscriptionrequest.subscriptionId = '2921797' #input valid subscriptionId
+        cancelsubscriptionrequest.subscriptionId = '2261331' #input valid subscriptionId
         cancelsubscriptioncontroller = ARBCancelSubscriptionController (cancelsubscriptionrequest)
         cancelsubscriptioncontroller.execute()  
         response = cancelsubscriptioncontroller.getresponse()
