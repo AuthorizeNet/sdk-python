@@ -6,15 +6,13 @@ Created on Nov 4, 2015
 
 from ConfigParser import SafeConfigParser
 from ConfigParser import NoSectionError
-'''import ConfigParser'''
 import os
-'''import logging'''
-#from authorizenet.constants import constants
+import sys
+#from __future__ import print_function
 
 class helper(): 
     __parser = "null"
     __propertyfilename = "null"
-
     __initialized = False
     
     @staticmethod
@@ -40,20 +38,28 @@ class helper():
     @staticmethod
     def getproperty(propertyname):
         stringvalue = "null"
-        temp = propertyname
+
         if ('null' != helper.getpropertyfile()):
-                helper.__parser = SafeConfigParser({"http":"","https":"","ftp":""})
+            if (False == helper.__classinitialized()):
+                if ('null' == helper.getparser()):
+                    try:
+                        helper.__parser = SafeConfigParser({"http":"","https":"","ftp":""})
+                    except:
+                        print ("Parser could not be initialized")
+
                 if ('null' != helper.getparser()):
                     try:
-                        if ( False == helper.__classinitialized()):
-                            helper.getparser().read(helper.__propertyfilename)
-                            __initialized = True
+                        helper.getparser().read(helper.__propertyfilename)
+                        helper.__initialized = True
                     except:
-                        print ("helper class not initialized")
-                if (__initialized == True):
-                    print (" Reading %s from property file %s" % (propertyname, helper.__propertyfilename))
-                    stringvalue = helper.getparser().get("properties", propertyname)
+                        print ("Unable to load the property file")
+
+        if (True == helper.__classinitialized()):
+            try:
+                stringvalue = helper.getparser().get("properties", propertyname)
+            except:
+                sys.stderr.write("%s not found" %propertyname )
                 
         if ( "null" == stringvalue):
-            stringvalue = os.getenv(temp)               
+            stringvalue = os.getenv(propertyname)               
         return stringvalue 

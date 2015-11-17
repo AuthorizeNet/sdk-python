@@ -1,5 +1,5 @@
 '''
-Created on Jul 13, 2015
+Created on Nov 16, 2015
 
 @author: krgupta
 '''
@@ -19,9 +19,17 @@ from authorizenet import apicontractsv1
 from tests import apitestbase
 from authorizenet.apicontrollers import *
 import test
+from authorizenet import utility
+
+class test_ReadProperty(apitestbase.ApiTestBase):
+    def testPropertyFromFile(self):
+        login= utility.helper.getproperty("api_login_id")
+        transactionkey = utility.helper.getproperty("transaction_key")
+        self.assertIsNotNone(login)
+        self.assertIsNotNone(transactionkey)
 
 class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
-    
+    '''
     def testGetTransactionDetails(self):
         
         gettransactiondetailsrequest = apicontractsv1.getTransactionDetailsRequest()
@@ -31,7 +39,7 @@ class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
         gettransactiondetailscontroller.execute()
         response =  gettransactiondetailscontroller.getresponse()
         self.assertEquals('Ok', response.messages.resultCode)   
-       
+    '''  
 class test_RecurringBillingTest(apitestbase.ApiTestBase):
     
     def testCreateSubscription(self):
@@ -45,7 +53,7 @@ class test_RecurringBillingTest(apitestbase.ApiTestBase):
         response = arbcreatesubscriptioncontroller.getresponse()
         self.assertIsNotNone(response.subscriptionId)
         self.assertEquals('Ok', response.messages.resultCode) 
-
+    '''
     def testcancelSubscription(self):
         
         cancelsubscriptionrequest = apicontractsv1.ARBCancelSubscriptionRequest()
@@ -56,7 +64,7 @@ class test_RecurringBillingTest(apitestbase.ApiTestBase):
         cancelsubscriptioncontroller.execute()  
         response = cancelsubscriptioncontroller.getresponse()
         self.assertEquals('Ok', response.messages.resultCode)  
-        
+       '''
 class paymentTransactionUnitTest(apitestbase.ApiTestBase):
     
     def testauthCaputureTransaction(self):
