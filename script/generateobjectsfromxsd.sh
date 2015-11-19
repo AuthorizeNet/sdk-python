@@ -5,7 +5,7 @@
 
 dt=`date '+%m/%d/%Y %H:%M:%S'`
 echo Starting pyxbgen on ${dt}
-which python > > /dev/null
+which python > /dev/null
 if [ $? -eq 0 ]
 then
     echo Found python
