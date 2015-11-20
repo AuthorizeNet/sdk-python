@@ -1,7 +1,7 @@
-		
+
 class APICONTROLLERNAMEController(apicontrollersbase.APIOperationBase):
     
-    def __init__(self, apirequest, requestType):
+    def __init__(self, apirequest):
         super(APICONTROLLERNAMEController, self).__init__(apirequest)
         return 
     
@@ -18,4 +18,4 @@ class APICONTROLLERNAMEController(apicontrollersbase.APIOperationBase):
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.APICONTROLLERNAMEResponse()  
+        return apicontractsv1.APICONTROLLERNAMEResponse() 
