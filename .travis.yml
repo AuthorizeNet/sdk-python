@@ -9,4 +9,8 @@ install:
  - pip install unittest2
  - pip install nose
  - pip install pyxb
+ - pip install coveralls
 script: nosetests
+
+after_success:
+  - coveralls
