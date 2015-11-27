@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/AuthorizeNet/sdk-python.png?branch=master)]
 (https://travis-ci.org/AuthorizeNet/sdk-python)
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/namanbansal/sdk-python/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/namanbansal/sdk-python/?branch=master)
+
 `pip install authorizenet`
 
 *** The Python SDK is still in limited Beta testing, please [contact us](http://developer.authorize.net/support/contact_us/)  for more information ***
