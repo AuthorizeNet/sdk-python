@@ -119,7 +119,7 @@ class ARBGetSubscriptionStatusController(apicontrollersbase.APIOperationBase):
             end = response.index(constants.StatusEnd)
             response = response.replace(response[start:end+9], '')
             self._httpResponse = response
-+        return
+        return
      
 class ARBUpdateSubscriptionController(apicontrollersbase.APIOperationBase):
     
