@@ -111,7 +111,7 @@ class ARBGetSubscriptionStatusController(apicontrollersbase.APIOperationBase):
         ''' Returns the response class '''
         return apicontractsv1.ARBGetSubscriptionStatusResponse()
     
-    def afterExecute(self, response):
+    def afterExecute(self):
         response = self._httpResponse
         if constants.StatusStart in response:
             response = response.replace(constants.note, '')
