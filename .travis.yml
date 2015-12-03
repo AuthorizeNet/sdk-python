@@ -9,4 +9,8 @@ install:
  - pip install unittest2
  - pip install nose
  - pip install pyxb
+
+before_script:
+  - git submodule update --remote --recursive
+
 script: nosetests
