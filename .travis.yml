@@ -13,4 +13,8 @@ install:
 before_script:
   - git submodule update --remote --recursive
 
-script: nosetests
+script:
+ - nosetests
+ - python setup.py install
+ - cd sample-code-python
+ - for i in `ls */*.py`;do python $i;done
