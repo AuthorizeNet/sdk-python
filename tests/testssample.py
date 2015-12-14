@@ -29,7 +29,7 @@ class test_ReadProperty(apitestbase.ApiTestBase):
         self.assertIsNotNone(login)
         self.assertIsNotNone(transactionkey)
         
-'''
+
 class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
     def testGetTransactionDetails(self):
         
@@ -40,9 +40,9 @@ class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
         gettransactiondetailscontroller.execute()
         response =  gettransactiondetailscontroller.getresponse()
         self.assertEquals('Ok', response.messages.resultCode)   
-'''
+
 class test_RecurringBillingTest(apitestbase.ApiTestBase):
-    '''
+    
     def testCreateSubscription(self):
         
         createsubscriptionrequest = apicontractsv1.ARBCreateSubscriptionRequest()
@@ -54,7 +54,7 @@ class test_RecurringBillingTest(apitestbase.ApiTestBase):
         response = arbcreatesubscriptioncontroller.getresponse()
         self.assertIsNotNone(response.subscriptionId)
         self.assertEquals('Ok', response.messages.resultCode) 
-    '''    
+        
     def testgetsubscription(self):
                 
         getSubscription = apicontractsv1.ARBGetSubscriptionRequest()
@@ -66,7 +66,7 @@ class test_RecurringBillingTest(apitestbase.ApiTestBase):
         self.assertIsNotNone(response.subscription.name)
         self.assertEquals('Ok', response.messages.resultCode) 
            
-'''
+
     def testcancelSubscription(self):
         
         cancelsubscriptionrequest = apicontractsv1.ARBCancelSubscriptionRequest()
@@ -77,8 +77,8 @@ class test_RecurringBillingTest(apitestbase.ApiTestBase):
         cancelsubscriptioncontroller.execute()  
         response = cancelsubscriptioncontroller.getresponse()
         self.assertEquals('Ok', response.messages.resultCode)  
-'''
-'''            
+
+            
 class paymentTransactionUnitTest(apitestbase.ApiTestBase):
     def testauthCaputureTransaction(self):
         
@@ -122,5 +122,5 @@ class paymentTransactionUnitTest(apitestbase.ApiTestBase):
         self.assertIsNotNone(response.transactionResponse)
         self.assertIsNotNone(response.transactionResponse.transId)
         
-'''        
+        
         
