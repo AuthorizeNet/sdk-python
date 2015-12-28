@@ -53,6 +53,17 @@ class test_RecurringBillingTest(apitestbase.ApiTestBase):
         response = arbcreatesubscriptioncontroller.getresponse()
         self.assertIsNotNone(response.subscriptionId)
         self.assertEquals('Ok', response.messages.resultCode) 
+        
+    def testgetsubscription(self):
+                
+        getSubscription = apicontractsv1.ARBGetSubscriptionRequest()
+        getSubscription.merchantAuthentication = self.merchantAuthentication
+        getSubscription.subscriptionId = "2952220" 
+        getSubscriptionController = ARBGetSubscriptionController(getSubscription)
+        getSubscriptionController.execute()
+        response = getSubscriptionController.getresponse()
+        self.assertIsNotNone(response.subscription.name)
+        self.assertEquals('Ok', response.messages.resultCode) 
 
     def testcancelSubscription(self):
         
