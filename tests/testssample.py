@@ -29,7 +29,7 @@ class test_ReadProperty(apitestbase.ApiTestBase):
         self.assertIsNotNone(transactionkey)
 
 class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
-
+    
     def testGetTransactionDetails(self):
         
         gettransactiondetailsrequest = apicontractsv1.getTransactionDetailsRequest()
@@ -39,7 +39,7 @@ class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
         gettransactiondetailscontroller.execute()
         response =  gettransactiondetailscontroller.getresponse()
         self.assertEquals('Ok', response.messages.resultCode)   
-
+    
 class test_RecurringBillingTest(apitestbase.ApiTestBase):
     
     def testCreateSubscription(self):
@@ -58,13 +58,13 @@ class test_RecurringBillingTest(apitestbase.ApiTestBase):
                 
         getSubscription = apicontractsv1.ARBGetSubscriptionRequest()
         getSubscription.merchantAuthentication = self.merchantAuthentication
-        getSubscription.subscriptionId = "2952220" 
+        getSubscription.subscriptionId = "3044441" #update valid subscription id 
         getSubscriptionController = ARBGetSubscriptionController(getSubscription)
         getSubscriptionController.execute()
         response = getSubscriptionController.getresponse()
         self.assertIsNotNone(response.subscription.name)
         self.assertEquals('Ok', response.messages.resultCode) 
-
+    
     def testcancelSubscription(self):
         
         cancelsubscriptionrequest = apicontractsv1.ARBCancelSubscriptionRequest()
@@ -75,6 +75,7 @@ class test_RecurringBillingTest(apitestbase.ApiTestBase):
         cancelsubscriptioncontroller.execute()  
         response = cancelsubscriptioncontroller.getresponse()
         self.assertEquals('Ok', response.messages.resultCode)  
+     
 
 class paymentTransactionUnitTest(apitestbase.ApiTestBase):
     
