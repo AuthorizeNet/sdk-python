@@ -5,7 +5,6 @@
 
 `pip install authorizenet`
 
-*** The Python SDK is still in limited Beta testing, please [contact us](http://developer.authorize.net/support/contact_us/)  for more information ***
 
 ## Prerequisites
 
