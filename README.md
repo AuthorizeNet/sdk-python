@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/AuthorizeNet/sdk-python.png?branch=master)]
 (https://travis-ci.org/AuthorizeNet/sdk-python)
-[![Coverage Status](https://coveralls.io/repos/AuthorizeNet/sdk-php/badge.svg?branch=master&service=github)](https://coveralls.io/github/AuthorizeNet/sdk-php?branch=master)
+[![Coverage Status](https://coveralls.io/repos/AuthorizeNet/sdk-python/badge.svg?branch=master&service=github)](https://coveralls.io/github/AuthorizeNet/sdk-python?branch=master)
 
 `pip install authorizenet`
 
