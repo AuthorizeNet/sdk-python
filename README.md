@@ -79,6 +79,7 @@ else:
 ### Setting Production or Sandbox Environments  
 To set the environment use the setenvironment method on the controller before executing.  E.g. for the example above:
 ````python
+# Defaults to constants.SANDBOX_TESTMODE for sandbox testing
 createtransactioncontroller.setenvironment(constants.PRODUCTION)
 ````
 
