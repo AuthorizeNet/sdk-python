@@ -76,6 +76,11 @@ else:
 	print "response code: %s" % response.messages.resultCode
 
 ````
+### Setting Production or Sandbox Environments  
+To set the environment use the setenvironment method on the controller before executing.  E.g. for the example above:
+````python
+createtransactioncontroller.setenvironment(constants.PRODUCTION)
+````
 
 ## Building and Testing Source Code
 
