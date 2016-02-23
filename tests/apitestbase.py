@@ -54,7 +54,7 @@ class ApiTestBase(unittest.TestCase):
         
         self.subscriptionOne = apicontractsv1.ARBSubscriptionType()
         self.subscriptionOne.paymentSchedule = self.paymentScheduleOne
-        self.subscriptionOne.amount = Decimal(self.amount)
+        self.subscriptionOne.amount = Decimal(str(round(random.random()*100, 2)))
         self.subscriptionOne.trialAmount = Decimal ('0.03')
         self.subscriptionOne.payment = self.payment
         self.subscriptionOne.billTo = self.customerOne
