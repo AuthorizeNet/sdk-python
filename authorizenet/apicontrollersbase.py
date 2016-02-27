@@ -210,7 +210,7 @@ class APIOperationBase(APIOperationBaseInterface):
          
         self._request = apiRequest
         __merchantauthentication = apicontractsv1.merchantAuthenticationType()
-        APIOperationBase.__environment = constants.SANDBOX
+        APIOperationBase.__environment = constants.PRODUCTION
         
         APIOperationBase.setmerchantauthentication(__merchantauthentication)
 
