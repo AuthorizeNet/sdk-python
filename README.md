@@ -5,6 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/AuthorizeNet/sdk-python/badge.svg?branch=master)]
 (https://coveralls.io/github/AuthorizeNet/sdk-python?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/namanbansal/sdk-python/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/namanbansal/sdk-python/?branch=master)
+[![PyPI](https://img.shields.io/pypi/v/authorizenet.svg)](https://badge.fury.io/py/authorizenet)
 
 `pip install authorizenet`
 
