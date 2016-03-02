@@ -115,10 +115,12 @@ class ARBGetSubscriptionStatusController(apicontrollersbase.APIOperationBase):
         response = self._httpResponse
         if constants.note in response:
             response = response.replace(constants.note, '')
+
         if constants.StatusStart in response:
             start = response.index(constants.StatusStart)
             end = response.index(constants.StatusEnd)
             response = response.replace(response[start:end+9], '')
+
         self._httpResponse = response
         return
      

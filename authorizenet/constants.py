@@ -12,8 +12,8 @@ class constants(object):
     """
     
     '''Environments'''
-    SANDBOX_TESTMODE = 'https://apitest.authorize.net/xml/v1/request.api'
-    PRODUCTION = 'https://api.authorize.net/xml/v1/request.api'
+    SANDBOX = 'https://apitest.authorize.net/xml/v1/request.api'
+    PRODUCTION = 'https://api2.authorize.net/xml/v1/request.api'
 
     '''xml encoding'''
     xml_encoding = 'utf-8'

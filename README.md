@@ -2,11 +2,12 @@
 
 [![Build Status](https://travis-ci.org/AuthorizeNet/sdk-python.png?branch=master)]
 (https://travis-ci.org/AuthorizeNet/sdk-python)
+[![Coverage Status](https://coveralls.io/repos/github/AuthorizeNet/sdk-python/badge.svg?branch=master)]
+(https://coveralls.io/github/AuthorizeNet/sdk-python?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/namanbansal/sdk-python/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/namanbansal/sdk-python/?branch=master)
 
 `pip install authorizenet`
 
-*** The Python SDK is still in limited Beta testing, please [contact us](http://developer.authorize.net/support/contact_us/)  for more information ***
 
 ## Prerequisites
 
@@ -75,6 +76,12 @@ if (response.messages.resultCode=="Ok"):
 else:
 	print "response code: %s" % response.messages.resultCode
 
+````
+### Setting Production or Sandbox Environments  
+To set the environment use the setenvironment method on the controller before executing.  E.g. for the example above:
+````python
+# Defaults to constants.SANDBOX_TESTMODE for sandbox testing
+createtransactioncontroller.setenvironment(constants.PRODUCTION)
 ````
 
 ## Building and Testing Source Code

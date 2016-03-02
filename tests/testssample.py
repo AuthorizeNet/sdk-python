@@ -4,6 +4,7 @@ Created on Nov 16, 2015
 @author: krgupta
 '''
 from authorizenet import apicontractsv1
+from authorizenet import constants
 from decimal import *
 from authorizenet.apicontractsv1 import CTD_ANON
 #from controller.CreateTransactionController import CreateTransactionController
@@ -20,6 +21,7 @@ from tests import apitestbase
 from authorizenet.apicontrollers import *
 import test
 from authorizenet import utility
+from authorizenet.apicontrollersbase import APIOperationBase
 
 class test_ReadProperty(apitestbase.ApiTestBase):
     def testPropertyFromFile(self):
@@ -27,9 +29,8 @@ class test_ReadProperty(apitestbase.ApiTestBase):
         transactionkey = utility.helper.getproperty("transaction_key")
         self.assertIsNotNone(login)
         self.assertIsNotNone(transactionkey)
-
+ 
 class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
-
     def testGetTransactionDetails(self):
         
         gettransactiondetailsrequest = apicontractsv1.getTransactionDetailsRequest()
@@ -38,8 +39,8 @@ class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
         gettransactiondetailscontroller = getTransactionDetailsController(gettransactiondetailsrequest)
         gettransactiondetailscontroller.execute()
         response =  gettransactiondetailscontroller.getresponse()
-        self.assertEquals('Ok', response.messages.resultCode)   
-
+        self.assertEquals('Ok', response.messages.resultCode) 
+         
 class test_RecurringBillingTest(apitestbase.ApiTestBase):
     
     def testCreateSubscription(self):
@@ -53,7 +54,18 @@ class test_RecurringBillingTest(apitestbase.ApiTestBase):
         response = arbcreatesubscriptioncontroller.getresponse()
         self.assertIsNotNone(response.subscriptionId)
         self.assertEquals('Ok', response.messages.resultCode) 
-
+        
+    def testgetsubscription(self):
+                
+        getSubscription = apicontractsv1.ARBGetSubscriptionRequest()
+        getSubscription.merchantAuthentication = self.merchantAuthentication
+        getSubscription.subscriptionId = "3044441" #update valid subscription id 
+        getSubscriptionController = ARBGetSubscriptionController(getSubscription)
+        getSubscriptionController.execute()
+        response = getSubscriptionController.getresponse()
+        self.assertIsNotNone(response.subscription.name)
+        self.assertEquals('Ok', response.messages.resultCode) 
+    
     def testcancelSubscription(self):
         
         cancelsubscriptionrequest = apicontractsv1.ARBCancelSubscriptionRequest()
@@ -64,6 +76,7 @@ class test_RecurringBillingTest(apitestbase.ApiTestBase):
         cancelsubscriptioncontroller.execute()  
         response = cancelsubscriptioncontroller.getresponse()
         self.assertEquals('Ok', response.messages.resultCode)  
+     
 
 class paymentTransactionUnitTest(apitestbase.ApiTestBase):
     
@@ -108,6 +121,41 @@ class paymentTransactionUnitTest(apitestbase.ApiTestBase):
         response = createtransactioncontroller.getresponse()
         self.assertIsNotNone(response.transactionResponse)
         self.assertIsNotNone(response.transactionResponse.transId)
-   
+
+'''        
+class test_ProductionURL(apitestbase.ApiTestBase):  
+    '' '' ''Tests will run only with production credentials
+    '' '' ''
+          
+    def testGetSettledBatchList(self):
+        settledBatchListRequest = apicontractsv1.getSettledBatchListRequest() 
+        settledBatchListRequest.merchantAuthentication = self.merchantAuthentication
+        settledBatchListController = getSettledBatchListController(settledBatchListRequest)
+        customEndpoint = constants.PRODUCTION 
+        apicontrollersbase.APIOperationBase.setenvironment(customEndpoint)
+        settledBatchListController.execute() 
+        response = settledBatchListController.getresponse() 
+        self.assertEquals('Ok', response.messages.resultCode) 
+    
+    def testGetListofSubscriptions(self):    
+        sorting = apicontractsv1.ARBGetSubscriptionListSorting()
+        sorting.orderBy = apicontractsv1.ARBGetSubscriptionListOrderFieldEnum.id
+        sorting.orderDescending = "false"
+        paging = apicontractsv1.Paging()
+        paging.limit = 1000
+        paging.offset = 1
+        GetListofSubscriptionRequest = apicontractsv1.ARBGetSubscriptionListRequest()
+        GetListofSubscriptionRequest.merchantAuthentication = self.merchantAuthentication
+        GetListofSubscriptionRequest.refId = "Sample"
+        GetListofSubscriptionRequest.searchType = apicontractsv1.ARBGetSubscriptionListSearchTypeEnum.subscriptionInactive
+        GetListofSubscriptionRequest.sorting = sorting
+        GetListofSubscriptionRequest.paging = paging
+        arbgetsubscriptionlistcontroller = ARBGetSubscriptionListController(GetListofSubscriptionRequest)
+        customEndpoint = constants.PRODUCTION 
+        apicontrollersbase.APIOperationBase.setenvironment(customEndpoint)
+        arbgetsubscriptionlistcontroller.execute()
+        response = arbgetsubscriptionlistcontroller.getresponse()
+        self.assertEquals('Ok', response.messages.resultCode) 
+'''        
 if __name__ =='__main__':
     unittest.main()  

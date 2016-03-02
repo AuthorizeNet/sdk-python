@@ -69,6 +69,7 @@ class APIOperationBase(APIOperationBaseInterface):
         
     __initialized = False
     __merchantauthentication = "null"
+    __environment = "null"
 
     @staticmethod
     def __classinitialized():
@@ -80,22 +81,7 @@ class APIOperationBase(APIOperationBaseInterface):
     
     def validate(self):
         anetapirequest = self._getrequest()
-        
-        self.validateandsetmerchantauthentication()
-        '''
-        # make sure proper authentication elements are present and no extra elements are present     
-        merchantauthenticationtype = anetapirequest.merchantauthentication()
-        if (merchantauthenticationtype.sessionToken != "null"):
-            raise ValueError('sessionToken needs to be null')
-        if (merchantauthenticationtype.password != "null"):
-            raise ValueError('Password needs to be null') 
-        if (merchantauthenticationtype.mobileDeviceId != "null"): 
-            raise ValueError('MobileDeviceId needs to be null')
-        
-        impersonationauthenticationtype = merchantauthenticationtype.impersonationAuthentication
-        if (impersonationauthenticationtype != "null"):
-            raise ValueError('ImpersonationAuthenticationType needs to be null')
-        '''        
+        self.validateandsetmerchantauthentication()       
         self.validaterequest()
         
         return     
@@ -121,7 +107,9 @@ class APIOperationBase(APIOperationBaseInterface):
         return requestDom
     
     def execute(self):
-        self.endpoint = constants.SANDBOX_TESTMODE
+        
+        self.endpoint = APIOperationBase.__environment
+              
         logging.debug('Executing http post to url: %s', self.endpoint)
         
         self.beforeexecute()
@@ -201,18 +189,28 @@ class APIOperationBase(APIOperationBaseInterface):
             else:
                 raise ValueError('Merchant Authentication can not be null')
         return
-         
-    def __init__(self, apiRequest):
-        self._httpResponse = "null"
-        self._request = "null"
-        self._response = "null"
-        self.__endpoint = "null"
+    
+    @staticmethod
+    def getenvironment(self):
+        return APIOperationBase.__environment
         
-        if "null" == apiRequest:
+    
+    @staticmethod
+    def setenvironment(userenvironment):
+        APIOperationBase.__environment = userenvironment 
+        return 
+    
+    def __init__(self, apiRequest):
+        self._httpResponse = None
+        self._request = None
+        self._response = None
+               
+        if None == apiRequest:
             raise ValueError('Input request cannot be null')
          
         self._request = apiRequest
         __merchantauthentication = apicontractsv1.merchantAuthenticationType()
+        APIOperationBase.__environment = constants.SANDBOX
         
         APIOperationBase.setmerchantauthentication(__merchantauthentication)
 
@@ -220,9 +218,9 @@ class APIOperationBase(APIOperationBaseInterface):
             loggingfilename = utility.helper.getproperty(constants.propertiesloggingfilename)
             logginglevel = utility.helper.getproperty(constants.propertiesexecutionlogginglevel)
             
-            if ("null" == loggingfilename):
+            if (None == loggingfilename):
                 loggingfilename = constants.defaultLogFileName
-            if ("null" == logginglevel):
+            if (None == logginglevel):
                 logginglevel = constants.defaultLoggingLevel
                 
             logging.basicConfig(filename=loggingfilename, level=logginglevel, format=constants.defaultlogformat)
