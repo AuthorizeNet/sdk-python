@@ -25,24 +25,28 @@ from authorizenet.apicontrollersbase import APIOperationBase
 
 class test_ReadProperty(apitestbase.ApiTestBase):
     def testPropertyFromFile(self):
-        login= utility.helper.getproperty("api_login_id")
-        transactionkey = utility.helper.getproperty("transaction_key")
+        login= utility.helper.getproperty("api.login.id")
+        transactionkey = utility.helper.getproperty("transaction.key")
         self.assertIsNotNone(login)
         self.assertIsNotNone(transactionkey)
  
+  
 class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
     def testGetTransactionDetails(self):
         
         gettransactiondetailsrequest = apicontractsv1.getTransactionDetailsRequest()
         gettransactiondetailsrequest.merchantAuthentication = self.merchantAuthentication
-        gettransactiondetailsrequest.transId ='2244574222' #update valid transaction id
+        gettransactiondetailsrequest.transId ='2252271173' #update valid transaction id
         gettransactiondetailscontroller = getTransactionDetailsController(gettransactiondetailsrequest)
         gettransactiondetailscontroller.execute()
         response =  gettransactiondetailscontroller.getresponse()
         self.assertEquals('Ok', response.messages.resultCode) 
-         
+
+        
 class test_RecurringBillingTest(apitestbase.ApiTestBase):
-    
+
+    createdSubscriptionId = None
+
     def testCreateSubscription(self):
         
         createsubscriptionrequest = apicontractsv1.ARBCreateSubscriptionRequest()
@@ -53,34 +57,37 @@ class test_RecurringBillingTest(apitestbase.ApiTestBase):
         arbcreatesubscriptioncontroller.execute()
         response = arbcreatesubscriptioncontroller.getresponse()
         self.assertIsNotNone(response.subscriptionId)
-        self.assertEquals('Ok', response.messages.resultCode) 
-        
+        self.assertEquals('Ok', response.messages.resultCode)
+        self.__class__.createdSubscriptionId = response.subscriptionId
+
+       
     def testgetsubscription(self):
-                
+        
         getSubscription = apicontractsv1.ARBGetSubscriptionRequest()
         getSubscription.merchantAuthentication = self.merchantAuthentication
-        getSubscription.subscriptionId = "3044441" #update valid subscription id 
+        getSubscription.subscriptionId = self.__class__.createdSubscriptionId #update valid subscription id 
         getSubscriptionController = ARBGetSubscriptionController(getSubscription)
         getSubscriptionController.execute()
         response = getSubscriptionController.getresponse()
         self.assertIsNotNone(response.subscription.name)
         self.assertEquals('Ok', response.messages.resultCode) 
-    
+ 
+   
     def testcancelSubscription(self):
         
         cancelsubscriptionrequest = apicontractsv1.ARBCancelSubscriptionRequest()
         cancelsubscriptionrequest.merchantAuthentication = self.merchantAuthentication
         cancelsubscriptionrequest.refId = 'Sample'
-        cancelsubscriptionrequest.subscriptionId = '2261331' #input valid subscriptionId
+        cancelsubscriptionrequest.subscriptionId = self.__class__.createdSubscriptionId #input valid subscriptionId
         cancelsubscriptioncontroller = ARBCancelSubscriptionController (cancelsubscriptionrequest)
         cancelsubscriptioncontroller.execute()  
         response = cancelsubscriptioncontroller.getresponse()
         self.assertEquals('Ok', response.messages.resultCode)  
-     
+
 
 class paymentTransactionUnitTest(apitestbase.ApiTestBase):
     
-    def testauthCaputureTransaction(self):
+    def testauthCaptureTransaction(self):
         
         transactionrequesttype = apicontractsv1.transactionRequestType()
         transactionrequesttype.transactionType = "authCaptureTransaction"
@@ -101,7 +108,7 @@ class paymentTransactionUnitTest(apitestbase.ApiTestBase):
         self.assertIsNotNone(response.transactionResponse)
         self.assertIsNotNone(response.transactionResponse.transId)
         self.assertIsNot("0", response.transactionResponse.transId)
-        
+       
     def testauthOnlyContinueTransaction(self):      
         
         transactionrequesttype = apicontractsv1.transactionRequestType()
@@ -121,8 +128,7 @@ class paymentTransactionUnitTest(apitestbase.ApiTestBase):
         response = createtransactioncontroller.getresponse()
         self.assertIsNotNone(response.transactionResponse)
         self.assertIsNotNone(response.transactionResponse.transId)
-
-'''        
+'''    
 class test_ProductionURL(apitestbase.ApiTestBase):  
     '' '' ''Tests will run only with production credentials
     '' '' ''
