@@ -14,7 +14,7 @@ before_script:
   - git submodule update --remote --recursive
 
 script:
-# - nosetests
+ - nosetests
  - python setup.py install
  - cd sample-code-python
  - python ./test-runner.py
