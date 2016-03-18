@@ -24,8 +24,8 @@ class ApiTestBase(unittest.TestCase):
         self.amount = str(round(random.random()*100, 2))
        
         self.merchantAuthentication = apicontractsv1.merchantAuthenticationType()       
-        self.merchantAuthentication.name = helper.getproperty('api_login_id')
-        self.merchantAuthentication.transactionKey = helper.getproperty('transaction_key')
+        self.merchantAuthentication.name = utility.helper.getproperty('api.login.id')
+        self.merchantAuthentication.transactionKey = utility.helper.getproperty('transaction.key')
         self.ref_id = 'Sample'
         
         self.dateOne = datetime.date(2020, 8, 30)
@@ -58,7 +58,7 @@ class ApiTestBase(unittest.TestCase):
         self.subscriptionOne.trialAmount = Decimal ('0.03')
         self.subscriptionOne.payment = self.payment
         self.subscriptionOne.billTo = self.customerOne
-        
+
         self.order = apicontractsv1.orderType()
         self.order.invoiceNumber = "INV-21345"
         self.order.description = "Product description"
