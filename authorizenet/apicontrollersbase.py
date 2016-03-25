@@ -5,6 +5,7 @@ Created on Nov 1, 2015
 '''
 import abc
 import logging
+import pyxb
 import xml.dom.minidom
 from pip._vendor import requests
 from _pyio import __metaclass__
@@ -137,6 +138,9 @@ class APIOperationBase(APIOperationBaseInterface):
                 self._response = apicontractsv1.CreateFromDocument(self._httpResponse)
             except Exception as createfromdocumentexception:
                 logging.error( 'Create Document Exception: %s, %s', type(createfromdocumentexception), createfromdocumentexception.args )
+                pyxb.RequireValidWhenParsing(False)
+                self._response = apicontractsv1.CreateFromDocument(self._httpResponse)
+                pyxb.RequireValidWhenParsing(True)
             else:    
                 if type(self.getresponseclass()) == type(self._response):
                     if self._response.messages.resultCode == "Error":
