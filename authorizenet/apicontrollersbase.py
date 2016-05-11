@@ -138,9 +138,8 @@ class APIOperationBase(APIOperationBaseInterface):
                 self._response = apicontractsv1.CreateFromDocument(self._httpResponse)
             except Exception as createfromdocumentexception:
                 logging.error( 'Create Document Exception: %s, %s', type(createfromdocumentexception), createfromdocumentexception.args )
-                pyxb.RequireValidWhenParsing(False)
-                self._response = apicontractsv1.CreateFromDocument(self._httpResponse)
-                pyxb.RequireValidWhenParsing(True)
+                pyxb.GlobalValidationConfig._setForBinding(False)
+                self._response = apicontractsv1.CreateFromDocument(self._httpResponse)    
             else:    
                 if type(self.getresponseclass()) == type(self._response):
                     if self._response.messages.resultCode == "Error":
