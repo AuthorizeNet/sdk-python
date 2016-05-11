@@ -163,8 +163,7 @@ class pyxbBinding(apitestbase.ApiTestBase):
         self.assertIsNotNone(response.transaction.customer.id)
         self.assertIsNotNone(response.transaction.billTo.company)
         self.assertIsNotNone(response.transaction.entryMethod)
-        self.assertIsNotNone(response.transaction.order.invoiceNumber)
-        self.assertIsNotNone(response.transaction.batch.batchId)     
+        self.assertIsNotNone(response.transaction.order.invoiceNumber)     
         
     def testGetTransactionDetails_UserAddsInvalidPropertyWhichIsNOTInRequestObject(self):     
         gettransactiondetailsrequest = apicontractsv1.getTransactionDetailsRequest()
@@ -181,7 +180,6 @@ class pyxbBinding(apitestbase.ApiTestBase):
         self.assertIsNotNone(response.transaction.billTo.company)
         self.assertIsNotNone(response.transaction.entryMethod)
         self.assertIsNotNone(response.transaction.order.invoiceNumber)
-        self.assertIsNotNone(response.transaction.batch.batchId)
    
          
 '''    
