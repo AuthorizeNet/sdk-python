@@ -9,6 +9,7 @@ install:
  - pip install unittest2
  - pip install nose
  - pip install pyxb
+ - pip install lxml
 
 before_script:
   - git submodule update --remote --recursive
