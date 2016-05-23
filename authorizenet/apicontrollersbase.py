@@ -6,9 +6,11 @@ Created on Nov 1, 2015
 import abc
 import logging
 import pyxb
+import sys
 import xml.dom.minidom
 from pip._vendor import requests
 from _pyio import __metaclass__
+from lxml import objectify
 
 from authorizenet.constants import constants
 from authorizenet import apicontractsv1
@@ -66,12 +68,12 @@ class APIOperationBaseInterface(object):
         pass
 
 class APIOperationBase(APIOperationBaseInterface):
-    __metaclass__ = abc.ABCMeta
-        
+    
+    __metaclass__ = abc.ABCMeta 
     __initialized = False
     __merchantauthentication = "null"
     __environment = "null"
-
+    
     @staticmethod
     def __classinitialized():
         return APIOperationBase.__initialized
@@ -119,8 +121,7 @@ class APIOperationBase(APIOperationBaseInterface):
                            'https' : utility.helper.getproperty("https"),
                            'ftp' : utility.helper.getproperty("ftp")}
                            
-        #requests is http request
-        
+        #requests is http request  
         try:
             xmlRequest = self.buildrequest()
             self._httpResponse = requests.post(self.endpoint, data=xmlRequest, headers=constants.headers, proxies=proxyDictionary)
@@ -129,33 +130,44 @@ class APIOperationBase(APIOperationBaseInterface):
             logging.error( 'Exception: %s, %s', type(httpException), httpException.args )
 
 
-        if self._httpResponse:
-            #encoding of response should be changed to retrieve text of response
+        if self._httpResponse:            
             self._httpResponse.encoding = constants.response_encoding
             self._httpResponse = self._httpResponse.text[3:] #strip BOM
             self.afterexecute()
             try:
-                self._response = apicontractsv1.CreateFromDocument(self._httpResponse)
-            except Exception as createfromdocumentexception:
-                logging.error( 'Create Document Exception: %s, %s', type(createfromdocumentexception), createfromdocumentexception.args )
+                self._response = apicontractsv1.CreateFromDocument(self._httpResponse) 
+                #objectify code  
+                xmlResponse= self._response.toxml(encoding=constants.xml_encoding, element_name=self.getrequesttype()) 
+                xmlResponse = xmlResponse.replace(constants.nsNamespace1, '')
+                xmlResponse = xmlResponse.replace(constants.nsNamespace2, '') 
+                self._mainObject = objectify.fromstring(xmlResponse)   
+                 
+            except Exception as objectifyexception:
+                logging.error( 'Create Document Exception: %s, %s', type(objectifyexception), objectifyexception.args )
                 pyxb.GlobalValidationConfig._setForBinding(False)
                 self._response = apicontractsv1.CreateFromDocument(self._httpResponse)    
+                #objectify code 
+                xmlResponse= self._response.toxml(encoding=constants.xml_encoding, element_name=self.getrequesttype()) 
+                xmlResponse = xmlResponse.replace(constants.nsNamespace1, '')
+                xmlResponse = xmlResponse.replace(constants.nsNamespace2, '') 
+                self._mainObject = objectify.fromstring(xmlResponse) 
             else:    
-                if type(self.getresponseclass()) == type(self._response):
+                #if type(self.getresponseclass()) == type(self._response):
+                if type(self.getresponseclass()) != type(self._mainObject):
                     if self._response.messages.resultCode == "Error":
                         print "Response error"
-            
                     domResponse = xml.dom.minidom.parseString(self._httpResponse)
                     logging.debug('Received response: %s' % domResponse.toprettyxml())
                 else:
-                    #Need to handle ErrorResponse 
+                    #Need to handle ErrorResponse  
                     logging.debug('Error retrieving response for request: %s' % self._request)
         else:
             print "Did not receive http response"
         return
     
     def getresponse(self):
-        return self._response
+        #return self._response #pyxb object
+        return self._mainObject #objectify object
     
     def getresultcode(self):
         resultcode = 'null'
@@ -207,6 +219,10 @@ class APIOperationBase(APIOperationBaseInterface):
         self._httpResponse = None
         self._request = None
         self._response = None
+        #objectify variables 
+        self._responseXML = None
+        self._reponseObject = None
+        self._mainObject = None
                
         if None == apiRequest:
             raise ValueError('Input request cannot be null')
