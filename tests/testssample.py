@@ -20,6 +20,31 @@ class test_ReadProperty(apitestbase.ApiTestBase):
         self.assertIsNotNone(login)
         self.assertIsNotNone(transactionkey)
 
+class shippingAddressUnitTest(apitestbase.ApiTestBase): 
+    def testget_customer_shipping_address(self):
+        # create get shipping address request
+        getShippingAddress = apicontractsv1.getCustomerShippingAddressRequest()
+        getShippingAddress.merchantAuthentication = self.merchantAuthentication
+        getShippingAddress.customerProfileId = '40812683'
+        getShippingAddress.customerAddressId = '38558024'
+    
+        # Make the API call
+        getShippingAddressController = getCustomerShippingAddressController(getShippingAddress)
+        getShippingAddressController.execute()
+        response = getShippingAddressController.getresponse()
+        self.assertEquals('Ok', response.messages.resultCode)  
+        
+class customerprofileUnitTest(apitestbase.ApiTestBase):
+    def testget_customer_profile(self):
+        getCustomerProfile = apicontractsv1.getCustomerProfileRequest()
+        getCustomerProfile.merchantAuthentication = self.merchantAuthentication
+        getCustomerProfile.customerProfileId = '40812683'
+        controller = getCustomerProfileController(getCustomerProfile)
+        controller.execute()
+        response = controller.getresponse()
+        self.assertEquals('Ok', response.messages.resultCode)
+
+
 class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
     def testGetTransactionDetails(self):    
         gettransactiondetailsrequest = apicontractsv1.getTransactionDetailsRequest()
@@ -29,7 +54,13 @@ class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
         gettransactiondetailscontroller.execute()
         response =  gettransactiondetailscontroller.getresponse()
         self.assertEquals('Ok', response.messages.resultCode)    
-        self.assertIsNotNone(response.transaction.payment.creditCard.cardNumber)  
+        self.assertIsNotNone(response.transaction.payment.creditCard.cardNumber) 
+#         value = getattr(response.messages.message, 'text')
+#         print ("value = %s" %value)
+#         if hasattr(response, 'messages') == True:
+#             if hasattr(response.messages, 'message') == True:
+#                 if hasattr(response.messages.message, 'text') == True:
+#                     print ("message code = %s " %(response.messages.message.text)) 
            
 class test_RecurringBillingTest(apitestbase.ApiTestBase):
     createdSubscriptionId = None
@@ -186,6 +217,7 @@ class pyxbBinding(apitestbase.ApiTestBase):
         self.assertIsNotNone(response.transaction.billTo.company)
         self.assertIsNotNone(response.transaction.entryMethod)
         self.assertIsNotNone(response.transaction.order.invoiceNumber)
+
 '''
 class test_PaymentTransactions(apitestbase.ApiTestBase):
     #Testing SDK SimpleType
