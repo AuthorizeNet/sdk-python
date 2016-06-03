@@ -13,7 +13,7 @@ import test
 from ConfigParser import SafeConfigParser
 from authorizenet import apicontractsv1, apicontrollersbase
 from authorizenet.utility import *
-from authorizenet.apicontractsv1 import CTD_ANON
+#from authorizenet.apicontractsv1 import CTD_ANON
 from authorizenet import utility
 
 class ApiTestBase(unittest.TestCase):
@@ -29,11 +29,15 @@ class ApiTestBase(unittest.TestCase):
         self.ref_id = 'Sample'
         
         self.dateOne = datetime.date(2020, 8, 30)
-        self.interval = CTD_ANON()
-        self.interval.length = 1
-        self.interval.unit = 'months'
+#        self.interval = CTD_ANON()
+#        self.interval.length = 1
+#        self.interval.unit = 'months'
         self.paymentScheduleOne = apicontractsv1.paymentScheduleType()
-        self.paymentScheduleOne.interval = self.interval
+        self.paymentScheduleOne.interval = apicontractsv1.paymentScheduleTypeInterval()
+        
+        self.paymentScheduleOne.interval.length = 1
+        self.paymentScheduleOne.interval.unit = 'months'
+        
         self.paymentScheduleOne.startDate = self.dateOne
         self.paymentScheduleOne.totalOccurrences = 12
         self.paymentScheduleOne.trialOccurrences = 1
