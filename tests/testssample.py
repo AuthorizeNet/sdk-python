@@ -8,11 +8,12 @@ from authorizenet.constants import constants
 from authorizenet.apicontractsv1 import CTD_ANON
 from authorizenet.apicontrollers import *
 from decimal import *
+import random
 import datetime
 import unittest
 from tests import apitestbase
 from authorizenet import utility
-     
+
 class test_ReadProperty(apitestbase.ApiTestBase):
     def testPropertyFromFile(self):
         login= utility.helper.getproperty("api.login.id")
@@ -20,51 +21,46 @@ class test_ReadProperty(apitestbase.ApiTestBase):
         self.assertIsNotNone(login)
         self.assertIsNotNone(transactionkey)
 
-class shippingAddressUnitTest(apitestbase.ApiTestBase): 
-    def testget_customer_shipping_address(self):
-        # create get shipping address request
-        getShippingAddress = apicontractsv1.getCustomerShippingAddressRequest()
-        getShippingAddress.merchantAuthentication = self.merchantAuthentication
-        getShippingAddress.customerProfileId = '40812683'
-        getShippingAddress.customerAddressId = '38558024'
-    
-        # Make the API call
-        getShippingAddressController = getCustomerShippingAddressController(getShippingAddress)
-        getShippingAddressController.execute()
-        response = getShippingAddressController.getresponse()
-        self.assertEquals('Ok', response.messages.resultCode)  
-        
-class customerprofileUnitTest(apitestbase.ApiTestBase):
-    def testget_customer_profile(self):
-        getCustomerProfile = apicontractsv1.getCustomerProfileRequest()
-        getCustomerProfile.merchantAuthentication = self.merchantAuthentication
-        getCustomerProfile.customerProfileId = '40812683'
-        controller = getCustomerProfileController(getCustomerProfile)
-        controller.execute()
-        response = controller.getresponse()
-        self.assertEquals('Ok', response.messages.resultCode)
-
-
 class test_TransactionReportingUnitTest(apitestbase.ApiTestBase):
+    createdTransId = None
+    def charge_credit_card(self):
+        creditCard = apicontractsv1.creditCardType()
+        creditCard.cardNumber = "4111111111111111"
+        creditCard.expirationDate = "2020-12"
+        payment = apicontractsv1.paymentType()
+        payment.creditCard = creditCard
+        transactionrequest = apicontractsv1.transactionRequestType()
+        transactionrequest.transactionType = "authCaptureTransaction"
+        transactionrequest.amount = Decimal(str(round(random.random()*100, 2)))
+        transactionrequest.payment = payment
+        createtransactionrequest = apicontractsv1.createTransactionRequest()
+        createtransactionrequest.merchantAuthentication = self.merchantAuthentication
+        createtransactionrequest.refId = "MerchantID-0001"
+        createtransactionrequest.transactionRequest = transactionrequest
+        createtransactioncontroller = createTransactionController(createtransactionrequest)
+        createtransactioncontroller.execute()
+        response = createtransactioncontroller.getresponse()
+        if hasattr(response, 'messages') == True:
+            if hasattr(response.messages, 'resultCode') == True:
+                self.assertEquals('Ok', response.messages.resultCode)
+        if hasattr(response, 'transactionResponse') == True:
+            if hasattr(response.transactionResponse, 'transId') == True:
+                self.__class__.createdTransId = response.transactionResponse.transId
+        
+        
     def testGetTransactionDetails(self):    
         gettransactiondetailsrequest = apicontractsv1.getTransactionDetailsRequest()
         gettransactiondetailsrequest.merchantAuthentication = self.merchantAuthentication
-        gettransactiondetailsrequest.transId ='20000152262' #update valid transaction id
+        gettransactiondetailsrequest.transId =  '20000152262' #update valid transaction id
         gettransactiondetailscontroller = getTransactionDetailsController(gettransactiondetailsrequest)
         gettransactiondetailscontroller.execute()
         response =  gettransactiondetailscontroller.getresponse()
-        self.assertEquals('Ok', response.messages.resultCode)    
-        self.assertIsNotNone(response.transaction.payment.creditCard.cardNumber) 
-#         value = getattr(response.messages.message, 'text')
-#         print ("value = %s" %value)
-#         if hasattr(response, 'messages') == True:
-#             if hasattr(response.messages, 'message') == True:
-#                 if hasattr(response.messages.message, 'text') == True:
-#                     print ("message code = %s " %(response.messages.message.text)) 
+        if hasattr(response, 'messages') == True:
+            if hasattr(response.messages, 'resultCode') == True:
+                self.assertEquals('Ok', response.messages.resultCode)   
            
 class test_RecurringBillingTest(apitestbase.ApiTestBase):
     createdSubscriptionId = None
-   
     def testCreateSubscription(self):
         createsubscriptionrequest = apicontractsv1.ARBCreateSubscriptionRequest()
         createsubscriptionrequest.merchantAuthentication = self.merchantAuthentication
@@ -73,46 +69,34 @@ class test_RecurringBillingTest(apitestbase.ApiTestBase):
         arbcreatesubscriptioncontroller = ARBCreateSubscriptionController(createsubscriptionrequest)
         arbcreatesubscriptioncontroller.execute()
         response = arbcreatesubscriptioncontroller.getresponse()
-        #print ("Test named 'testCreateSubscription' has response.subscriptionId = %s" %response.subscriptionId)
-        self.assertIsNotNone(response.subscriptionId)
-        self.assertEquals('Ok', response.messages.resultCode)
-        self.__class__.createdSubscriptionId = response.subscriptionId
-
-#     def testCreateSubscription_withResponseIDValue(self):    
-#         createsubscriptionrequest = apicontractsv1.ARBCreateSubscriptionRequest()
-#         createsubscriptionrequest.merchantAuthentication = self.merchantAuthentication
-#         createsubscriptionrequest.refId = 'Sample'
-#         createsubscriptionrequest.subscription = self.subscriptionOne #required field
-#         arbcreatesubscriptioncontroller = ARBCreateSubscriptionController(createsubscriptionrequest)
-#         arbcreatesubscriptioncontroller.execute()
-#         response = arbcreatesubscriptioncontroller.getresponse()
-#         print ("Test named 'testCreateSubscription_withResponseIDValue' has response.subscriptionId = %s" %response.subscriptionId)
-#         self.assertEquals('Ok', response.messages.resultCode) 
-
+        if hasattr(response, 'messages') == True:
+            if hasattr(response.messages, 'resultCode') == True:
+                self.assertEquals('Ok', response.messages.resultCode)
+        if hasattr(response, 'subscriptionId') == True:
+            self.__class__.createdSubscriptionId = response.subscriptionId
   
     def testgetsubscription(self):
         getSubscription = apicontractsv1.ARBGetSubscriptionRequest()
         getSubscription.merchantAuthentication = self.merchantAuthentication
-        #getSubscription.subscriptionId = myresponse.subscriptionId.text
         getSubscription.subscriptionId = str(self.__class__.createdSubscriptionId) #update valid subscription id 
-        #getSubscription.subscriptionId = self.__class__.createdSubscriptionId
         getSubscriptionController = ARBGetSubscriptionController(getSubscription)
         getSubscriptionController.execute()
         response = getSubscriptionController.getresponse()
-        self.assertIsNotNone(response.subscription.name)
-        self.assertEquals('Ok', response.messages.resultCode) 
+        if hasattr(response, 'messages') == True:
+            if hasattr(response.messages, 'resultCode') == True:
+                self.assertEquals('Ok', response.messages.resultCode)
     
     def testcancelSubscription(self):   
         cancelsubscriptionrequest = apicontractsv1.ARBCancelSubscriptionRequest()
         cancelsubscriptionrequest.merchantAuthentication = self.merchantAuthentication
         cancelsubscriptionrequest.refId = 'Sample'
         cancelsubscriptionrequest.subscriptionId = str(self.__class__.createdSubscriptionId) #input valid subscriptionId
-        #cancelsubscriptionrequest.subscriptionId = self.__class__.createdSubscriptionId
-        
         cancelsubscriptioncontroller = ARBCancelSubscriptionController (cancelsubscriptionrequest)
         cancelsubscriptioncontroller.execute()  
         response = cancelsubscriptioncontroller.getresponse()
-        self.assertEquals('Ok', response.messages.resultCode)  
+        if hasattr(response, 'messages') == True:
+            if hasattr(response.messages, 'resultCode') == True:
+                self.assertEquals('Ok', response.messages.resultCode)
  
 class paymentTransactionUnitTest(apitestbase.ApiTestBase): 
     def testauthCaptureTransaction(self):  
@@ -131,10 +115,13 @@ class paymentTransactionUnitTest(apitestbase.ApiTestBase):
         createtransactioncontroller = createTransactionController(createtransactionrequest)
         createtransactioncontroller.execute()
         response = createtransactioncontroller.getresponse()
-        self.assertIsNotNone(response)
-        self.assertIsNotNone(response.transactionResponse)
-        self.assertIsNotNone(response.transactionResponse.transId)
-        self.assertIsNot("0", response.transactionResponse.transId)
+        if hasattr(response, 'messages') == True:
+            if hasattr(response.messages, 'resultCode') == True:
+                self.assertEquals('Ok', response.messages.resultCode)
+        if hasattr(response, 'transactionResponse') == True:
+            self.assertIsNotNone(response.transactionResponse)
+            if hasattr(response.transactionResponse, 'transId') == True:    
+                self.assertIsNotNone(response.transactionResponse.transId)
             
     def testauthOnlyContinueTransaction(self):      
         transactionrequesttype = apicontractsv1.transactionRequestType()
@@ -144,7 +131,6 @@ class paymentTransactionUnitTest(apitestbase.ApiTestBase):
         transactionrequesttype.order = self.order
         transactionrequesttype.customer = self.customerData
         transactionrequesttype.billTo = self.billTo
-             
         createtransactionrequest = apicontractsv1.createTransactionRequest()
         createtransactionrequest.merchantAuthentication = self.merchantAuthentication
         createtransactionrequest.refId = self.ref_id
@@ -152,118 +138,77 @@ class paymentTransactionUnitTest(apitestbase.ApiTestBase):
         createtransactioncontroller = createTransactionController(createtransactionrequest)
         createtransactioncontroller.execute()
         response = createtransactioncontroller.getresponse()
-        self.assertIsNotNone(response.transactionResponse)
-        self.assertIsNotNone(response.transactionResponse.transId)
-            
-class pyxbBinding(apitestbase.ApiTestBase):
-    def testCreateSubscription_DeSerialize(self):
-        arbXMLrequest = '<?xml version="1.0" encoding="utf-8"?><ARBCreateSubscriptionResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd"><refId>Sample</refId><messages><resultCode>Ok</resultCode><message><code>I00001</code><text>Successful.</text></message></messages><subscriptionId>3263738</subscriptionId><gupta>Jan</gupta><profile><customerProfileId>40712423</customerProfileId><customerPaymentProfileId>36983905</customerPaymentProfileId></profile><kriti>11</kriti></ARBCreateSubscriptionResponse>'
-        #print( "ARBCreateTransaction Request: %s \n" % arbXMLrequest )
-        try:
-            #deserialize XML to object   
-            deserializedObject = None
-            deserializedObject = apicontractsv1.CreateFromDocument(arbXMLrequest)           
-            self.assertIsNotNone(deserializedObject, "Null deserializedObject ")
-         
-            deseriaziedArbXmlRequest = deserializedObject.toxml(encoding=constants.xml_encoding, element_name='ARBCreateSubscriptionResponse') 
-            deseriaziedArbXmlRequest = deseriaziedArbXmlRequest.replace(constants.nsNamespace1, '')
-            deseriaziedArbXmlRequest = deseriaziedArbXmlRequest.replace(constants.nsNamespace2, '')
-            logging.debug( "Good Dom Request: %s " % deseriaziedArbXmlRequest )
-#             print( "ARB Dom Request: %s \n" % deseriaziedArbXmlRequest )
-#             print("de-serialized successfully. ARBCreateTransaction \n ")
-        except Exception as ex:
-#             print("failed to de-serialized successfully. ARBCreateTransaction \n ")
-            logging.error( 'Exception: %s, %s', type(ex), ex.args )        
-   
-# Leave this test commented            
-#     def testCreateSubscription_missingElementStillAssertOk(self):    
-#         createsubscriptionrequest = apicontractsv1.ARBCreateSubscriptionRequest()
-#         createsubscriptionrequest.merchantAuthentication = self.merchantAuthentication
-#         #createsubscriptionrequest.refId = 'Sample'
-#         #createsubscriptionrequest.subscription = self.subscriptionOne #required field
-#         arbcreatesubscriptioncontroller = ARBCreateSubscriptionController(createsubscriptionrequest)
-#         arbcreatesubscriptioncontroller.execute()
-#         response = arbcreatesubscriptioncontroller.getresponse()
-#         self.assertEquals('Ok', response.messages.resultCode)
-                   
-   
-    def testGetTransactionDetails_AssertNestedField(self):     
-        gettransactiondetailsrequest = apicontractsv1.getTransactionDetailsRequest()
-        gettransactiondetailsrequest.merchantAuthentication = self.merchantAuthentication
-        gettransactiondetailsrequest.transId = '20000152262' #update valid transaction id
-        gettransactiondetailscontroller = getTransactionDetailsController(gettransactiondetailsrequest)
-        gettransactiondetailscontroller.execute()
-        response =  gettransactiondetailscontroller.getresponse()
-        self.assertEquals('Ok', response.messages.resultCode) 
-        self.assertIsNotNone(response.transaction.settleAmount)    
-        self.assertIsNotNone(response.transaction.payment.creditCard.cardNumber)
-        self.assertIsNotNone(response.transaction.customer.id)
-        self.assertIsNotNone(response.transaction.billTo.company)
-        self.assertIsNotNone(response.transaction.entryMethod)
-        self.assertIsNotNone(response.transaction.order.invoiceNumber)     
-            
-    def testGetTransactionDetails_UserAddsInvalidPropertyWhichIsNOTInRequestObject(self):     
-        gettransactiondetailsrequest = apicontractsv1.getTransactionDetailsRequest()
-        gettransactiondetailsrequest.merchantAuthentication = self.merchantAuthentication
-        gettransactiondetailsrequest.transId ='20000152262' #update valid transaction id
-        gettransactiondetailsrequest.abc = ' ' #user adds any extra element 
-        gettransactiondetailscontroller = getTransactionDetailsController(gettransactiondetailsrequest)
-        gettransactiondetailscontroller.execute()
-        response =  gettransactiondetailscontroller.getresponse()
-        self.assertEquals('Ok', response.messages.resultCode) 
-        self.assertIsNotNone(response.transaction.settleAmount)    
-        self.assertIsNotNone(response.transaction.payment.creditCard.cardNumber)
-        self.assertIsNotNone(response.transaction.customer.id)
-        self.assertIsNotNone(response.transaction.billTo.company)
-        self.assertIsNotNone(response.transaction.entryMethod)
-        self.assertIsNotNone(response.transaction.order.invoiceNumber)
+        if hasattr(response, 'messages') == True:
+            if hasattr(response.messages, 'resultCode') == True:
+                self.assertEquals('Ok', response.messages.resultCode)
+        if hasattr(response, 'transactionResponse') == True:
+            self.assertIsNotNone(response.transactionResponse)
+            if hasattr(response.transactionResponse, 'transId') == True:    
+                self.assertIsNotNone(response.transactionResponse.transId)
 
-'''
-class test_PaymentTransactions(apitestbase.ApiTestBase):
-    #Testing SDK SimpleType
-    accountNumber = None
-    def test_accountTypeEnumTestSimpleType(self):        
-        payment = apicontractsv1.paymentType()
-        
-        bankAccountType = apicontractsv1.bankAccountType()
-        accountType = apicontractsv1.bankAccountTypeEnum
-        bankAccountType.accountType = accountType.checking
-        bankAccountType.routingNumber = "125000024"
-        bankAccountType.accountNumber = "12345678"
-        bankAccountType.nameOnAccount = "John Doe"
-        
-        transactionrequest = apicontractsv1.transactionRequestType()
-        transactionrequest.transactionType = "authCaptureTransaction"
-        transactionrequest.amount = Decimal ('2.55')
-        transactionrequest.payment = payment
-        transactionrequest.payment.bankAccount = bankAccountType
-        
-        
-        createtransactionrequest = apicontractsv1.createTransactionRequest()
-        createtransactionrequest.merchantAuthentication = self.merchantAuthentication
-        createtransactionrequest.refId = "MerchantID-0001"
-        
-        createtransactionrequest.transactionRequest = transactionrequest
-        createtransactioncontroller = createTransactionController(createtransactionrequest)
-        createtransactioncontroller.execute()
-        
-        response = createtransactioncontroller.getresponse()
-        self.assertEquals('Ok', response.messages.resultCode) 
-#        if (response.messages.resultCode=="Ok"):
-#             print "Transaction ID : %s" % response.transactionResponse.transId
-#             print response.transactionResponse.messages.message[0].description
-#             print response.transactionResponse.messages.message[0].description
-#             print response.transactionResponse.accountNumber
-        
-#        else:
-#             print "response code: %s" % response.messages.resultCode
-        self.__class__.accountNumber = response.transactionResponse.accountNumber
+class getCustomerProfileAndgetCustomerShippingAddressUnitTest(apitestbase.ApiTestBase):
+    createdShippingAddressId = None
+    generatedCustomerProfileId = None
+    def testcreate_customer_profile2(self):
+        createCustomerProfile = apicontractsv1.createCustomerProfileRequest()
+        createCustomerProfile.merchantAuthentication = self.merchantAuthentication
+        createCustomerProfile.profile = apicontractsv1.customerProfileType('jdoe' + str(random.randint(0, 10000)), 'John2 Doe', 'jdoe@mail.com')
+        controller = createCustomerProfileController(createCustomerProfile)
+        controller.execute()
+        response = controller.getresponse()
+        if hasattr(response, 'messages') == True:
+            if hasattr(response.messages, 'resultCode') == True:
+                self.assertEquals('Ok', response.messages.resultCode)
+        if hasattr(response, 'customerProfileId') == True: 
+            self.__class__.generatedCustomerProfileId = str(response.customerProfileId)
             
-            
-    def test_accountnumber_TestSimpleType(self):
-        account  = self.__class__.accountNumber + 1 
-        #print "account after adding 1 = %s" %account   
-'''         
+    def testget_customer_profile(self):
+        getCustomerProfile = apicontractsv1.getCustomerProfileRequest()
+        getCustomerProfile.merchantAuthentication = self.merchantAuthentication
+        getCustomerProfile.customerProfileId = self.__class__.generatedCustomerProfileId 
+        controller = getCustomerProfileController(getCustomerProfile)
+        controller.execute()
+        response = controller.getresponse()
+        self.assertEquals('Ok', response.messages.resultCode)
+        if hasattr(response, 'messages') == True:
+            if hasattr(response.messages, 'resultCode') == True:
+                self.assertEquals('Ok', response.messages.resultCode)
+
+    def testcreate_customer_shipping_address(self):
+        officeAddress = apicontractsv1.customerAddressType();
+        officeAddress.firstName = "John"
+        officeAddress.lastName = "Doe"
+        officeAddress.address = "123 Main St."
+        officeAddress.city = "Bellevue"
+        officeAddress.state = "WA"
+        officeAddress.zip = "98004"
+        officeAddress.country = "USA"
+        officeAddress.phoneNumber = "000-000-0000"
+        shippingAddressRequest = apicontractsv1.createCustomerShippingAddressRequest()
+        shippingAddressRequest.address = officeAddress
+        shippingAddressRequest.customerProfileId = self.__class__.generatedCustomerProfileId
+        shippingAddressRequest.merchantAuthentication = self.merchantAuthentication
+        controller = createCustomerShippingAddressController(shippingAddressRequest)
+        controller.execute()
+        response = controller.getresponse()
+        if hasattr(response, 'messages') == True:
+            if hasattr(response.messages, 'resultCode') == True:
+                self.assertEquals('Ok', response.messages.resultCode) 
+        if hasattr(response, 'customerAddressId') == True: 
+            self.__class__.createdShippingAddressId = str(response.customerAddressId)
+        
+    def testget_customer_shipping_address(self):
+        getShippingAddress = apicontractsv1.getCustomerShippingAddressRequest()
+        getShippingAddress.merchantAuthentication = self.merchantAuthentication
+        getShippingAddress.customerProfileId = self.__class__.generatedCustomerProfileId 
+        getShippingAddress.customerAddressId = self.__class__.createdShippingAddressId
+        getShippingAddressController = getCustomerShippingAddressController(getShippingAddress)
+        getShippingAddressController.execute()
+        response = getShippingAddressController.getresponse()
+        if hasattr(response, 'messages') == True:
+            if hasattr(response.messages, 'resultCode') == True:
+                self.assertEquals('Ok', response.messages.resultCode)  
+
 '''    
 class test_ProductionURL(apitestbase.ApiTestBase):  
     #Tests will run only with production credentials
