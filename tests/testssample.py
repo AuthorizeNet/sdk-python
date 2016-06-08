@@ -18,7 +18,11 @@ from authorizenet import utility
 class test_ReadProperty(apitestbase.ApiTestBase):
     def testPropertyFromFile(self):
         login= utility.helper.getproperty("api.login.id")
+        if (login) == None:
+            login= utility.helper.getproperty("api_login_id")
         transactionkey = utility.helper.getproperty("transaction.key")
+        if (transactionkey) == None:
+            transactionkey= utility.helper.getproperty("transaction_key")
         self.assertIsNotNone(login)
         self.assertIsNotNone(transactionkey)
 

@@ -24,8 +24,12 @@ class ApiTestBase(unittest.TestCase):
         self.amount = str(round(random.random()*100, 2))
        
         self.merchantAuthentication = apicontractsv1.merchantAuthenticationType()       
-        self.merchantAuthentication.name = utility.helper.getproperty('api.login.id')
-        self.merchantAuthentication.transactionKey = utility.helper.getproperty('transaction.key')
+        self.merchantAuthentication.name = utility.helper.getproperty('api_login_id')
+        if (self.merchantAuthentication.name) == None:
+            self.merchantAuthentication.name = utility.helper.getproperty('api_login_id')
+        self.merchantAuthentication.transactionKey = utility.helper.getproperty('transaction_key')
+        if (self.merchantAuthentication.transactionKey) == None:
+            self.merchantAuthentication.name = utility.helper.getproperty('transaction_key')
         self.ref_id = 'Sample'
         
         self.dateOne = datetime.date(2020, 8, 30)
