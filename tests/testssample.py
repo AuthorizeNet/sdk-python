@@ -225,7 +225,7 @@ class test_CustomerProfile(apitestbase.ApiTestBase):
         if hasattr(response, 'messages') == True:
             if hasattr(response.messages, 'resultCode') == True:
                 self.assertEquals('Ok', response.messages.resultCode)  
-             
+            
 '''    
 class test_ProductionURL(apitestbase.ApiTestBase):  
     #Tests will run only with production credentials
