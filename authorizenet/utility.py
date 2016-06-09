@@ -58,7 +58,7 @@ class helper():
             try:
                 stringvalue = helper.getparser().get("properties", propertyname)
             except:
-                sys.stderr.write("%s not found" %propertyname )
+                sys.stderr.write("'%s' not found\n" %propertyname )
                 
         if ( "null" == stringvalue):
             stringvalue = os.getenv(propertyname)               
