@@ -18,7 +18,11 @@ from authorizenet import utility
 class test_ReadProperty(apitestbase.ApiTestBase):
     def testPropertyFromFile(self):
         login= utility.helper.getproperty("api.login.id")
+        if (login) == None:
+            login= utility.helper.getproperty("api_login_id")
         transactionkey = utility.helper.getproperty("transaction.key")
+        if (transactionkey) == None:
+            transactionkey= utility.helper.getproperty("transaction_key")
         self.assertIsNotNone(login)
         self.assertIsNotNone(transactionkey)
 
@@ -221,7 +225,7 @@ class test_CustomerProfile(apitestbase.ApiTestBase):
         if hasattr(response, 'messages') == True:
             if hasattr(response.messages, 'resultCode') == True:
                 self.assertEquals('Ok', response.messages.resultCode)  
-             
+            
 '''    
 class test_ProductionURL(apitestbase.ApiTestBase):  
     #Tests will run only with production credentials
