@@ -12,7 +12,7 @@
 
 ## Prerequisites
 
-We'll be ensuring this SDK is compatible with Python 2.6+, 3.2+ and PyPy but for the beta release we're primarily testing against Python 2.7 so that's the current prerequisite.
+We'll be ensuring this SDK is compatible with Python 2.6+, 3.2+ and PyPy but we're primarily testing against Python 2.7 so that's the current prerequisite.
 
 
 ## Installation
@@ -32,11 +32,9 @@ Set your API credentials:
 	merchantAuth.transactionKey = 'YOUR_TRANSACTION_KEY'
 ````
 
-For reporting tests, go to https://sandbox.authorize.net/ under Account tab->Transaction Details API and enable it.
-
 
 ## Usage
-See our sample code repository at https://github.com/AuthorizeNet/sample-code-python (*** NOTE during beta the sample code repo is a work in progress ***)
+See our sample code repository at https://github.com/AuthorizeNet/sample-code-python 
 
 For the simplest "Hello World" example, paste this into a file called charge-credit-card.py and run:
 
@@ -81,7 +79,7 @@ else:
 ### Setting Production or Sandbox Environments  
 To set the environment use the setenvironment method on the controller before executing.  E.g. for the example above:
 ````python
-# Defaults to constants.SANDBOX_TESTMODE for sandbox testing
+# Defaults to constants.SANDBOX for sandbox testing
 createtransactioncontroller.setenvironment(constants.PRODUCTION)
 ````
 
