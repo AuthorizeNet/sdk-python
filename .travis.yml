@@ -3,7 +3,8 @@ sudo: false
 
 python:
   - "2.7"
-
+  # - "pypy" Disabling pypy until travis moves to newer version, known issue with lxml crashing pypy
+  
 install:
  - pip install unittest2
  - pip install nose
