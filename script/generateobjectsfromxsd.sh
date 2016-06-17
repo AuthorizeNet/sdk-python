@@ -23,19 +23,47 @@ else
     exit 1
 fi
 
-XSDPATH=https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd
-#XSDPATH=https://api.authorize.net/xml/v1/schema/AnetApiSchema.xsd
+which perl > /dev/null
+if [ $? -eq 0 ]
+then
+    echo Found perl
+else
+    echo Unable to find perl. Make sure perl is installed.
+    exit 1
+fi
+
+LOCALXSDWITHANY=./script/AnetApiSchemaOut.xsd
 CONTRACTSDIR=authorizenet
 CONTRACTSFILE=apicontractsv1
 PYXBGENPATH=`which pyxbgen`
 TEMPFILE=binding
+
+echo Downloading AnetAPISchema file under Script directory
+wget -O AnetApiSchema.xsd https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd
+if [ $? -eq 0 ]
+then
+	echo AnetAPISchema.xsd downloaded
+else
+    echo Unable to download AnetAPISchema.
+    exit 1
+fi
+
+echo modifying XSD using perl to support backward compatibility
+perl addany.pl
+if [ $? -eq 0 ]
+then
+	echo AnetOut.xsd generated 
+else
+    echo Unable to generate AnetOut.xsd
+    exit 1
+fi
 
 echo Using pyxb from "${PYXBGENPATH}"
 if [ -e "${TEMPFILE}.py" ]; then
     rm ${TEMPFILE}.py
 fi
 
-python "${PYXBGENPATH}" -u ${XSDPATH} -m ${TEMPFILE}
+python "${PYXBGENPATH}" -u ${LOCALXSDWITHANY} -m ${TEMPFILE}
 if [ $? -eq 0 ]
 then
     if [ -e "${CONTRACTSDIR}/${CONTRACTSFILE}.old" ]
