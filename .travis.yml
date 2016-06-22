@@ -10,12 +10,14 @@ install:
  - pip install nose
  - pip install pyxb
  - pip install lxml
+ - pip install coveralls
 
 before_script:
   - git submodule update --remote --recursive
 
 script:
  - nosetests
+ - coveralls
  - python setup.py install
  - cd sample-code-python
  - python ./test-runner.py
