@@ -17,6 +17,7 @@ before_script:
 
 script:
  - nosetests --with-coverage -cover-package=authorizenet
+ - coveralls
  - python setup.py install
  - cd sample-code-python
  - python ./test-runner.py
