@@ -17,6 +17,7 @@ before_script:
 
 script:
  - nosetests
+ - coverage run setup.py test
  - coveralls
  - python setup.py install
  - cd sample-code-python
