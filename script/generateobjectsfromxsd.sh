@@ -35,19 +35,20 @@ fi
 which wget > /dev/null
 if [ $? -eq 0 ]
 then
-    echo Found wget.Downloading AnetAPISchema file under Script directory
+    echo Found wget.Downloading AnetAPISchema file under Script directory.
 	wget -O AnetApiSchema.xsd https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd
 	if [ $? -eq 0 ]
 	then
-		echo AnetAPISchema.xsd downloaded
+		echo AnetAPISchema.xsd downloaded.
 	else
 		echo Unable to download AnetAPISchema.
 		exit 1
 	fi
 else
+	which curl > /dev/null
 	if [ $? -eq 0 ]
 	then
-		echo Found wget.Downloading AnetAPISchema file under Script directory
+		echo Found curl.Downloading AnetAPISchema file under Script directory.
 		curl -O -v --noproxy '*' "https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd"
 		if [ $? -eq 0 ]
 		then
@@ -57,8 +58,9 @@ else
 			exit 1
 		fi
 	else
-		echo Unable to find wget and curl. Make sure either one is installed.
-    exit 1
+		echo Unable to find wget and curl. Make sure either one is installed
+		exit 1
+	fi
 fi
 
 LOCALXSDWITHANY=./script/AnetApiSchemaOut.xsd
