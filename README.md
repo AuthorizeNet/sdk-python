@@ -93,8 +93,10 @@ Requirements
 
 Run the following to get pyxb and nosetests:
 - pip install pyxb
-- pip install nosetests
+- pip install nose
 - pip install Magicmock
+- pip install unittest2
+- pip install lxml
 
 Testing
 --------------------------------------
