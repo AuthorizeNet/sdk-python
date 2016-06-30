@@ -9,7 +9,6 @@ import pyxb
 import sys
 import xml.dom.minidom
 from pip._vendor import requests
-from _pyio import __metaclass__
 from lxml import objectify
 
 from authorizenet.constants import constants
