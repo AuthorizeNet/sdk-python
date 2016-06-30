@@ -44,8 +44,8 @@ from authorizenet.apicontrollers import *
 from decimal import *
 
 merchantAuth = apicontractsv1.merchantAuthenticationType()
-merchantAuth.name = '5KP3u95bQpv'
-merchantAuth.transactionKey = '4Ktq966gC55GAX7S'
+merchantAuth.name = 'YOUR_LOGIN_ID'
+merchantAuth.transactionKey = 'YOUR_TRANSACTION_KEY'
 
 creditCard = apicontractsv1.creditCardType()
 creditCard.cardNumber = "4111111111111111"
