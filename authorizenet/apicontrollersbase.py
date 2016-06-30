@@ -96,8 +96,8 @@ class APIOperationBase(APIOperationBaseInterface):
         
         xmlRequest = self._request.toxml(encoding=constants.xml_encoding, element_name=self.getrequesttype())
         #remove namespaces that toxml() generates
-        xmlRequest = xmlRequest.replace(constants.nsNamespace1, '')
-        xmlRequest = xmlRequest.replace(constants.nsNamespace2, '')
+        xmlRequest = xmlRequest.replace(constants.nsNamespace1, b'')
+        xmlRequest = xmlRequest.replace(constants.nsNamespace2, b'')
         
         return xmlRequest
     
@@ -137,8 +137,8 @@ class APIOperationBase(APIOperationBaseInterface):
                 self._response = apicontractsv1.CreateFromDocument(self._httpResponse) 
                 #objectify code  
                 xmlResponse= self._response.toxml(encoding=constants.xml_encoding, element_name=self.getrequesttype()) 
-                xmlResponse = xmlResponse.replace(constants.nsNamespace1, '')
-                xmlResponse = xmlResponse.replace(constants.nsNamespace2, '') 
+                xmlResponse = xmlResponse.replace(constants.nsNamespace1, b'')
+                xmlResponse = xmlResponse.replace(constants.nsNamespace2, b'') 
                 self._mainObject = objectify.fromstring(xmlResponse)   
                  
             except Exception as objectifyexception:
@@ -147,8 +147,8 @@ class APIOperationBase(APIOperationBaseInterface):
                 self._response = apicontractsv1.CreateFromDocument(self._httpResponse)    
                 #objectify code 
                 xmlResponse= self._response.toxml(encoding=constants.xml_encoding, element_name=self.getrequesttype()) 
-                xmlResponse = xmlResponse.replace(constants.nsNamespace1, '')
-                xmlResponse = xmlResponse.replace(constants.nsNamespace2, '') 
+                xmlResponse = xmlResponse.replace(constants.nsNamespace1, b'')
+                xmlResponse = xmlResponse.replace(constants.nsNamespace2, b'') 
                 self._mainObject = objectify.fromstring(xmlResponse) 
             else:    
                 #if type(self.getresponseclass()) == type(self._response):
