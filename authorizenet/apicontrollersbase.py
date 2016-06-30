@@ -155,14 +155,14 @@ class APIOperationBase(APIOperationBaseInterface):
                 #if type(self.getresponseclass()) == type(self._response):
                 if type(self.getresponseclass()) != type(self._mainObject):
                     if self._response.messages.resultCode == "Error":
-                        print "Response error"
+                        logging.debug("Response error")
                     domResponse = xml.dom.minidom.parseString(self._httpResponse)
                     logging.debug('Received response: %s' % domResponse.toprettyxml())
                 else:
                     #Need to handle ErrorResponse  
                     logging.debug('Error retrieving response for request: %s' % self._request)
         else:
-            print "Did not receive http response"
+            logging.debug("Did not receive http response")
         return
     
     def getresponse(self):

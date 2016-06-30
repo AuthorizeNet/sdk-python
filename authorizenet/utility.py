@@ -6,9 +6,12 @@ Created on Nov 4, 2015
 
 from ConfigParser import SafeConfigParser
 from ConfigParser import NoSectionError
+import logging
 import os
 import sys
-#from __future__ import print_function
+
+logger = logging.getLogger(__name__)
+
 
 class helper(): 
     __parser = "null"
@@ -45,20 +48,20 @@ class helper():
                     try:
                         helper.__parser = SafeConfigParser({"http":"","https":"","ftp":""})
                     except:
-                        print ("Parser could not be initialized")
+                        logger.debug("Parser could not be initialized")
 
                 if ('null' != helper.getparser()):
                     try:
                         helper.getparser().read(helper.__propertyfilename)
                         helper.__initialized = True
                     except:
-                        print ("Unable to load the property file")
+                        logger.debug("Unable to load the property file")
 
         if (True == helper.__classinitialized()):
             try:
                 stringvalue = helper.getparser().get("properties", propertyname)
             except:
-                sys.stderr.write("'%s' not found\n" %propertyname )
+                logger.exception("'{}' not found".format(propertyname))
                 
         if ( "null" == stringvalue):
             stringvalue = os.getenv(propertyname)               
