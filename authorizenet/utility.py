@@ -3,9 +3,13 @@ Created on Nov 4, 2015
 
 @author: krgupta
 '''
+try:
+    from ConfigParser import SafeConfigParser
+    from ConfigParser import NoSectionError
+except ImportError:
+    from configparser import SafeConfigParser
+    from configparser import NoSectionError
 
-from ConfigParser import SafeConfigParser
-from ConfigParser import NoSectionError
 import logging
 import os
 import sys
