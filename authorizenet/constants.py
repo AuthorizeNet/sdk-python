@@ -38,10 +38,10 @@ class constants(object):
     note = ' note="Status with a capital \'S\' is obsolete."'
     
     '''ns namespace 1'''
-    nsNamespace1 = 'ns1:'
+    nsNamespace1 = b'ns1:'
     
     '''ns namespace 2'''
-    nsNamespace2 = ':ns1'
+    nsNamespace2 = b':ns1'
     
     '''default log file name'''
     defaultLogFileName = "anetsdk.log"
