@@ -36,7 +36,7 @@ which wget > /dev/null
 if [ $? -eq 0 ]
 then
     echo Found wget.Downloading AnetAPISchema file under Script directory.
-	wget -O AnetApiSchema.xsd https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd
+	wget -O ./script/AnetApiSchema.xsd https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd
 	if [ $? -eq 0 ]
 	then
 		echo AnetAPISchema.xsd downloaded.
@@ -49,7 +49,7 @@ else
 	if [ $? -eq 0 ]
 	then
 		echo Found curl.Downloading AnetAPISchema file under Script directory.
-		curl -O -v --noproxy '*' "https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd"
+		curl -o ./script/AnetApiSchema.xsd --noproxy '*' "https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd"
 		if [ $? -eq 0 ]
 		then
 			echo AnetAPISchema.xsd downloaded
