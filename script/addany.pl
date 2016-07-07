@@ -5,9 +5,9 @@
 #Modifying XSD to add wildcard character 
 #Adding paymentScheduleTypeInterval type to overcome pyxb's anonymous complex type issue
 
-$input_file = "AnetApiSchema.xsd";
-$intermediate_file = "IntermediateAnetOut.xsd";
-$output_file = "AnetApiSchemaOut.xsd";
+$input_file = $ARGV[0];
+$intermediate_file = $ARGV[1];
+$output_file = $ARGV[2];
 $inp_cmd = "dos2unix $input_file\n";
 
 open(INP,"<$input_file") or die "Cannot open $input_file for reading:$!\n";
