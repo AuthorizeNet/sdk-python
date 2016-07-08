@@ -1,4 +1,3 @@
-# C:\Users\krgupta\Desktop\xsd-bindings\modifiedbyramittal.py
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:0fc19dc0c6315668ca059fd5839cdad268ce84d3
 # Generated 2016-05-10 15:07:23.442000 by PyXB version 1.2.4 using Python 2.7.10.final.0
