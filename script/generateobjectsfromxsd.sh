@@ -84,7 +84,7 @@ echo Modifying XSD using perl to support backward compatibility
 echo Creating temporary directory 
 mkdir -p "$TEMPDIRECTORY"
 
-perl script/addany.pl script/AnetApiSchema.xsd ${TEMPDIRECTORY}/IntermediateAnetOut.xsd script/AnetApiSchemaOut.xsd
+perl script/addany.pl script/AnetApiSchema.xsd ${TEMPDIRECTORY}/IntermediateAnetOut.xsd ${LOCALXSDWITHANY}
 if [ $? -eq 0 ]
 then
 	: #echo AnetOut.xsd generated #Uncomment for debugging
@@ -113,7 +113,7 @@ then
         rm "${CONTRACTSDIR}/${CONTRACTSFILE}.py"
     fi
     mv "${TEMPFILE}.py" "${CONTRACTSDIR}/${CONTRACTSFILE}.py"
-    echo Bindings have been successfully generated from XSD in the file "${CONTRACTSDIR}/${CONTRACTSFILE}.py"
+   echo Bindings have been successfully generated from XSD in the file "${CONTRACTSDIR}/${CONTRACTSFILE}.py"
     echo Old contracts have been moved to .old
 else
     echo Error generating bindings from XSD. Review the errors and rerun the script.
