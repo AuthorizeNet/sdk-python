@@ -2,7 +2,7 @@
 
 [![Travis](https://img.shields.io/travis/AuthorizeNet/sdk-python/master.svg)]
 (https://travis-ci.org/AuthorizeNet/sdk-python)
-[![Coverage Status](https://coveralls.io/repos/github/sunnyrajrathod/sdk-python/badge.svg?branch=master)](https://coveralls.io/github/sunnyrajrathod/sdk-python?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/AuthorizeNet/sdk-python/badge.svg?branch=master)](https://coveralls.io/github/sunnyrajrathod/sdk-python?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/AuthorizeNet/sdk-python/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/AuthorizeNet/sdk-python/?branch=master)
 [![PyPI](https://img.shields.io/pypi/v/authorizenet.svg)](https://badge.fury.io/py/authorizenet)
 
