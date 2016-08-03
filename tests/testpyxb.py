@@ -141,8 +141,8 @@ class test_CustomerProfile(unittest.TestCase):
         try:    
             '''serialzing object to XML '''
             xmlRequest = getCustomerProfileRequest.toxml(encoding=constants.xml_encoding, element_name='getCustomerProfileRequest') 
-            xmlRequest = xmlRequest.replace(constants.nsNamespace1, '')
-            xmlRequest = xmlRequest.replace(constants.nsNamespace2, '')
+            xmlRequest = xmlRequest.replace(constants.nsNamespace1, b'')
+            xmlRequest = xmlRequest.replace(constants.nsNamespace2, b'')
             logging.debug( "Xml Request: %s" % xmlRequest)
             #print( "Xml Request: %s" % xmlRequest)
         except Exception as ex:

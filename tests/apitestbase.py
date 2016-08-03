@@ -10,7 +10,11 @@ from decimal import *
 import random
 import test
 
-from ConfigParser import SafeConfigParser
+try:
+    from ConfigParser import SafeConfigParser
+except ImportError:
+    from configparser import SafeConfigParser
+    
 from authorizenet import apicontractsv1, apicontrollersbase
 from authorizenet.utility import *
 #from authorizenet.apicontractsv1 import CTD_ANON
