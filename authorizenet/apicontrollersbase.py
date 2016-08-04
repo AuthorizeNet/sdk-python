@@ -132,7 +132,6 @@ class APIOperationBase(APIOperationBaseInterface):
         if self._httpResponse:            
             self._httpResponse.encoding = constants.response_encoding
             self._httpResponse = self._httpResponse.text[3:] #strip BOM
-            print(self._httpResponse);
             self.afterexecute()
             try:
                 self._response = apicontractsv1.CreateFromDocument(self._httpResponse) 
