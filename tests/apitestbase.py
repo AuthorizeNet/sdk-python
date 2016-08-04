@@ -61,7 +61,7 @@ class ApiTestBase(unittest.TestCase):
         self.payment.creditCard = self.creditCardOne
         
         self.customerOne = apicontractsv1.nameAndAddressType()
-        self.customerOne.firstName = "John" + random.randint(0, 10000)
+        self.customerOne.firstName = "John" + str(random.randint(0, 10000))
         self.customerOne.lastName = "Smith"
         
         self.customerData = apicontractsv1.customerDataType()
