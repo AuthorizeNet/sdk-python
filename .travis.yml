@@ -4,6 +4,7 @@ sudo: false
 python:
   - "2.7"
   - "3.4"
+  - "3.5"
   # - "pypy" Disabling pypy until travis moves to newer version, known issue with lxml crashing pypy
   
 install:
