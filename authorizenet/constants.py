@@ -4,7 +4,6 @@ Created on Jun 8, 2015
 @author: egodolja
 '''
 import logging
-from pkg_resources import get_distribution
 
 class constants(object):
     """All the constants are defined here
@@ -17,7 +16,8 @@ class constants(object):
     PRODUCTION = 'https://api2.authorize.net/xml/v1/request.api'
 
     '''clientId'''
-    clientId = 'sdk-python-' + get_distribution('authorizenet').version
+    version = '1.0.11'
+    clientId = 'sdk-python-' + version
 
     '''xml encoding'''
     xml_encoding = 'utf-8'
