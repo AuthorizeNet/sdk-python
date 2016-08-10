@@ -6,7 +6,7 @@
 dt=`date '+%m/%d/%Y %H:%M:%S'`
 
 AnetURL=https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd
-AnetURLPERL='https:\/\/apitest.authorize.net\/xml\/v1schema\/AnetApiSchema.xsd'
+AnetURLPERL='https:\/\/apitest.authorize.net\/xml\/v1\/schema\/AnetApiSchema.xsd'
 LOCALXSDWITHANY=./script/AnetOut.xsd
 CONTRACTSDIR=authorizenet
 CONTRACTSFILE=apicontractsv1
@@ -120,6 +120,6 @@ else
     exit 1
 fi
 
-perl -i -pe "s/.Location\(\'(.*)\'/.Location\(\'$AnetURLPERL\'/g" ${CONTRACTSDIR}/${CONTRACTSFILE}.py
+perl -i -pe "s/.Location\(\'.*xsd\'/.Location\(\'$AnetURLPERL\'/g" ${CONTRACTSDIR}/${CONTRACTSFILE}.py
 
 exit 0

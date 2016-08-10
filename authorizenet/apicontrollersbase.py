@@ -86,8 +86,11 @@ class APIOperationBase(APIOperationBaseInterface):
         self.validateandsetmerchantauthentication()       
         self.validaterequest()
         
-        return     
-    
+        return
+
+    def setClientId(self): #protected method
+        self._request.clientId = constants.clientId
+
     def _getrequest(self): #protected method
         return self._request 
      
@@ -98,7 +101,7 @@ class APIOperationBase(APIOperationBaseInterface):
         #remove namespaces that toxml() generates
         xmlRequest = xmlRequest.replace(constants.nsNamespace1, b'')
         xmlRequest = xmlRequest.replace(constants.nsNamespace2, b'')
-        
+
         return xmlRequest
     
     def getprettyxmlrequest(self):
@@ -122,6 +125,7 @@ class APIOperationBase(APIOperationBaseInterface):
                            
         #requests is http request  
         try:
+            self.setClientId()
             xmlRequest = self.buildrequest()
             self._httpResponse = requests.post(self.endpoint, data=xmlRequest, headers=constants.headers, proxies=proxyDictionary)
         except Exception as httpException:
