@@ -10,7 +10,11 @@ from decimal import *
 import random
 import test
 
-from ConfigParser import SafeConfigParser
+try:
+    from ConfigParser import SafeConfigParser
+except ImportError:
+    from configparser import SafeConfigParser
+    
 from authorizenet import apicontractsv1, apicontrollersbase
 from authorizenet.utility import *
 #from authorizenet.apicontractsv1 import CTD_ANON
@@ -57,7 +61,7 @@ class ApiTestBase(unittest.TestCase):
         self.payment.creditCard = self.creditCardOne
         
         self.customerOne = apicontractsv1.nameAndAddressType()
-        self.customerOne.firstName = "John"
+        self.customerOne.firstName = "John" + str(random.randint(0, 10000))
         self.customerOne.lastName = "Smith"
         
         self.customerData = apicontractsv1.customerDataType()
@@ -66,7 +70,7 @@ class ApiTestBase(unittest.TestCase):
         self.subscriptionOne = apicontractsv1.ARBSubscriptionType()
         self.subscriptionOne.paymentSchedule = self.paymentScheduleOne
         self.subscriptionOne.amount = Decimal(str(round(random.random()*100, 2)))
-        self.subscriptionOne.trialAmount = Decimal ('0.03')
+        self.subscriptionOne.trialAmount = Decimal(str(round(random.random()*100, 2)))
         self.subscriptionOne.payment = self.payment
         self.subscriptionOne.billTo = self.customerOne
 

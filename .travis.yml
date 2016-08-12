@@ -3,6 +3,8 @@ sudo: false
 
 python:
   - "2.7"
+  - "3.4"
+  - "3.5"
   # - "pypy" Disabling pypy until travis moves to newer version, known issue with lxml crashing pypy
   
 install:
@@ -10,12 +12,14 @@ install:
  - pip install nose
  - pip install pyxb
  - pip install lxml
+ - pip install coveralls
 
 before_script:
   - git submodule update --remote --recursive
 
 script:
- - nosetests
+ - nosetests --with-coverage -cover-package=authorizenet
+ - coveralls
  - python setup.py install
  - cd sample-code-python
  - python ./test-runner.py

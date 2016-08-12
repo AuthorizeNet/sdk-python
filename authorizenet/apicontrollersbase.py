@@ -9,7 +9,6 @@ import pyxb
 import sys
 import xml.dom.minidom
 from pip._vendor import requests
-from _pyio import __metaclass__
 from lxml import objectify
 
 from authorizenet.constants import constants
@@ -87,8 +86,11 @@ class APIOperationBase(APIOperationBaseInterface):
         self.validateandsetmerchantauthentication()       
         self.validaterequest()
         
-        return     
-    
+        return
+
+    def setClientId(self): #protected method
+        self._request.clientId = constants.clientId
+
     def _getrequest(self): #protected method
         return self._request 
      
@@ -97,9 +99,9 @@ class APIOperationBase(APIOperationBaseInterface):
         
         xmlRequest = self._request.toxml(encoding=constants.xml_encoding, element_name=self.getrequesttype())
         #remove namespaces that toxml() generates
-        xmlRequest = xmlRequest.replace(constants.nsNamespace1, '')
-        xmlRequest = xmlRequest.replace(constants.nsNamespace2, '')
-        
+        xmlRequest = xmlRequest.replace(constants.nsNamespace1, b'')
+        xmlRequest = xmlRequest.replace(constants.nsNamespace2, b'')
+
         return xmlRequest
     
     def getprettyxmlrequest(self):
@@ -123,6 +125,7 @@ class APIOperationBase(APIOperationBaseInterface):
                            
         #requests is http request  
         try:
+            self.setClientId()
             xmlRequest = self.buildrequest()
             self._httpResponse = requests.post(self.endpoint, data=xmlRequest, headers=constants.headers, proxies=proxyDictionary)
         except Exception as httpException:
@@ -138,8 +141,8 @@ class APIOperationBase(APIOperationBaseInterface):
                 self._response = apicontractsv1.CreateFromDocument(self._httpResponse) 
                 #objectify code  
                 xmlResponse= self._response.toxml(encoding=constants.xml_encoding, element_name=self.getrequesttype()) 
-                xmlResponse = xmlResponse.replace(constants.nsNamespace1, '')
-                xmlResponse = xmlResponse.replace(constants.nsNamespace2, '') 
+                xmlResponse = xmlResponse.replace(constants.nsNamespace1, b'')
+                xmlResponse = xmlResponse.replace(constants.nsNamespace2, b'') 
                 self._mainObject = objectify.fromstring(xmlResponse)   
                  
             except Exception as objectifyexception:
@@ -148,21 +151,21 @@ class APIOperationBase(APIOperationBaseInterface):
                 self._response = apicontractsv1.CreateFromDocument(self._httpResponse)    
                 #objectify code 
                 xmlResponse= self._response.toxml(encoding=constants.xml_encoding, element_name=self.getrequesttype()) 
-                xmlResponse = xmlResponse.replace(constants.nsNamespace1, '')
-                xmlResponse = xmlResponse.replace(constants.nsNamespace2, '') 
+                xmlResponse = xmlResponse.replace(constants.nsNamespace1, b'')
+                xmlResponse = xmlResponse.replace(constants.nsNamespace2, b'') 
                 self._mainObject = objectify.fromstring(xmlResponse) 
             else:    
                 #if type(self.getresponseclass()) == type(self._response):
                 if type(self.getresponseclass()) != type(self._mainObject):
                     if self._response.messages.resultCode == "Error":
-                        print "Response error"
+                        logging.debug("Response error")
                     domResponse = xml.dom.minidom.parseString(self._httpResponse)
                     logging.debug('Received response: %s' % domResponse.toprettyxml())
                 else:
                     #Need to handle ErrorResponse  
                     logging.debug('Error retrieving response for request: %s' % self._request)
         else:
-            print "Did not receive http response"
+            logging.debug("Did not receive http response")
         return
     
     def getresponse(self):
