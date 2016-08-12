@@ -15,6 +15,10 @@ class constants(object):
     SANDBOX = 'https://apitest.authorize.net/xml/v1/request.api'
     PRODUCTION = 'https://api2.authorize.net/xml/v1/request.api'
 
+    '''clientId'''
+    version = '1.0.12'
+    clientId = 'sdk-python-' + version
+
     '''xml encoding'''
     xml_encoding = 'utf-8'
     
@@ -38,10 +42,10 @@ class constants(object):
     note = ' note="Status with a capital \'S\' is obsolete."'
     
     '''ns namespace 1'''
-    nsNamespace1 = 'ns1:'
+    nsNamespace1 = b'ns1:'
     
     '''ns namespace 2'''
-    nsNamespace2 = ':ns1'
+    nsNamespace2 = b':ns1'
     
     '''default log file name'''
     defaultLogFileName = "anetsdk.log"
