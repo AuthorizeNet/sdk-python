@@ -24,11 +24,11 @@ To install AuthorizeNet
 Get a sandbox account at https://developer.authorize.net/sandbox  
 Set your API credentials:  
 
-````python
+```python
 	merchantAuth = apicontractsv1.merchantAuthenticationType()
 	merchantAuth.name = 'YOUR_API_LOGIN_ID'
 	merchantAuth.transactionKey = 'YOUR_TRANSACTION_KEY'
-````
+```
 
 
 ## Usage
@@ -36,7 +36,7 @@ See our sample code repository at https://github.com/AuthorizeNet/sample-code-py
 
 For the simplest "Hello World" example, paste this into a file called charge-credit-card.py and run:
 
-````python
+```python
 from authorizenet import apicontractsv1
 from authorizenet.apicontrollers import *
 from decimal import *
@@ -73,13 +73,13 @@ if (response.messages.resultCode=="Ok"):
 else:
 	print "response code: %s" % response.messages.resultCode
 
-````
+```
 ### Setting Production or Sandbox Environments  
 To set the environment use the setenvironment method on the controller before executing.  E.g. for the example above:
-````python
+```python
 # Defaults to constants.SANDBOX for sandbox testing
 createtransactioncontroller.setenvironment(constants.PRODUCTION)
-````
+```
 
 ## Building and Testing Source Code
 
@@ -98,8 +98,7 @@ Run the following to get pyxb and nosetests:
 Testing
 --------------------------------------
 - Tests available are: unit tests, mock tests, sample code
-- use nosetests to run all unittests 
-`
->nosetests
-`
+- use nosetests to run all unittests
+
+`>nosetests`
 
