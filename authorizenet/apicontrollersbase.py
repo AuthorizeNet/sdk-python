@@ -147,20 +147,20 @@ class APIOperationBase(APIOperationBaseInterface):
                  
             except Exception as objectifyexception:
                 logging.error( 'Create Document Exception: %s, %s', type(objectifyexception), objectifyexception.args )
-                pyxb.GlobalValidationConfig._setForBinding(False)
-                self._response = apicontractsv1.CreateFromDocument(self._httpResponse)    
-                #objectify code 
-                xmlResponse= self._response.toxml(encoding=constants.xml_encoding, element_name=self.getrequesttype()) 
-                xmlResponse = xmlResponse.replace(constants.nsNamespace1, b'')
-                xmlResponse = xmlResponse.replace(constants.nsNamespace2, b'') 
-                self._mainObject = objectify.fromstring(xmlResponse) 
-            else:    
+                responseString = self._httpResponse
+
+                # removing encoding attribute as objectify fails if it is present
+                responseString = responseString.replace('encoding=\"utf-8\"', '')
+                self._mainObject = objectify.fromstring(responseString) 
+            else:
+                domResponse = xml.dom.minidom.parseString(self._httpResponse)
+
                 #if type(self.getresponseclass()) == type(self._response):
                 if type(self.getresponseclass()) != type(self._mainObject):
                     if self._response.messages.resultCode == "Error":
                         logging.debug("Response error")
-                    domResponse = xml.dom.minidom.parseString(self._httpResponse)
-                    logging.debug('Received response: %s' % domResponse.toprettyxml())
+                    domResponse = xml.dom.minidom.parseString(self._httpResponse.encode('utf-8').decode('utf-8'))
+                    logging.debug('Received response: %s' % domResponse.toprettyxml(encoding='utf-8'))
                 else:
                     #Need to handle ErrorResponse  
                     logging.debug('Error retrieving response for request: %s' % self._request)

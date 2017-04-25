@@ -171,7 +171,7 @@ class test_CustomerProfile(unittest.TestCase):
             
             logging.error( 'Create Document Exception: %s, %s', type(ex), ex.args )
         
-        self.assertEquals(type(getCustomerProfileRequest), type(deserializedObject), "deseriaziedObject does not match original object")
+        self.assertEqual(type(getCustomerProfileRequest), type(deserializedObject), "deseriaziedObject does not match original object")
         
         try:
             #print("starting with element in mid")
