@@ -153,13 +153,13 @@ class APIOperationBase(APIOperationBaseInterface):
                 responseString = responseString.replace('encoding=\"utf-8\"', '')
                 self._mainObject = objectify.fromstring(responseString) 
             else:
-                domResponse = xml.dom.minidom.parseString(self._httpResponse)
+                domResponse = xml.dom.minidom.parseString(self._httpResponse.encode('utf-8').decode('utf-8'))
 
                 #if type(self.getresponseclass()) == type(self._response):
                 if type(self.getresponseclass()) != type(self._mainObject):
                     if self._response.messages.resultCode == "Error":
                         logging.debug("Response error")
-                    domResponse = xml.dom.minidom.parseString(self._httpResponse.encode('utf-8').decode('utf-8'))
+                    # domResponse = xml.dom.minidom.parseString(self._httpResponse.encode('utf-8').decode('utf-8'))
                     logging.debug('Received response: %s' % domResponse.toprettyxml(encoding='utf-8'))
                 else:
                     #Need to handle ErrorResponse  
