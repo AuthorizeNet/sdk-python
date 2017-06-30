@@ -10,7 +10,10 @@
 
 ## Prerequisites
 
-We'll be ensuring this SDK is compatible with Python 2.6+, 3.2+ and PyPy but we're primarily testing against Python 2.7 so that's the current prerequisite.
+- Python 2.7 or greater
+- OpenSSL 1.0.2 or greater
+
+We'll be ensuring this SDK is compatible with Python 2.7+, 3.2+ and PyPy but we're primarily testing against Python 2.7 so that's the current prerequisite.
 
 
 ## Installation
