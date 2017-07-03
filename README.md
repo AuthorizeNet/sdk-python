@@ -74,6 +74,6 @@ Testing
 
 ## License
 
-This repository is destributed under a proprietary license. See the provided license file(../blob/master/LICENSE.txt).
-This repository is destributed under a proprietary license. See the provided license file [../blob/master/LICENSE.txt] file.
-This repository is destributed under a proprietary license. See the provided license file (../blob/master/LICENSE.txt) file.
+This repository is destributed under a proprietary license. See the provided license file(../blob/readme/LICENSE.txt).
+This repository is destributed under a proprietary license. See the provided license file [../blob/readme/LICENSE.txt] file.
+This repository is destributed under a proprietary license. See the provided license file (../blob/readme/LICENSE.txt) file.
