@@ -23,7 +23,7 @@ To install the AuthorizeNet Python SDK:
 `pip install authorizenet`
 
 
-## Registration & Configuration {#Registration}
+## Registration & Configuration
 
 Use of this SDK and the Authorize.Net APIs requires having an account on our system
 Get a sandbox account at https://developer.authorize.net/sandbox  
@@ -74,4 +74,4 @@ Testing
 
 ## License
 
-This repository is destributed under a proprietary license. See the provided license file (LICENSE.txt).
+This repository is destributed under a proprietary license. See the provided license file(LICENSE.txt).
