@@ -10,10 +10,10 @@
 
 * Python 2.7 or greater
 * OpenSSL 1.0.2 or greater
-* An Authorize.Net account (see Registration & Configuration section below)
+* An Authorize.Net account (see _Registration & Configuration_ section below)
 
 
-We'll be ensuring this SDK is compatible with Python 2.7+, 3.2+ and PyPy but we're primarily testing against Python 2.7.
+_Note: We'll ultimately by ensuring this SDK is compatible with Python 2.7+, 3.2+ and PyPy, but at the moment we're primarily testing against Python 2.7._
 
 
 ## Installation
@@ -74,10 +74,12 @@ Testing
 
 ## License
 
-This repository is destributed under a proprietary license. See the provided license file(../../blob/readme/LICENSE.txt).
-This repository is destributed under a proprietary license. See the provided license file [../blob/readme/LICENSE.txt] file.
-This repository is destributed under a proprietary license. See the provided license file (../blob/readme/LICENSE.txt) file.
+This repository is destributed under a proprietary license. See the provided `/LICENSE.txt` file.
+This repository is destributed under a proprietary license. See the provided /LICENSE.txt file.
+This repository is destributed under a proprietary license. See the provided (/LICENSE.txt) file.
+This repository is destributed under a proprietary license. See the provided `(/LICENSE.txt)` file.
+This repository is destributed under a proprietary license. See the provided `LICENSE.txt`(/license.txt) file.
+This repository is destributed under a proprietary license. See the provided [LICENSE.txt](/license.txt) file.
+This repository is destributed under a proprietary license. See the provided `[LICENSE.txt]`(/license.txt) file.
+This repository is destributed under a proprietary license. See the provided [`LICENSE.txt`](/license.txt) file.
 
-This repository is destributed under a proprietary license. See the provided license file(../../readme/LICENSE.txt).
-This repository is destributed under a proprietary license. See the provided license file(../LICENSE.txt).
-This repository is destributed under a proprietary license. See the provided license file(LICENSE.txt).
