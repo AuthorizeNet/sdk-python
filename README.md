@@ -7,7 +7,6 @@
 
 
 ## Requirements
-
 * Python 2.7 or greater
 * OpenSSL 1.0.2 or greater
 * An Authorize.Net account (see _Registration & Configuration_ section below)
@@ -19,38 +18,30 @@ The Authorize.Net APIs only support connections using the TLS 1.2 security proto
 
 
 ## Installation
-
 To install the AuthorizeNet Python SDK:
 
 `pip install authorizenet`
 
 
 ## Registration & Configuration
-
 Use of this SDK and the Authorize.Net APIs requires having an account on our system. You can find these details in the Settings section.
 If you don't currently have a production Authorize.Net account and need a sandbox account for testing, you can easily sign up for one [here](https://developer.authorize.net/sandbox/).
 
-
 ### Authentication
-
 To authenticate with the Authorize.Net API you will need to use your account's API Login ID and Transaction Key. If you don't have these values, you can obtain them from our Merchant Interface site. Access the Merchant Interface for production accounts at (https://account.authorize.net/) or sandbox accounts at (https://sandbox.authorize.net).
 
 Once you have your keys simply load them into the appropriate variables in your code, as per the below sample code dealing with the authentication part of the API request. 
 
-
 #### To set your API credentials for an API request:
-
 ```python
 	merchantAuth = apicontractsv1.merchantAuthenticationType()
 	merchantAuth.name = 'YOUR_API_LOGIN_ID'
 	merchantAuth.transactionKey = 'YOUR_TRANSACTION_KEY'
 ```
 
-You should never include your Login ID and Transaction Key directly in a PHP file that's in a publically accessible portion of your website. A better practice would be to define these in a constants file, and then reference those constants in the appropriate place in your code.
-
+You should never include your Login ID and Transaction Key directly in a file that's in a publically accessible portion of your website. A better practice would be to define these in a constants file, and then reference those constants in the appropriate place in your code.
 
 ### Switching between the sandbox environment and the production environment
-
 Authorize.Net maintains a complete sandbox environment for testing and development purposes. This sandbox environment is an exact duplicate of our production environment with the transaction authorization and settlement process simulated. By default, this SDK is configured to communicate with the sandbox environment. To switch to the production environment, use the `setenvironment` method on the controller before executing.  For example:
 ```python
 # For PRODUCTION use
@@ -72,23 +63,11 @@ Additionally, you can find details and examples of how our API is structured in 
 The API Reference Guide provides examples of what information is needed for a particular request and how that information would be formatted. Using those examples, you can easily determine what methods would be necessary to include that information in a request using this SDK.
 
 
+## Building & Testing the SDK
 
-
-
-
-
-
-
-
-
-
-## Building and Testing Source Code
-
-Requirements
---------------------------------------
+### Requirements
 - python 2.7
 - pyxb 1.2.4
-
 
 Run the following to get pyxb and nosetests:
 - pip install pyxb
@@ -96,15 +75,15 @@ Run the following to get pyxb and nosetests:
 - pip install nose
 - pip install lxml
 
-Testing
---------------------------------------
+### Running the SDK Tests
 - Tests available are: unit tests, mock tests, sample code
 - use nosetests to run all unittests
 
 `>nosetests`
 
+### Testing Guide
+For additional help in testing your own code, Authorize.Net maintains a [comprehensive testing guide](http://developer.authorize.net/hello_world/testing_guide/) that includes test credit card numbers to use and special triggers to generate certain responses from the sandbox environment.
+
 
 ## License
-
-This repository is destributed under a proprietary license. See the provided [`LICENSE.txt`](/license.txt) file.
-
+This repository is distributed under a proprietary license. See the provided [`LICENSE.txt`](/license.txt) file.
