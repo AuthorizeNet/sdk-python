@@ -74,12 +74,5 @@ Testing
 
 ## License
 
-This repository is destributed under a proprietary license. See the provided `/LICENSE.txt` file.
-This repository is destributed under a proprietary license. See the provided /LICENSE.txt file.
-This repository is destributed under a proprietary license. See the provided (/LICENSE.txt) file.
-This repository is destributed under a proprietary license. See the provided `(/LICENSE.txt)` file.
-This repository is destributed under a proprietary license. See the provided `LICENSE.txt`(/license.txt) file.
-This repository is destributed under a proprietary license. See the provided [LICENSE.txt](/license.txt) file.
-This repository is destributed under a proprietary license. See the provided `[LICENSE.txt]`(/license.txt) file.
 This repository is destributed under a proprietary license. See the provided [`LICENSE.txt`](/license.txt) file.
 
