@@ -7,11 +7,12 @@
 
 
 ## Requirements
-* Python 2.7 or greater
+* For Python 2, Python 2.7 or greater
+* For Python 3, Pythoon 3.4 or later
 * OpenSSL 1.0.2 or greater
 * An Authorize.Net account (see _Registration & Configuration_ section below)
 
-_Note: Our goal is ensuring this SDK is compatible with Python 2.7+, 3.2+ and PyPy, but at the moment we're primarily testing against Python 2.7._
+_Note: Our goal is ensuring this SDK is compatible with Python 2.7+, 3.4+ and PyPy, but at the moment we're primarily testing against Python 2.7._
 
 ### TLS 1.2
 The Authorize.Net APIs only support connections using the TLS 1.2 security protocol. It's important to make sure you have new enough versions of all required components to support TLS 1.2. Additionally, it's very important to keep these components up to date going forward to mitigate the risk of any security flaws that may be discovered in your system or any libraries it uses.
