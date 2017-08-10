@@ -1,6 +1,6 @@
 # Authorize.Net Python SDK 
 
-[![Travis](https://img.shields.io/travis/AuthorizeNet/sdk-python/master.svg)](https://travis-ci.org/AuthorizeNet/sdk-python)
+[![Travis CI Status](https://travis-ci.org/AuthorizeNet/sdk-python.svg?branch=master)](https://travis-ci.org/AuthorizeNet/sdk-python)
 [![Coverage Status](https://coveralls.io/repos/github/AuthorizeNet/sdk-python/badge.svg?branch=master)](https://coveralls.io/github/AuthorizeNet/sdk-python?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/AuthorizeNet/sdk-python/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/AuthorizeNet/sdk-python/?branch=master)
 [![PyPI](https://img.shields.io/pypi/v/authorizenet.svg)](https://badge.fury.io/py/authorizenet)
@@ -8,7 +8,7 @@
 
 ## Requirements
 * For Python 2, Python 2.7 or greater
-* For Python 3, Pythoon 3.4 or later
+* For Python 3, Python 3.4 or later
 * OpenSSL 1.0.2 or greater
 * An Authorize.Net account (see _Registration & Configuration_ section below)
 
