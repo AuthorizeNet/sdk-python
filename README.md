@@ -1,17 +1,18 @@
 # Authorize.Net Python SDK 
 
-[![Travis](https://img.shields.io/travis/AuthorizeNet/sdk-python/master.svg)](https://travis-ci.org/AuthorizeNet/sdk-python)
+[![Travis CI Status](https://travis-ci.org/AuthorizeNet/sdk-python.svg?branch=master)](https://travis-ci.org/AuthorizeNet/sdk-python)
 [![Coverage Status](https://coveralls.io/repos/github/AuthorizeNet/sdk-python/badge.svg?branch=master)](https://coveralls.io/github/AuthorizeNet/sdk-python?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/AuthorizeNet/sdk-python/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/AuthorizeNet/sdk-python/?branch=master)
 [![PyPI](https://img.shields.io/pypi/v/authorizenet.svg)](https://badge.fury.io/py/authorizenet)
 
 
 ## Requirements
-* Python 2.7 or greater
+* For Python 2, Python 2.7 or greater
+* For Python 3, Python 3.4 or later
 * OpenSSL 1.0.2 or greater
 * An Authorize.Net account (see _Registration & Configuration_ section below)
 
-_Note: Our goal is ensuring this SDK is compatible with Python 2.7+, 3.2+ and PyPy, but at the moment we're primarily testing against Python 2.7._
+_Note: Our goal is ensuring this SDK is compatible with Python 2.7+, 3.4+ and PyPy, but at the moment we're primarily testing against Python 2.7._
 
 ### TLS 1.2
 The Authorize.Net APIs only support connections using the TLS 1.2 security protocol. It's important to make sure you have new enough versions of all required components to support TLS 1.2. Additionally, it's very important to keep these components up to date going forward to mitigate the risk of any security flaws that may be discovered in your system or any libraries it uses.
@@ -86,4 +87,4 @@ For additional help in testing your own code, Authorize.Net maintains a [compreh
 
 
 ## License
-This repository is distributed under a proprietary license. See the provided [`LICENSE.txt`](/license.txt) file.
+This repository is distributed under a proprietary license. See the provided [`LICENSE.txt`](/LICENSE.txt) file.
