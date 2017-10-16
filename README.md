@@ -68,10 +68,10 @@ The API Reference Guide provides examples of what information is needed for a pa
 
 ### Requirements
 - python 2.7
-- pyxb 1.2.4
+- pyxb 1.2.5
 
 Run the following to get pyxb and nosetests:
-- pip install pyxb
+- pip install pyxb==1.2.5
 - pip install unittest2
 - pip install nose
 - pip install lxml
