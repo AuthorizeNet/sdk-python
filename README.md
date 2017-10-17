@@ -72,7 +72,6 @@ The API Reference Guide provides examples of what information is needed for a pa
 
 Run the following to get pyxb and nosetests:
 - pip install pyxb==1.2.5
-- pip install unittest2
 - pip install nose
 - pip install lxml
 
