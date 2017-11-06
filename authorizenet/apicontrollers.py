@@ -1,5 +1,5 @@
 '''
-Created on Nov 19, 2015
+Created on Nov 3, 2015
 
 @author: krgupta
 '''
@@ -27,7 +27,6 @@ class ARBCancelSubscriptionController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.ARBCancelSubscriptionResponse() 
-    
 class ARBCreateSubscriptionController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -47,8 +46,7 @@ class ARBCreateSubscriptionController(apicontrollersbase.APIOperationBase):
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.ARBCreateSubscriptionResponse()
-     
+        return apicontractsv1.ARBCreateSubscriptionResponse() 
 class ARBGetSubscriptionController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -89,7 +87,6 @@ class ARBGetSubscriptionListController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.ARBGetSubscriptionListResponse() 
-    
 class ARBGetSubscriptionStatusController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -109,21 +106,7 @@ class ARBGetSubscriptionStatusController(apicontrollersbase.APIOperationBase):
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.ARBGetSubscriptionStatusResponse()
-    
-    def afterexecute(self):
-        response = self._httpResponse
-        if constants.note in response:
-            response = response.replace(constants.note, '')
-
-        if constants.StatusStart in response:
-            start = response.index(constants.StatusStart)
-            end = response.index(constants.StatusEnd)
-            response = response.replace(response[start:end+9], '')
-
-        self._httpResponse = response
-        return
-     
+        return apicontractsv1.ARBGetSubscriptionStatusResponse() 
 class ARBUpdateSubscriptionController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -144,7 +127,6 @@ class ARBUpdateSubscriptionController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.ARBUpdateSubscriptionResponse() 
-    
 class authenticateTestController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -165,7 +147,6 @@ class authenticateTestController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.authenticateTestResponse() 
-    
 class createCustomerPaymentProfileController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -186,7 +167,6 @@ class createCustomerPaymentProfileController(apicontrollersbase.APIOperationBase
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.createCustomerPaymentProfileResponse() 
-    
 class createCustomerProfileController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -207,7 +187,6 @@ class createCustomerProfileController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.createCustomerProfileResponse() 
-    
 class createCustomerProfileFromTransactionController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -227,8 +206,7 @@ class createCustomerProfileFromTransactionController(apicontrollersbase.APIOpera
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.createCustomerProfileResponse() 
-    
+        return apicontractsv1.createCustomerProfileFromTransactionResponse() 
 class createCustomerProfileTransactionController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -249,7 +227,6 @@ class createCustomerProfileTransactionController(apicontrollersbase.APIOperation
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.createCustomerProfileTransactionResponse() 
-    
 class createCustomerShippingAddressController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -270,7 +247,6 @@ class createCustomerShippingAddressController(apicontrollersbase.APIOperationBas
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.createCustomerShippingAddressResponse() 
-    
 class createTransactionController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -291,7 +267,6 @@ class createTransactionController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.createTransactionResponse() 
-    
 class decryptPaymentDataController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -312,7 +287,6 @@ class decryptPaymentDataController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.decryptPaymentDataResponse() 
-    
 class deleteCustomerPaymentProfileController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -333,7 +307,6 @@ class deleteCustomerPaymentProfileController(apicontrollersbase.APIOperationBase
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.deleteCustomerPaymentProfileResponse() 
-    
 class deleteCustomerProfileController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -354,7 +327,6 @@ class deleteCustomerProfileController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.deleteCustomerProfileResponse() 
-    
 class deleteCustomerShippingAddressController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -375,7 +347,6 @@ class deleteCustomerShippingAddressController(apicontrollersbase.APIOperationBas
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.deleteCustomerShippingAddressResponse() 
-    
 class ErrorController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -396,7 +367,46 @@ class ErrorController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.ErrorResponse() 
+class getAUJobDetailsController(apicontrollersbase.APIOperationBase):
     
+    def __init__(self, apirequest):
+        super(getAUJobDetailsController, self).__init__(apirequest)
+        return 
+    
+    def validaterequest(self):
+        logging.debug('performing custom validation..') 
+        #validate required fields
+        #if (self._request.xyz == "null"):
+        #    raise ValueError('xyz is required')         
+        return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'getAUJobDetailsRequest'
+
+    def getresponseclass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getAUJobDetailsResponse() 
+class getAUJobSummaryController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest):
+        super(getAUJobSummaryController, self).__init__(apirequest)
+        return 
+    
+    def validaterequest(self):
+        logging.debug('performing custom validation..') 
+        #validate required fields
+        #if (self._request.xyz == "null"):
+        #    raise ValueError('xyz is required')         
+        return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'getAUJobSummaryRequest'
+
+    def getresponseclass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getAUJobSummaryResponse() 
 class getBatchStatisticsController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -417,7 +427,6 @@ class getBatchStatisticsController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.getBatchStatisticsResponse() 
-    
 class getCustomerPaymentProfileController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -438,7 +447,6 @@ class getCustomerPaymentProfileController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.getCustomerPaymentProfileResponse() 
-    
 class getCustomerPaymentProfileListController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -459,7 +467,6 @@ class getCustomerPaymentProfileListController(apicontrollersbase.APIOperationBas
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.getCustomerPaymentProfileListResponse() 
-    
 class getCustomerProfileController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -480,7 +487,6 @@ class getCustomerProfileController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.getCustomerProfileResponse() 
-    
 class getCustomerProfileIdsController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -501,7 +507,6 @@ class getCustomerProfileIdsController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.getCustomerProfileIdsResponse() 
-    
 class getCustomerShippingAddressController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -521,14 +526,13 @@ class getCustomerShippingAddressController(apicontrollersbase.APIOperationBase):
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.getCustomerShippingAddressResponse()
-
+        return apicontractsv1.getCustomerShippingAddressResponse() 
 class getHostedPaymentPageController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
         super(getHostedPaymentPageController, self).__init__(apirequest)
         return 
-    		    
+    
     def validaterequest(self):
         logging.debug('performing custom validation..') 
         #validate required fields
@@ -539,10 +543,10 @@ class getHostedPaymentPageController(apicontrollersbase.APIOperationBase):
     def getrequesttype(self):
         '''Returns request type''' 
         return 'getHostedPaymentPageRequest'
+
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.getHostedPaymentPageResponse()		
-    
+        return apicontractsv1.getHostedPaymentPageResponse() 
 class getHostedProfilePageController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -563,9 +567,8 @@ class getHostedProfilePageController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.getHostedProfilePageResponse() 
-
 class getMerchantDetailsController(apicontrollersbase.APIOperationBase):
-    		    
+    
     def __init__(self, apirequest):
         super(getMerchantDetailsController, self).__init__(apirequest)
         return 
@@ -580,10 +583,10 @@ class getMerchantDetailsController(apicontrollersbase.APIOperationBase):
     def getrequesttype(self):
         '''Returns request type''' 
         return 'getMerchantDetailsRequest'
+
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.getMerchantDetailsResponse()
-		
+        return apicontractsv1.getMerchantDetailsResponse() 
 class getSettledBatchListController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -604,7 +607,6 @@ class getSettledBatchListController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.getSettledBatchListResponse() 
-    
 class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -625,7 +627,6 @@ class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.getTransactionDetailsResponse() 
-    
 class getTransactionListController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -646,9 +647,8 @@ class getTransactionListController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.getTransactionListResponse() 
-
 class getTransactionListForCustomerController(apicontrollersbase.APIOperationBase):
-    		    
+    
     def __init__(self, apirequest):
         super(getTransactionListForCustomerController, self).__init__(apirequest)
         return 
@@ -663,10 +663,10 @@ class getTransactionListForCustomerController(apicontrollersbase.APIOperationBas
     def getrequesttype(self):
         '''Returns request type''' 
         return 'getTransactionListForCustomerRequest'
+
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.getTransactionListResponse()
-		
+        return apicontractsv1.getTransactionListForCustomerResponse() 
 class getUnsettledTransactionListController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -687,7 +687,6 @@ class getUnsettledTransactionListController(apicontrollersbase.APIOperationBase)
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.getUnsettledTransactionListResponse() 
-    
 class isAliveController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -708,7 +707,6 @@ class isAliveController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.isAliveResponse() 
-    
 class logoutController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -729,7 +727,6 @@ class logoutController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.logoutResponse() 
-    
 class mobileDeviceLoginController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -750,7 +747,6 @@ class mobileDeviceLoginController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.mobileDeviceLoginResponse() 
-    
 class mobileDeviceRegistrationController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -771,7 +767,26 @@ class mobileDeviceRegistrationController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.mobileDeviceRegistrationResponse() 
+class securePaymentContainerController(apicontrollersbase.APIOperationBase):
     
+    def __init__(self, apirequest):
+        super(securePaymentContainerController, self).__init__(apirequest)
+        return 
+    
+    def validaterequest(self):
+        logging.debug('performing custom validation..') 
+        #validate required fields
+        #if (self._request.xyz == "null"):
+        #    raise ValueError('xyz is required')         
+        return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'securePaymentContainerRequest'
+
+    def getresponseclass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.securePaymentContainerResponse() 
 class sendCustomerTransactionReceiptController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -792,7 +807,6 @@ class sendCustomerTransactionReceiptController(apicontrollersbase.APIOperationBa
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.sendCustomerTransactionReceiptResponse() 
-    
 class updateCustomerPaymentProfileController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -813,7 +827,6 @@ class updateCustomerPaymentProfileController(apicontrollersbase.APIOperationBase
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.updateCustomerPaymentProfileResponse() 
-    
 class updateCustomerProfileController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -834,7 +847,6 @@ class updateCustomerProfileController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.updateCustomerProfileResponse() 
-    
 class updateCustomerShippingAddressController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -854,8 +866,7 @@ class updateCustomerShippingAddressController(apicontrollersbase.APIOperationBas
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.updateCustomerShippingAddressResponse()
-		
+        return apicontractsv1.updateCustomerShippingAddressResponse() 
 class updateHeldTransactionController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -872,10 +883,30 @@ class updateHeldTransactionController(apicontrollersbase.APIOperationBase):
     def getrequesttype(self):
         '''Returns request type''' 
         return 'updateHeldTransactionRequest'
+
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.updateHeldTransactionResponse()
-     
+        return apicontractsv1.updateHeldTransactionResponse() 
+class updateMerchantDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest):
+        super(updateMerchantDetailsController, self).__init__(apirequest)
+        return 
+    
+    def validaterequest(self):
+        logging.debug('performing custom validation..') 
+        #validate required fields
+        #if (self._request.xyz == "null"):
+        #    raise ValueError('xyz is required')         
+        return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'updateMerchantDetailsRequest'
+
+    def getresponseclass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.updateMerchantDetailsResponse() 
 class updateSplitTenderGroupController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -896,7 +927,6 @@ class updateSplitTenderGroupController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.updateSplitTenderGroupResponse() 
-    
 class validateCustomerPaymentProfileController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
