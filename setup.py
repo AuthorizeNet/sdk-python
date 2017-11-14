@@ -17,7 +17,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='1.0.13',
+    version='1.0.14',
 
     description='Authorize.Net Python SDK',
 
@@ -48,7 +48,8 @@ setup(
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
-        'Programming Language :: Python :: 3.5'
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4'
     ],
 
     # What does your project relate to?
@@ -63,11 +64,11 @@ setup(
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=['pyxb==1.2.5', 'nose', 'mock', 'lxml'],
-	#install_requires=['nose'],
-	#install_requires=['nosetests'],
-	#install_requires=['mock'],
-	#install_requires=['lxml'],
-	
+    #install_requires=['nose'],
+    #install_requires=['nosetests'],
+    #install_requires=['mock'],
+    #install_requires=['lxml'],
+
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,
     # for example:
@@ -80,22 +81,22 @@ setup(
     },
     environment_variables={
         #api.login.id : xyz
-        #transaction.key : xyz 
+        #transaction.key : xyz
         #md5.hash.key : MD5_HASH_KEY
     },
 
     # If there are data files included in your packages that need to be
     # installed, specify them here.  If using Python 2.6 or less, then these
     # have to be included in MANIFEST.in as well.
-	#package_data={
+    #package_data={
     #    'sample': ['package_data.dat'],
-    #}, 
-	
+    #},
+
     # Although 'package_data' is the preferred approach, in some case you may
     # need to place data files outside of your packages. See:
     # http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files # noqa
     # In this case, 'data_file' will be installed into '<sys.prefix>/my_data'
-	# data_files=[('my_data', ['data/data_file'])],
+    # data_files=[('my_data', ['data/data_file'])],
 
     # To provide executable scripts, use entry points in preference to the
     # "scripts" keyword. Entry points provide cross-platform support and allow
@@ -104,5 +105,5 @@ setup(
     #    'console_scripts': [
     #        'sample=sample:main',
     #    ],
-    #}, 
+    #},
 )
