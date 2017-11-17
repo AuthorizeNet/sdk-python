@@ -1,5 +1,5 @@
 '''
-Created on Nov 19, 2015
+Created on Nov 15, 2017
 
 @author: krgupta
 '''
@@ -917,3 +917,87 @@ class validateCustomerPaymentProfileController(apicontrollersbase.APIOperationBa
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.validateCustomerPaymentProfileResponse() 
+		
+class getAUJobDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest):
+        super(getAUJobDetailsController, self).__init__(apirequest)
+        return 
+    
+    def validaterequest(self):
+        logging.debug('performing custom validation..') 
+        #validate required fields
+        #if (self._request.xyz == "null"):
+        #    raise ValueError('xyz is required')         
+        return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'getAUJobDetailsRequest'
+
+    def getresponseclass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getAUJobDetailsResponse()
+		
+class getAUJobSummaryController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest):
+        super(getAUJobSummaryController, self).__init__(apirequest)
+        return 
+    
+    def validaterequest(self):
+        logging.debug('performing custom validation..') 
+        #validate required fields
+        #if (self._request.xyz == "null"):
+        #    raise ValueError('xyz is required')         
+        return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'getAUJobSummaryRequest'
+
+    def getresponseclass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.getAUJobSummaryResponse() 
+		 
+class securePaymentContainerController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest):
+        super(securePaymentContainerController, self).__init__(apirequest)
+        return 
+    
+    def validaterequest(self):
+        logging.debug('performing custom validation..') 
+        #validate required fields
+        #if (self._request.xyz == "null"):
+        #    raise ValueError('xyz is required')         
+        return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'securePaymentContainerRequest'
+
+    def getresponseclass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.securePaymentContainerResponse() 
+
+class updateMerchantDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest):
+        super(updateMerchantDetailsController, self).__init__(apirequest)
+        return 
+    
+    def validaterequest(self):
+        logging.debug('performing custom validation..') 
+        #validate required fields
+        #if (self._request.xyz == "null"):
+        #    raise ValueError('xyz is required')         
+        return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'updateMerchantDetailsRequest'
+
+    def getresponseclass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.updateMerchantDetailsResponse()  		
