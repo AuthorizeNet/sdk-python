@@ -61,5 +61,6 @@ class constants(object):
     
     propertiesexecutionlogginglevel = "executionlogginglevel"
 
+    defaultLoggerName = "authorizenet.sdk"
     
 '''eof'''

@@ -6,7 +6,10 @@ Created on Nov 15, 2017
 import logging
 from authorizenet.constants import constants
 from authorizenet import apicontractsv1
-from authorizenet import apicontrollersbase    
+from authorizenet import apicontrollersbase
+
+anetLogger = logging.getLogger(constants.defaultLoggerName)
+
 class ARBCancelSubscriptionController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -14,7 +17,7 @@ class ARBCancelSubscriptionController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -35,7 +38,7 @@ class ARBCreateSubscriptionController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -56,7 +59,7 @@ class ARBGetSubscriptionController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -76,7 +79,7 @@ class ARBGetSubscriptionListController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -97,7 +100,7 @@ class ARBGetSubscriptionStatusController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -131,7 +134,7 @@ class ARBUpdateSubscriptionController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -152,7 +155,7 @@ class authenticateTestController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -173,7 +176,7 @@ class createCustomerPaymentProfileController(apicontrollersbase.APIOperationBase
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -194,7 +197,7 @@ class createCustomerProfileController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -215,7 +218,7 @@ class createCustomerProfileFromTransactionController(apicontrollersbase.APIOpera
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -236,7 +239,7 @@ class createCustomerProfileTransactionController(apicontrollersbase.APIOperation
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -257,7 +260,7 @@ class createCustomerShippingAddressController(apicontrollersbase.APIOperationBas
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -278,7 +281,7 @@ class createTransactionController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -299,7 +302,7 @@ class decryptPaymentDataController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -320,7 +323,7 @@ class deleteCustomerPaymentProfileController(apicontrollersbase.APIOperationBase
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -341,7 +344,7 @@ class deleteCustomerProfileController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -362,7 +365,7 @@ class deleteCustomerShippingAddressController(apicontrollersbase.APIOperationBas
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -383,7 +386,7 @@ class ErrorController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -404,7 +407,7 @@ class getBatchStatisticsController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -425,7 +428,7 @@ class getCustomerPaymentProfileController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -446,7 +449,7 @@ class getCustomerPaymentProfileListController(apicontrollersbase.APIOperationBas
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -467,7 +470,7 @@ class getCustomerProfileController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -488,7 +491,7 @@ class getCustomerProfileIdsController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -509,7 +512,7 @@ class getCustomerShippingAddressController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -530,7 +533,7 @@ class getHostedPaymentPageController(apicontrollersbase.APIOperationBase):
         return 
     		    
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -550,7 +553,7 @@ class getHostedProfilePageController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -571,7 +574,7 @@ class getMerchantDetailsController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -591,7 +594,7 @@ class getSettledBatchListController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -612,7 +615,7 @@ class getTransactionDetailsController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -633,7 +636,7 @@ class getTransactionListController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -654,7 +657,7 @@ class getTransactionListForCustomerController(apicontrollersbase.APIOperationBas
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -674,7 +677,7 @@ class getUnsettledTransactionListController(apicontrollersbase.APIOperationBase)
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -695,7 +698,7 @@ class isAliveController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -716,7 +719,7 @@ class logoutController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -737,7 +740,7 @@ class mobileDeviceLoginController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -758,7 +761,7 @@ class mobileDeviceRegistrationController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -779,7 +782,7 @@ class sendCustomerTransactionReceiptController(apicontrollersbase.APIOperationBa
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -800,7 +803,7 @@ class updateCustomerPaymentProfileController(apicontrollersbase.APIOperationBase
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -821,7 +824,7 @@ class updateCustomerProfileController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -842,7 +845,7 @@ class updateCustomerShippingAddressController(apicontrollersbase.APIOperationBas
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -863,7 +866,7 @@ class updateHeldTransactionController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -883,7 +886,7 @@ class updateSplitTenderGroupController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -904,7 +907,7 @@ class validateCustomerPaymentProfileController(apicontrollersbase.APIOperationBa
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -925,7 +928,7 @@ class getAUJobDetailsController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -946,7 +949,7 @@ class getAUJobSummaryController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -967,7 +970,7 @@ class securePaymentContainerController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
@@ -988,7 +991,7 @@ class updateMerchantDetailsController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
