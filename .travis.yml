@@ -36,6 +36,7 @@ install:
     # can't change the pyxb version without changing the version in setup.py
     # and regenerating the bindings in apicontractsv1.py
   - pip install lxml
+  - pip install requests
   - if [[ "$TEST_SUITE" == "coverage" ]]; then pip install coveralls; fi
 
 before_script:
