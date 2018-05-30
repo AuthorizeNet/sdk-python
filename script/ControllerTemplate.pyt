@@ -6,7 +6,7 @@ class APICONTROLLERNAMEController(apicontrollersbase.APIOperationBase):
         return 
     
     def validaterequest(self):
-        logging.debug('performing custom validation..') 
+        anetLogger.debug('performing custom validation..') 
         #validate required fields
         #if (self._request.xyz == "null"):
         #    raise ValueError('xyz is required')         
