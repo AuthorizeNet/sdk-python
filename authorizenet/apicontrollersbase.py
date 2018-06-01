@@ -8,7 +8,7 @@ import logging
 import pyxb
 import sys
 import xml.dom.minidom
-from pip._vendor import requests
+import requests
 from lxml import objectify
 
 from authorizenet.constants import constants
@@ -19,6 +19,11 @@ from authorizenet.apicontractsv1 import merchantAuthenticationType
 from authorizenet.apicontractsv1 import ANetApiRequest
 from authorizenet.apicontractsv1 import ANetApiResponse
 '''
+
+anetLogger = logging.getLogger(constants.defaultLoggerName)
+anetLogger.addHandler(logging.NullHandler())
+logging.getLogger('pyxb.binding.content').addHandler(logging.NullHandler())
+
 class APIOperationBaseInterface(object):
     
     __metaclass__ = abc.ABCMeta
@@ -95,7 +100,7 @@ class APIOperationBase(APIOperationBaseInterface):
         return self._request 
      
     def buildrequest(self):
-        logging.debug('building request..')
+        anetLogger.debug('building request..')
         
         xmlRequest = self._request.toxml(encoding=constants.xml_encoding, element_name=self.getrequesttype())
         #remove namespaces that toxml() generates
@@ -107,7 +112,7 @@ class APIOperationBase(APIOperationBaseInterface):
     def getprettyxmlrequest(self):
         xmlRequest = self.buildrequest()
         requestDom = xml.dom.minidom.parseString(xmlRequest)
-        logging.debug('Request is: %s' % requestDom.toprettyxml())
+        anetLogger.debug('Request is: %s' % requestDom.toprettyxml())
 
         return requestDom
     
@@ -115,7 +120,7 @@ class APIOperationBase(APIOperationBaseInterface):
         
         self.endpoint = APIOperationBase.__environment
               
-        logging.debug('Executing http post to url: %s', self.endpoint)
+        anetLogger.debug('Executing http post to url: %s', self.endpoint)
         
         self.beforeexecute()
         
@@ -129,8 +134,8 @@ class APIOperationBase(APIOperationBaseInterface):
             xmlRequest = self.buildrequest()
             self._httpResponse = requests.post(self.endpoint, data=xmlRequest, headers=constants.headers, proxies=proxyDictionary)
         except Exception as httpException:
-            logging.error( 'Error retrieving http response from: %s for request: %s', self.endpoint, self.getprettyxmlrequest())
-            logging.error( 'Exception: %s, %s', type(httpException), httpException.args )
+            anetLogger.error( 'Error retrieving http response from: %s for request: %s', self.endpoint, self.getprettyxmlrequest())
+            anetLogger.error( 'Exception: %s, %s', type(httpException), httpException.args )
 
 
         if self._httpResponse:            
@@ -146,7 +151,7 @@ class APIOperationBase(APIOperationBaseInterface):
                 self._mainObject = objectify.fromstring(xmlResponse)   
                  
             except Exception as objectifyexception:
-                logging.error( 'Create Document Exception: %s, %s', type(objectifyexception), objectifyexception.args )
+                anetLogger.error( 'Create Document Exception: %s, %s', type(objectifyexception), objectifyexception.args )
                 responseString = self._httpResponse
 
                 # removing encoding attribute as objectify fails if it is present
@@ -155,14 +160,14 @@ class APIOperationBase(APIOperationBaseInterface):
             else:
                 if type(self.getresponseclass()) != type(self._mainObject):
                     if self._response.messages.resultCode == "Error":
-                        logging.debug("Response error")
+                        anetLogger.debug("Response error")
                     domResponse = xml.dom.minidom.parseString(self._httpResponse.encode('utf-8'))
-                    logging.debug('Received response: %s' % domResponse.toprettyxml(encoding='utf-8'))
+                    anetLogger.debug('Received response: %s' % domResponse.toprettyxml(encoding='utf-8'))
                 else:
                     #Need to handle ErrorResponse  
-                    logging.debug('Error retrieving response for request: %s' % self._request)
+                    anetLogger.debug('Error retrieving response for request: %s' % self._request)
         else:
-            logging.debug("Did not receive http response")
+            anetLogger.debug("Did not receive http response")
         return
     
     def getresponse(self):
@@ -232,19 +237,6 @@ class APIOperationBase(APIOperationBaseInterface):
         APIOperationBase.__environment = constants.SANDBOX
         
         APIOperationBase.setmerchantauthentication(__merchantauthentication)
-
-        if ( False == APIOperationBase.__classinitialized()):
-            loggingfilename = utility.helper.getproperty(constants.propertiesloggingfilename)
-            logginglevel = utility.helper.getproperty(constants.propertiesexecutionlogginglevel)
-            
-            if (None == loggingfilename):
-                loggingfilename = constants.defaultLogFileName
-            if (None == logginglevel):
-                logginglevel = constants.defaultLoggingLevel
-                
-            logging.basicConfig(filename=loggingfilename, level=logginglevel, format=constants.defaultlogformat)
-            __initialized = True
-
         self.validate()
             
         return
