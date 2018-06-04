@@ -32,11 +32,11 @@ before_install:
 install:
   # install all of the dependencies we need here
   - pip install nose==1.3.7
-  # - pip install pyxb==1.2.5
+  - pip install pyxb==1.2.5
     # can't change the pyxb version without changing the version in setup.py
     # and regenerating the bindings in apicontractsv1.py
-  # - pip install lxml
-  # - pip install requests
+  - pip install lxml==4.2.1
+  - pip install requests==2.18.4
   - if [[ "$TEST_SUITE" == "coverage" ]]; then pip install coveralls; fi
 
 before_script:
