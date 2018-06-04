@@ -63,13 +63,13 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=['pyxb==1.2.5', 'lxml', 'requests'],
+    install_requires=['pyxb==1.2.5', 'lxml==4.2.1', 'requests==2.18.4'],
     #install_requires=['nose'],
     #install_requires=['nosetests'],
     #install_requires=['mock'],
     #install_requires=['lxml'],
 
-    tests_require = ['nose', 'mock'],
+    tests_require = ['nose==1.3.7', 'mock==2.0.0'],
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,
     # for example:
