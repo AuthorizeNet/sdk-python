@@ -8,7 +8,7 @@ import logging
 import pyxb
 import sys
 import xml.dom.minidom
-from pip._vendor import requests
+import requests
 from lxml import objectify
 
 from authorizenet.constants import constants
