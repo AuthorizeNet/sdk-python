@@ -84,6 +84,10 @@ echo Modifying XSD using perl to support backward compatibility
 echo Creating temporary directory 
 mkdir -p "$TEMPDIRECTORY"
 
+# Added since UpdateCustomerProfile API was updated for SOAP APIs, thus requiring changes to the contract object UpdateCustomerProfileRequest. 
+# Doesn't remove the type declaration for customerProfileInfoExType, but prevents it from being used anywhere else in the contract
+perl -pi.back -e 's/type=\"anet:customerProfileInfoExType\"/type=\"anet:customerProfileExType\"/g;' script/AnetApiSchema.xsd 
+
 perl script/addany.pl script/AnetApiSchema.xsd ${TEMPDIRECTORY}/IntermediateAnetOut.xsd ${LOCALXSDWITHANY}
 if [ $? -eq 0 ]
 then
