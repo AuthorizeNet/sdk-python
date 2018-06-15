@@ -51,8 +51,8 @@ class constants(object):
     defaultLogFileName = "anetsdk.log"
     
     '''default logging level'''
-    #defaultLoggingLevel = logging.WARNING
-    defaultLoggingLevel = logging.DEBUG
+    defaultLoggingLevel = logging.WARNING
+    # defaultLoggingLevel = logging.DEBUG
     
     '''default log format'''
     defaultlogformat = '%(asctime)s %(message)s'
@@ -61,5 +61,6 @@ class constants(object):
     
     propertiesexecutionlogginglevel = "executionlogginglevel"
 
+    defaultLoggerName = "authorizenet.sdk"
     
 '''eof'''
