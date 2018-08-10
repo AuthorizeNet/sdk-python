@@ -51,6 +51,22 @@ Authorize.Net maintains a complete sandbox environment for testing and developme
 
 API credentials are different for each environment, so be sure to switch to the appropriate credentials when switching environments.
 
+### Enable Logging in the SDK
+Python SDK uses the logger _'authorizenet.sdk'_. By default, the logger in the SDK is not configured to write output. You can configure the logger in your code to start seeing logs from the SDK.
+
+A sample logger configuration is given as below:
+
+```python
+	import logging
+	logger = logging.getLogger('authorizenet.sdk')
+	handler = logging.FileHandler('anetSdk.log')  
+	formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+	handler.setFormatter(formatter)
+	logger.addHandler(handler)
+	logger.setLevel(logging.DEBUG)
+	logger.debug('Logger set up for Authorizenet Python SDK complete')
+``` 
+
 
 ## SDK Usage Examples and Sample Code
 To get started using this SDK, it's highly recommended to download our sample code repository:
