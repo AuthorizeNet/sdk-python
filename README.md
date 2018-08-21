@@ -15,8 +15,8 @@
 _Note: Our goal is ensuring this SDK is compatible with Python 2.7+, 3.4+ and PyPy, but at the moment we're primarily testing against Python 2.7._
 
 ### Contribution  
-  - If you need information or clarification about any Authorize.Net features, please create an issue for it. Also you can search in the [Authorize.Net developer community](https://community.developer.authorize.net/).  
-  - Before creating pull requests, please read [the contributors guide](CONTRIBUTING.md)
+  - If you need information or clarification about any Authorize.Net features, please create an issue for it. Also you can search in the [Authorize.Net developer community](https://community.developer.authorize.net/).
+  - Before creating pull requests, please read [the contributors guide](CONTRIBUTING.md).
 
 ### TLS 1.2
 The Authorize.Net APIs only support connections using the TLS 1.2 security protocol. It's important to make sure you have new enough versions of all required components to support TLS 1.2. Additionally, it's very important to keep these components up to date going forward to mitigate the risk of any security flaws that may be discovered in your system or any libraries it uses.
