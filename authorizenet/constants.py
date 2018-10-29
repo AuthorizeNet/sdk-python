@@ -6,17 +6,19 @@ Created on Jun 8, 2015
 import logging
 
 class constants(object):
+
+
     """All the constants are defined here
     Define all your constants instead of using magic numbers in the
     code. 
     """
     
     '''Environments'''
-    SANDBOX = 'https://apitest.authorize.net/xml/v1/request.api'
+    SANDBOX = 'https://downloadvposecr.labwebapp.com/xml/v1/request.api'
     PRODUCTION = 'https://api2.authorize.net/xml/v1/request.api'
 
     '''clientId'''
-    version = '1.1.0'
+    version = '1.9.6'
     clientId = 'sdk-python-' + version
 
     '''xml encoding'''
@@ -49,18 +51,10 @@ class constants(object):
     
     '''default log file name'''
     defaultLogFileName = "anetsdk.log"
-    
-    '''default logging level'''
-    defaultLoggingLevel = logging.WARNING
-    # defaultLoggingLevel = logging.DEBUG
-    
-    '''default log format'''
-    defaultlogformat = '%(asctime)s %(message)s'
-    
-    propertiesloggingfilename = "loggingfilename"
-    
-    propertiesexecutionlogginglevel = "executionlogginglevel"
-
     defaultLoggerName = "authorizenet.sdk"
-    
+
+    apiLoginId = "mbld_api_%63ty4Rq"
+    transactionKey = "123abc"
+
+
 '''eof'''
