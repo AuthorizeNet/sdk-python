@@ -3592,11 +3592,18 @@ class tokenMaskedType (pyxb.binding.basis.complexTypeDefinition):
     
     expirationDate = property(__expirationDate.value, __expirationDate.set, None, None)
 
+     # Element {AnetApi/xml/v1/schema/AnetApiSchema.xsd}tokenRequestorId uses Python identifier tokenRequestorId
+    __tokenRequestorId = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'tokenRequestorId'), 'tokenRequestorId', '__AnetApixmlv1schemaAnetApiSchema_xsd_tokenMaskedType_AnetApixmlv1schemaAnetApiSchema_xsdtokenRequestorId', False, pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 680, 5), )
+
+    
+    tokenRequestorId = property(__tokenRequestorId.value, __tokenRequestorId.set, None, None)
+
     _HasWildcardElement = True
     _ElementMap.update({
         __tokenSource.name() : __tokenSource,
         __tokenNumber.name() : __tokenNumber,
-        __expirationDate.name() : __expirationDate
+        __expirationDate.name() : __expirationDate,
+        __tokenRequestorId.name() : __tokenRequestorId
     })
     _AttributeMap.update({
         
@@ -9268,11 +9275,34 @@ class creditCardType (creditCardSimpleType):
     
     cryptogram = property(__cryptogram.value, __cryptogram.set, None, None)
 
+    # Element {AnetApi/xml/v1/schema/AnetApiSchema.xsd}tokenRequestorName uses Python identifier tokenRequestorName
+    __tokenRequestorName = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'tokenRequestorName'), 'tokenRequestorName', '__AnetApixmlv1schemaAnetApiSchema_xsd_creditCardType_AnetApixmlv1schemaAnetApiSchema_xsdtokenRequestorName', False, pyxb.utils.utility.Location('https://downloadvposlav.labwebapp.com/xml/v1/schema/AnetApiSchema.xsd', 490, 10), )
+
+    
+    tokenRequestorName = property(__tokenRequestorName.value, __tokenRequestorName.set, None, None)
+
+    
+    # Element {AnetApi/xml/v1/schema/AnetApiSchema.xsd}tokenRequestorId uses Python identifier tokenRequestorId
+    __tokenRequestorId = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'tokenRequestorId'), 'tokenRequestorId', '__AnetApixmlv1schemaAnetApiSchema_xsd_creditCardType_AnetApixmlv1schemaAnetApiSchema_xsdtokenRequestorId', False, pyxb.utils.utility.Location('https://downloadvposlav.labwebapp.com/xml/v1/schema/AnetApiSchema.xsd', 492, 10), )
+
+    
+    tokenRequestorId = property(__tokenRequestorId.value, __tokenRequestorId.set, None, None)
+
+    
+    # Element {AnetApi/xml/v1/schema/AnetApiSchema.xsd}tokenRequestorEci uses Python identifier tokenRequestorEci
+    __tokenRequestorEci = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'tokenRequestorEci'), 'tokenRequestorEci', '__AnetApixmlv1schemaAnetApiSchema_xsd_creditCardType_AnetApixmlv1schemaAnetApiSchema_xsdtokenRequestorEci', False, pyxb.utils.utility.Location('https://downloadvposlav.labwebapp.com/xml/v1/schema/AnetApiSchema.xsd', 494, 10), )
+
+    
+    tokenRequestorEci = property(__tokenRequestorEci.value, __tokenRequestorEci.set, None, None)
+    
     _HasWildcardElement = True
     _ElementMap.update({
         __cardCode.name() : __cardCode,
         __isPaymentToken.name() : __isPaymentToken,
-        __cryptogram.name() : __cryptogram
+        __cryptogram.name() : __cryptogram,
+        __tokenRequestorName.name() : __tokenRequestorName,
+        __tokenRequestorId.name() : __tokenRequestorId,
+        __tokenRequestorEci.name() : __tokenRequestorEci
     })
     _AttributeMap.update({
         
@@ -13302,6 +13332,11 @@ class auUpdateType (auDetailsType):
 
     
     oldCreditCard = property(__oldCreditCard.value, __oldCreditCard.set, None, None)
+	
+	__subscriptionIdList = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'subscriptionIdList'), 'subscriptionIdList', '__AnetApixmlv1schemaAnetApiSchema_xsd_auUpdateType_AnetApixmlv1schemaAnetApiSchema_xsdsubscriptionIdList', False, pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 4628, 10), )
+
+    
+    subscriptionIdList = property(__subscriptionIdList.value, __subscriptionIdList.set, None, None)
 
     
     # Element customerProfileID ({AnetApi/xml/v1/schema/AnetApiSchema.xsd}customerProfileID) inherited from {AnetApi/xml/v1/schema/AnetApiSchema.xsd}auDetailsType
@@ -13320,7 +13355,8 @@ class auUpdateType (auDetailsType):
     _HasWildcardElement = True
     _ElementMap.update({
         __newCreditCard.name() : __newCreditCard,
-        __oldCreditCard.name() : __oldCreditCard
+        __oldCreditCard.name() : __oldCreditCard,
+		__subscriptionIdList.name() : __subscriptionIdList		
     })
     _AttributeMap.update({
         
@@ -13346,6 +13382,11 @@ class auDeleteType (auDetailsType):
 
     
     creditCard = property(__creditCard.value, __creditCard.set, None, None)
+	
+	__subscriptionIdList = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'subscriptionIdList'), 'subscriptionIdList', '__AnetApixmlv1schemaAnetApiSchema_xsd_auDeleteType_AnetApixmlv1schemaAnetApiSchema_xsdsubscriptionIdList', False, pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 4640, 10), )
+
+    
+    subscriptionIdList = property(__subscriptionIdList.value, __subscriptionIdList.set, None, None)
 
     
     # Element customerProfileID ({AnetApi/xml/v1/schema/AnetApiSchema.xsd}customerProfileID) inherited from {AnetApi/xml/v1/schema/AnetApiSchema.xsd}auDetailsType
@@ -13363,7 +13404,8 @@ class auDeleteType (auDetailsType):
     # Element reasonDescription ({AnetApi/xml/v1/schema/AnetApiSchema.xsd}reasonDescription) inherited from {AnetApi/xml/v1/schema/AnetApiSchema.xsd}auDetailsType
     _HasWildcardElement = True
     _ElementMap.update({
-        __creditCard.name() : __creditCard
+        __creditCard.name() : __creditCard,
+		__subscriptionIdList.name() : __subscriptionIdList
     })
     _AttributeMap.update({
         
@@ -15975,6 +16017,8 @@ tokenMaskedType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNa
 
 tokenMaskedType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'expirationDate'), STD_ANON_29, scope=tokenMaskedType, location=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 660, 6)))
 
+tokenMaskedType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'tokenRequestorId'), pyxb.binding.datatypes.string, scope=tokenMaskedType, location=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 680, 5)))
+
 def _BuildAutomaton_26 ():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_26
@@ -15982,28 +16026,35 @@ def _BuildAutomaton_26 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 658, 6))
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 670, 6))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 668, 5))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 680, 5))
     counters.add(cc_1)
+    cc_2 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 681, 5))
+    counters.add(cc_2)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(tokenMaskedType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'tokenSource')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 658, 6))
+    symbol = pyxb.binding.content.ElementUse(tokenMaskedType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'tokenSource')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 670, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(tokenMaskedType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'tokenNumber')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 659, 6))
+    symbol = pyxb.binding.content.ElementUse(tokenMaskedType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'tokenNumber')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 671, 6))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(tokenMaskedType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'expirationDate')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 660, 6))
+    symbol = pyxb.binding.content.ElementUse(tokenMaskedType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'expirationDate')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 672, 6))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.WildcardUse(pyxb.binding.content.Wildcard(process_contents=pyxb.binding.content.Wildcard.PC_lax, namespace_constraint=pyxb.binding.content.Wildcard.NC_any), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 668, 5))
+    symbol = pyxb.binding.content.ElementUse(tokenMaskedType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'tokenRequestorId')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 680, 5))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
+    final_update = set()
+    final_update.add(fac.UpdateInstruction(cc_2, False))
+    symbol = pyxb.binding.content.WildcardUse(pyxb.binding.content.Wildcard(process_contents=pyxb.binding.content.Wildcard.PC_lax, namespace_constraint=pyxb.binding.content.Wildcard.NC_any), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 681, 5))
+    st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_4)
     transitions = []
     transitions.append(fac.Transition(st_0, [
         fac.UpdateInstruction(cc_0, True) ]))
@@ -16017,11 +16068,19 @@ def _BuildAutomaton_26 ():
     transitions = []
     transitions.append(fac.Transition(st_3, [
          ]))
+    transitions.append(fac.Transition(st_4, [
+         ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
         fac.UpdateInstruction(cc_1, True) ]))
+    transitions.append(fac.Transition(st_4, [
+        fac.UpdateInstruction(cc_1, False) ]))
     st_3._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_4, [
+        fac.UpdateInstruction(cc_2, True) ]))
+    st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 tokenMaskedType._Automaton = _BuildAutomaton_26()
 
@@ -27450,6 +27509,12 @@ creditCardType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNam
 
 creditCardType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'cryptogram'), pyxb.binding.datatypes.string, scope=creditCardType, location=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 482, 10)))
 
+creditCardType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'tokenRequestorName'), pyxb.binding.datatypes.string, scope=creditCardType, location=pyxb.utils.utility.Location('https://downloadvposlav.labwebapp.com/xml/v1/schema/AnetApiSchema.xsd', 490, 10)))
+
+creditCardType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'tokenRequestorId'), pyxb.binding.datatypes.string, scope=creditCardType, location=pyxb.utils.utility.Location('https://downloadvposlav.labwebapp.com/xml/v1/schema/AnetApiSchema.xsd', 492, 10)))
+
+creditCardType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'tokenRequestorEci'), pyxb.binding.datatypes.string, scope=creditCardType, location=pyxb.utils.utility.Location('https://downloadvposlav.labwebapp.com/xml/v1/schema/AnetApiSchema.xsd', 494, 10)))
+
 def _BuildAutomaton_125 ():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_125
@@ -27457,50 +27522,71 @@ def _BuildAutomaton_125 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 456, 5))
+    cc_0 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 462, 5))
     counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 478, 10))
+    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 484, 10))
     counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 480, 10))
+    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 486, 10))
     counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 482, 10))
+    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 488, 10))
     counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 483, 9))
+    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 490, 10))
     counters.add(cc_4)
+    cc_5 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 492, 10))
+    counters.add(cc_5)
+    cc_6 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 494, 10))
+    counters.add(cc_6)
+    cc_7 = fac.CounterCondition(min=0, max=None, metadata=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 495, 9))
+    counters.add(cc_7)
     states = []
     final_update = None
-    symbol = pyxb.binding.content.ElementUse(creditCardType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'cardNumber')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 439, 6))
+    symbol = pyxb.binding.content.ElementUse(creditCardType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'cardNumber')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 445, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(creditCardType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'expirationDate')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 448, 6))
+    symbol = pyxb.binding.content.ElementUse(creditCardType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'expirationDate')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 454, 6))
     st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.WildcardUse(pyxb.binding.content.Wildcard(process_contents=pyxb.binding.content.Wildcard.PC_lax, namespace_constraint=pyxb.binding.content.Wildcard.NC_any), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 456, 5))
+    symbol = pyxb.binding.content.WildcardUse(pyxb.binding.content.Wildcard(process_contents=pyxb.binding.content.Wildcard.PC_lax, namespace_constraint=pyxb.binding.content.Wildcard.NC_any), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 462, 5))
     st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_2)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_1, False))
-    symbol = pyxb.binding.content.ElementUse(creditCardType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'cardCode')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 478, 10))
+    symbol = pyxb.binding.content.ElementUse(creditCardType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'cardCode')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 484, 10))
     st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_3)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_2, False))
-    symbol = pyxb.binding.content.ElementUse(creditCardType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'isPaymentToken')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 480, 10))
+    symbol = pyxb.binding.content.ElementUse(creditCardType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'isPaymentToken')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 486, 10))
     st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_4)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.ElementUse(creditCardType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'cryptogram')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 482, 10))
+    symbol = pyxb.binding.content.ElementUse(creditCardType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'cryptogram')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 488, 10))
     st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_5)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_4, False))
-    symbol = pyxb.binding.content.WildcardUse(pyxb.binding.content.Wildcard(process_contents=pyxb.binding.content.Wildcard.PC_lax, namespace_constraint=pyxb.binding.content.Wildcard.NC_any), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 483, 9))
+    symbol = pyxb.binding.content.ElementUse(creditCardType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'tokenRequestorName')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 490, 10))
     st_6 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_6)
+    final_update = set()
+    final_update.add(fac.UpdateInstruction(cc_5, False))
+    symbol = pyxb.binding.content.ElementUse(creditCardType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'tokenRequestorId')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 492, 10))
+    st_7 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_7)
+    final_update = set()
+    final_update.add(fac.UpdateInstruction(cc_6, False))
+    symbol = pyxb.binding.content.ElementUse(creditCardType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'tokenRequestorEci')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 494, 10))
+    st_8 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_8)
+    final_update = set()
+    final_update.add(fac.UpdateInstruction(cc_7, False))
+    symbol = pyxb.binding.content.WildcardUse(pyxb.binding.content.Wildcard(process_contents=pyxb.binding.content.Wildcard.PC_lax, namespace_constraint=pyxb.binding.content.Wildcard.NC_any), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 495, 9))
+    st_9 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_9)
     transitions = []
     transitions.append(fac.Transition(st_1, [
          ]))
@@ -27516,6 +27602,12 @@ def _BuildAutomaton_125 ():
          ]))
     transitions.append(fac.Transition(st_6, [
          ]))
+    transitions.append(fac.Transition(st_7, [
+         ]))
+    transitions.append(fac.Transition(st_8, [
+         ]))
+    transitions.append(fac.Transition(st_9, [
+         ]))
     st_1._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_2, [
@@ -27528,6 +27620,12 @@ def _BuildAutomaton_125 ():
         fac.UpdateInstruction(cc_0, False) ]))
     transitions.append(fac.Transition(st_6, [
         fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_7, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_8, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    transitions.append(fac.Transition(st_9, [
+        fac.UpdateInstruction(cc_0, False) ]))
     st_2._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_3, [
@@ -27538,6 +27636,12 @@ def _BuildAutomaton_125 ():
         fac.UpdateInstruction(cc_1, False) ]))
     transitions.append(fac.Transition(st_6, [
         fac.UpdateInstruction(cc_1, False) ]))
+    transitions.append(fac.Transition(st_7, [
+        fac.UpdateInstruction(cc_1, False) ]))
+    transitions.append(fac.Transition(st_8, [
+        fac.UpdateInstruction(cc_1, False) ]))
+    transitions.append(fac.Transition(st_9, [
+        fac.UpdateInstruction(cc_1, False) ]))
     st_3._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_4, [
@@ -27546,17 +27650,53 @@ def _BuildAutomaton_125 ():
         fac.UpdateInstruction(cc_2, False) ]))
     transitions.append(fac.Transition(st_6, [
         fac.UpdateInstruction(cc_2, False) ]))
+    transitions.append(fac.Transition(st_7, [
+        fac.UpdateInstruction(cc_2, False) ]))
+    transitions.append(fac.Transition(st_8, [
+        fac.UpdateInstruction(cc_2, False) ]))
+    transitions.append(fac.Transition(st_9, [
+        fac.UpdateInstruction(cc_2, False) ]))
     st_4._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_5, [
         fac.UpdateInstruction(cc_3, True) ]))
     transitions.append(fac.Transition(st_6, [
         fac.UpdateInstruction(cc_3, False) ]))
+    transitions.append(fac.Transition(st_7, [
+        fac.UpdateInstruction(cc_3, False) ]))
+    transitions.append(fac.Transition(st_8, [
+        fac.UpdateInstruction(cc_3, False) ]))
+    transitions.append(fac.Transition(st_9, [
+        fac.UpdateInstruction(cc_3, False) ]))
     st_5._set_transitionSet(transitions)
     transitions = []
     transitions.append(fac.Transition(st_6, [
         fac.UpdateInstruction(cc_4, True) ]))
+    transitions.append(fac.Transition(st_7, [
+        fac.UpdateInstruction(cc_4, False) ]))
+    transitions.append(fac.Transition(st_8, [
+        fac.UpdateInstruction(cc_4, False) ]))
+    transitions.append(fac.Transition(st_9, [
+        fac.UpdateInstruction(cc_4, False) ]))
     st_6._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_7, [
+        fac.UpdateInstruction(cc_5, True) ]))
+    transitions.append(fac.Transition(st_8, [
+        fac.UpdateInstruction(cc_5, False) ]))
+    transitions.append(fac.Transition(st_9, [
+        fac.UpdateInstruction(cc_5, False) ]))
+    st_7._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_8, [
+        fac.UpdateInstruction(cc_6, True) ]))
+    transitions.append(fac.Transition(st_9, [
+        fac.UpdateInstruction(cc_6, False) ]))
+    st_8._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_9, [
+        fac.UpdateInstruction(cc_7, True) ]))
+    st_9._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 creditCardType._Automaton = _BuildAutomaton_125()
 
@@ -39235,6 +39375,7 @@ auUpdateType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
 
 auUpdateType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'oldCreditCard'), creditCardMaskedType, scope=auUpdateType, location=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 4370, 10)))
 
+auUpdateType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'subscriptionIdList'), SubscriptionIdList, scope=auUpdateType, location=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 4628, 10)))
 def _BuildAutomaton_221 ():
     # Remove this helper function from the namespace after it is invoked
     global _BuildAutomaton_221
@@ -39293,9 +39434,14 @@ def _BuildAutomaton_221 ():
     states.append(st_9)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.WildcardUse(pyxb.binding.content.Wildcard(process_contents=pyxb.binding.content.Wildcard.PC_lax, namespace_constraint=pyxb.binding.content.Wildcard.NC_any), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 4371, 9))
+    symbol = pyxb.binding.content.ElementUse(auUpdateType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'subscriptionIdList')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 4628, 10))
     st_10 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_10)
+    final_update = set()
+    final_update.add(fac.UpdateInstruction(cc_4, False))
+    symbol = pyxb.binding.content.WildcardUse(pyxb.binding.content.Wildcard(process_contents=pyxb.binding.content.Wildcard.PC_lax, namespace_constraint=pyxb.binding.content.Wildcard.NC_any), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 4629, 9))
+    st_11 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_11)
     transitions = []
     transitions.append(fac.Transition(st_1, [
          ]))
@@ -39361,6 +39507,7 @@ auUpdateType._Automaton = _BuildAutomaton_221()
 
 
 auDeleteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'creditCard'), creditCardMaskedType, scope=auDeleteType, location=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 4381, 10)))
+auDeleteType._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'subscriptionIdList'), SubscriptionIdList, scope=auDeleteType, location=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 4640, 10)))
 
 def _BuildAutomaton_222 ():
     # Remove this helper function from the namespace after it is invoked
@@ -39416,9 +39563,14 @@ def _BuildAutomaton_222 ():
     states.append(st_8)
     final_update = set()
     final_update.add(fac.UpdateInstruction(cc_3, False))
-    symbol = pyxb.binding.content.WildcardUse(pyxb.binding.content.Wildcard(process_contents=pyxb.binding.content.Wildcard.PC_lax, namespace_constraint=pyxb.binding.content.Wildcard.NC_any), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 4382, 9))
+    symbol = pyxb.binding.content.ElementUse(auDeleteType._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'subscriptionIdList')), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 4640, 10))
     st_9 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
     states.append(st_9)
+    final_update = set()
+    final_update.add(fac.UpdateInstruction(cc_4, False))
+    symbol = pyxb.binding.content.WildcardUse(pyxb.binding.content.Wildcard(process_contents=pyxb.binding.content.Wildcard.PC_lax, namespace_constraint=pyxb.binding.content.Wildcard.NC_any), pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 4641, 9))
+    st_10 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_10)
     transitions = []
     transitions.append(fac.Transition(st_1, [
          ]))
@@ -41893,4 +42045,3 @@ def _BuildAutomaton_234 ():
     st_16._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
 profileTransCaptureOnlyType._Automaton = _BuildAutomaton_234()
-
