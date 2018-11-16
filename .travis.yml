@@ -1,7 +1,6 @@
 language: python
 
 sudo: false
-
 env:
   - TEST_SUITE=samples
   - TEST_SUITE=coverage
