@@ -15417,12 +15417,6 @@ Namespace.addCategoryObject('elementBinding', getMerchantDetailsRequest.name().l
 getMerchantDetailsResponse = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'getMerchantDetailsResponse'), CTD_ANON_107, location=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 4955, 2))
 Namespace.addCategoryObject('elementBinding', getMerchantDetailsResponse.name().localName(), getMerchantDetailsResponse)
 
-updateMerchantDetailsRequest = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'updateMerchantDetailsRequest'), CTD_ANON_108, location=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 4990, 2))
-Namespace.addCategoryObject('elementBinding', updateMerchantDetailsRequest.name().localName(), updateMerchantDetailsRequest)
-
-updateMerchantDetailsResponse = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'updateMerchantDetailsResponse'), CTD_ANON_109, location=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 5008, 2))
-Namespace.addCategoryObject('elementBinding', updateMerchantDetailsResponse.name().localName(), updateMerchantDetailsResponse)
-
 getCustomerPaymentProfileNonceRequest = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'getCustomerPaymentProfileNonceRequest'), CTD_ANON_110, location=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 5022, 2))
 Namespace.addCategoryObject('elementBinding', getCustomerPaymentProfileNonceRequest.name().localName(), getCustomerPaymentProfileNonceRequest)
 
