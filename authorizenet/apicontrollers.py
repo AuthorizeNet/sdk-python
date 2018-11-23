@@ -1,13 +1,15 @@
 '''
-Created on Nov 3, 2015
+Created on Nov 15, 2017
 
 @author: krgupta
 '''
 import logging
 from authorizenet.constants import constants
 from authorizenet import apicontractsv1
-from authorizenet import apicontrollersbase    
+from authorizenet import apicontrollersbase   
+
 anetLogger = logging.getLogger(constants.defaultLoggerName)
+ 
 class ARBCancelSubscriptionController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -28,6 +30,7 @@ class ARBCancelSubscriptionController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.ARBCancelSubscriptionResponse() 
+    
 class ARBCreateSubscriptionController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -47,7 +50,8 @@ class ARBCreateSubscriptionController(apicontrollersbase.APIOperationBase):
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.ARBCreateSubscriptionResponse() 
+        return apicontractsv1.ARBCreateSubscriptionResponse()
+     
 class ARBGetSubscriptionController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -88,6 +92,7 @@ class ARBGetSubscriptionListController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.ARBGetSubscriptionListResponse() 
+    
 class ARBGetSubscriptionStatusController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -107,7 +112,21 @@ class ARBGetSubscriptionStatusController(apicontrollersbase.APIOperationBase):
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.ARBGetSubscriptionStatusResponse() 
+        return apicontractsv1.ARBGetSubscriptionStatusResponse()
+    
+    def afterexecute(self):
+        response = self._httpResponse
+        if constants.note in response:
+            response = response.replace(constants.note, '')
+
+        if constants.StatusStart in response:
+            start = response.index(constants.StatusStart)
+            end = response.index(constants.StatusEnd)
+            response = response.replace(response[start:end+9], '')
+
+        self._httpResponse = response
+        return
+		
 class ARBUpdateSubscriptionController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -948,4 +967,4 @@ class validateCustomerPaymentProfileController(apicontrollersbase.APIOperationBa
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.validateCustomerPaymentProfileResponse() 
+        return apicontractsv1.validateCustomerPaymentProfileResponse()
