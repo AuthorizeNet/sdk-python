@@ -76,7 +76,7 @@ A sample logger configuration is given as below:
 To get started using this SDK, it's highly recommended to download our sample code repository:
 * [Authorize.Net Python Sample Code Repository (on GitHub)](https://github.com/AuthorizeNet/sample-code-python)
 
-In that respository, we have comprehensive sample code for all common uses of our API:
+The respository contains comprehensive sample code for all common uses of our API:
 
 Additionally, you can find details and examples of how our API is structured in our API Reference Guide:
 * [Developer Center API Reference](http://developer.authorize.net/api/reference/index.html)
@@ -104,6 +104,8 @@ Run the following to get pyxb and nosetests:
 ### Testing Guide
 For additional help in testing your own code, Authorize.Net maintains a [comprehensive testing guide](http://developer.authorize.net/hello_world/testing_guide/) that includes test credit card numbers to use and special triggers to generate certain responses from the sandbox environment.
 
+### Transaction Hash Upgrade
+Authorize.Net is phasing out the MD5 based `transHash` element in favor of the SHA-512 based `transHashSHA2`. The setting in the Merchant Interface which controlled the MD5 Hash option is no longer available, and the `transHash` element will stop returning values at a later date to be determined. For information on how to use `transHashSHA2`, see the [Transaction Hash Upgrade Guide] (https://developer.authorize.net/support/hash_upgrade/).
 
 ## License
 This repository is distributed under a proprietary license. See the provided [`LICENSE.txt`](/LICENSE.txt) file.
