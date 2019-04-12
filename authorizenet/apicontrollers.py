@@ -706,7 +706,7 @@ class getTransactionListForCustomerController(apicontrollersbase.APIOperationBas
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.getTransactionListForCustomerResponse() 
+        return apicontractsv1.getTransactionListResponse() 
 class getUnsettledTransactionListController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):

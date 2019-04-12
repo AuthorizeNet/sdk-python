@@ -55,6 +55,8 @@ done
 
 cat ${SRCDIR}/script/headertemplate.pyt ${SRCDIR}/${CONTROLLERFOLDER}/*.py  > ${SRCDIR}/authorizenet/apicontrollers.new
 
+sed -i 's/getTransactionListForCustomerResponse/getTransactionListResponse/g' ${SRCDIR}/authorizenet/apicontrollers.new
+
 echo Controllers generated in module: ${SRCDIR}/authorizenet/apicontrollers.py
 
 echo Finished ${dt}
