@@ -226,7 +226,7 @@ class createCustomerProfileFromTransactionController(apicontrollersbase.APIOpera
 
     def getresponseclass(self):
         ''' Returns the response class '''
-        return apicontractsv1.createCustomerProfileFromTransactionResponse() 
+        return apicontractsv1.createCustomerProfileResponse() 
 class createCustomerProfileTransactionController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
