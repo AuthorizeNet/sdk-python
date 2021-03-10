@@ -15643,8 +15643,6 @@ Namespace.addCategoryObject('elementBinding', updateMerchantDetailsRequest.name(
 updateMerchantDetailsResponse = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'updateMerchantDetailsResponse'), CTD_ANON_109, location=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 5084, 2))
 Namespace.addCategoryObject('elementBinding', updateMerchantDetailsResponse.name().localName(), updateMerchantDetailsResponse)
 
-Namespace.addCategoryObject('elementBinding', getCustomerPaymentProfileNonceRequest.name().localName(), getCustomerPaymentProfileNonceRequest)
-
 
 
 ArrayOfLong._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'long'), pyxb.binding.datatypes.long, scope=ArrayOfLong, location=pyxb.utils.utility.Location('https://apitest.authorize.net/xml/v1/schema/AnetApiSchema.xsd', 28, 6)))
