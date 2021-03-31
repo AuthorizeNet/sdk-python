@@ -487,26 +487,6 @@ class getCustomerPaymentProfileListController(apicontrollersbase.APIOperationBas
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.getCustomerPaymentProfileListResponse() 
-class getCustomerPaymentProfileNonceController(apicontrollersbase.APIOperationBase):
-    
-    def __init__(self, apirequest):
-        super(getCustomerPaymentProfileNonceController, self).__init__(apirequest)
-        return 
-    
-    def validaterequest(self):
-        anetLogger.debug('performing custom validation..') 
-        #validate required fields
-        #if (self._request.xyz == "null"):
-        #    raise ValueError('xyz is required')         
-        return
-    
-    def getrequesttype(self):
-        '''Returns request type''' 
-        return 'getCustomerPaymentProfileNonceRequest'
-
-    def getresponseclass(self):
-        ''' Returns the response class '''
-        return apicontractsv1.getCustomerPaymentProfileNonceResponse() 
 class getCustomerProfileController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
@@ -927,7 +907,26 @@ class updateHeldTransactionController(apicontrollersbase.APIOperationBase):
     def getresponseclass(self):
         ''' Returns the response class '''
         return apicontractsv1.updateHeldTransactionResponse() 
+class updateMerchantDetailsController(apicontrollersbase.APIOperationBase):
+    
+    def __init__(self, apirequest):
+        super(updateMerchantDetailsController, self).__init__(apirequest)
+        return 
+    
+    def validaterequest(self):
+        anetLogger.debug('performing custom validation..') 
+        #validate required fields
+        #if (self._request.xyz == "null"):
+        #    raise ValueError('xyz is required')         
+        return
+    
+    def getrequesttype(self):
+        '''Returns request type''' 
+        return 'updateMerchantDetailsRequest'
 
+    def getresponseclass(self):
+        ''' Returns the response class '''
+        return apicontractsv1.updateMerchantDetailsResponse() 
 class updateSplitTenderGroupController(apicontrollersbase.APIOperationBase):
     
     def __init__(self, apirequest):
