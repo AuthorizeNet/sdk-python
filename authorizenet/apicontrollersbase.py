@@ -143,13 +143,18 @@ class APIOperationBase(APIOperationBaseInterface):
             self._httpResponse = self._httpResponse.text[3:] #strip BOM
             self.afterexecute()
             try:
-                self._response = apicontractsv1.CreateFromDocument(self._httpResponse) 
+                self._response = apicontractsv1.CreateFromDocument(self._httpResponse)
+            except (pyxb.exceptions_.PyXBException, pyxb.exceptions_.PyXBError) as e:
+                error_details = e.details()
+                raise e(
+                    'Validation Error Creating Document: At %s, with Arguments: %s, details:',
+                    type(e), e.args, str(error_details))
+            try:
                 #objectify code  
                 xmlResponse= self._response.toxml(encoding=constants.xml_encoding, element_name=self.getrequesttype()) 
                 xmlResponse = xmlResponse.replace(constants.nsNamespace1, b'')
                 xmlResponse = xmlResponse.replace(constants.nsNamespace2, b'') 
                 self._mainObject = objectify.fromstring(xmlResponse)   
-                 
             except Exception as objectifyexception:
                 anetLogger.error( 'Create Document Exception: %s, %s', type(objectifyexception), objectifyexception.args )
                 responseString = self._httpResponse
