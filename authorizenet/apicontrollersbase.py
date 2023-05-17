@@ -146,9 +146,15 @@ class APIOperationBase(APIOperationBaseInterface):
                 self._response = apicontractsv1.CreateFromDocument(self._httpResponse)
             except (pyxb.exceptions_.PyXBException, pyxb.exceptions_.PyXBError) as e:
                 error_details = e.details()
-                raise e(
-                    'Validation Error Creating Document: At %s, with Arguments: %s, details:',
-                    type(e), e.args, str(error_details))
+                try:
+                    raise e(
+                        'Validation Error Creating Document: At %s, with Arguments: %s, details:',
+                        type(e), e.args, str(error_details))
+                except TypeError:
+                    anetLogger.error(
+                        'Validation Error Creating Document: At %s, with Arguments: %s, details:',
+                        type(e), e.args
+                    )
             try:
                 #objectify code  
                 xmlResponse= self._response.toxml(encoding=constants.xml_encoding, element_name=self.getrequesttype()) 
