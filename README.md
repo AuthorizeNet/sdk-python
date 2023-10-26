@@ -1,4 +1,8 @@
-# Authorize.Net Python SDK 
+# Authorize.Net Python SDK forked by Leaflink
+
+This repo was forked as part of our migration for python 3.8 to 3.10 (https://github.com/LeafLink/leaflink/pull/22679). 
+The repo does not support python 3.10 and there Authorize.net is reluctant to update it.  If Authorize.net ever update the 
+repo then we can delete this fork.
 
 [![Travis CI Status](https://travis-ci.org/AuthorizeNet/sdk-python.svg?branch=master)](https://travis-ci.org/AuthorizeNet/sdk-python)
 [![Coverage Status](https://coveralls.io/repos/github/AuthorizeNet/sdk-python/badge.svg?branch=master)](https://coveralls.io/github/AuthorizeNet/sdk-python?branch=master)
