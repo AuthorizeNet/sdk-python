@@ -1,19 +1,15 @@
 # Authorize.Net Python SDK 
 
-[![Travis CI Status](https://travis-ci.org/AuthorizeNet/sdk-python.svg?branch=master)](https://travis-ci.org/AuthorizeNet/sdk-python)
-[![Coverage Status](https://coveralls.io/repos/github/AuthorizeNet/sdk-python/badge.svg?branch=master)](https://coveralls.io/github/AuthorizeNet/sdk-python?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/AuthorizeNet/sdk-python/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/AuthorizeNet/sdk-python/?branch=master)
+[![Authorize.net Python CI](https://github.com/AuthorizeNet/sdk-python/actions/workflows/python-workflow.yml/badge.svg?branch=master)](https://github.com/AuthorizeNet/sdk-python/actions/workflows/python-workflow.yml)
 [![PyPI](https://img.shields.io/pypi/v/authorizenet.svg)](https://badge.fury.io/py/authorizenet)
 
 
 ## Requirements
-* For Python 2, Python 2.7 or greater
-* For Python 3, Python 3.4 or later
+* Python 3.6 or later
 * OpenSSL 1.0.2 or greater
 * An Authorize.Net account (see _Registration & Configuration_ section below)
 
-_Note: Our goal is ensuring this SDK is compatible with Python 2.7+, 3.4+ and PyPy, but at the moment we're primarily testing against Python 2.7._
-
+_Note: Support for Python 2.x and Python <=3.5 has been discontinued, due to EOL of the Python package._
 ### Contribution  
   - If you need information or clarification about Authorize.Net features, create an issue with your question. You can also search the [Authorize.Net developer community](https://community.developer.authorize.net/) for discussions related to your question.
   - Before creating pull requests, please read [the contributors guide](CONTRIBUTING.md).
@@ -39,9 +35,9 @@ After you have your credentials, load them into the appropriate variables in you
 
 #### To set your API credentials for an API request:
 ```python
-	merchantAuth = apicontractsv1.merchantAuthenticationType()
-	merchantAuth.name = 'YOUR_API_LOGIN_ID'
-	merchantAuth.transactionKey = 'YOUR_TRANSACTION_KEY'
+    merchantAuth = apicontractsv1.merchantAuthenticationType()
+    merchantAuth.name = 'YOUR_API_LOGIN_ID'
+    merchantAuth.transactionKey = 'YOUR_TRANSACTION_KEY'
 ```
 
 Never include your API Login ID and Transaction Key directly in a file in a publicly accessible portion of your website. As a best practice, define the API Login ID and Transaction Key in a constants file, and reference those constants in your code.
@@ -50,7 +46,7 @@ Never include your API Login ID and Transaction Key directly in a file in a publ
 Authorize.Net maintains a complete sandbox environment for testing and development purposes. The sandbox environment is an exact replica of our production environment, with simulated transaction authorization and settlement. By default, this SDK is configured to use the sandbox environment. To switch to the production environment, use the `setenvironment` method on the controller before executing. For example:
 ```python
 # For PRODUCTION use
-	createtransactioncontroller.setenvironment(constants.PRODUCTION)
+    createtransactioncontroller.setenvironment(constants.PRODUCTION)
 ```
 
 API credentials are different for each environment, so be sure to switch to the appropriate credentials when switching environments.
@@ -61,14 +57,14 @@ Python SDK uses the logger _'authorizenet.sdk'_. By default, the logger in the S
 A sample logger configuration is given as below:
 
 ```python
-	import logging
-	logger = logging.getLogger('authorizenet.sdk')
-	handler = logging.FileHandler('anetSdk.log')  
-	formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
-	handler.setFormatter(formatter)
-	logger.addHandler(handler)
-	logger.setLevel(logging.DEBUG)
-	logger.debug('Logger set up for Authorizenet Python SDK complete')
+    import logging
+    logger = logging.getLogger('authorizenet.sdk')
+    handler = logging.FileHandler('anetSdk.log')  
+    formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+    logger.setLevel(logging.DEBUG)
+    logger.debug('Logger set up for Authorizenet Python SDK complete')
 ``` 
 
 
@@ -103,19 +99,8 @@ When using the SDK to submit Chase Pay transactions, consider the following poin
 ## Building & Testing the SDK
 
 ### Requirements
-- python 2.7
-- pyxb 1.2.5
-
-Run the following to get pyxb and nosetests:
-- pip install pyxb==1.2.5
-- pip install nose
-- pip install lxml
-
-### Running the SDK Tests
-- Tests available are: unit tests, mock tests, sample code
-- use nosetests to run all unittests
-
-`>nosetests`
+- Python 3.6
+- PyXB-X
 
 ### Testing Guide
 For additional help in testing your own code, Authorize.Net maintains a [comprehensive testing guide](http://developer.authorize.net/hello_world/testing_guide/) that includes test credit card numbers to use and special triggers to generate certain responses from the sandbox environment.
