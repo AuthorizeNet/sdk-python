@@ -68,7 +68,7 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=['PyXB-X', 'lxml==4.*', 'requests==2.*'],
+    install_requires=['PyXB-X', 'lxml==5.*', 'requests==2.*'],
     #install_requires=['nose'],
     #install_requires=['nosetests'],
     #install_requires=['mock'],
