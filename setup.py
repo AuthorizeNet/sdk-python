@@ -11,6 +11,10 @@ from os import path
 here = path.abspath(path.dirname(__file__))
 
 
+with open(path.join(here, 'DESCRIPTION.rst'), encoding='utf-8') as f:
+    long_description = f.read()
+
+
 setup(
     name='authorizenet',
 
@@ -20,6 +24,7 @@ setup(
     version='1.1.5',
 
     description='Authorize.Net Python SDK',
+    long_description=long_description,
 
     # The project's main homepage.
     url='https://github.com/AuthorizeNet/sdk-python',
